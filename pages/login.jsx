@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import Link from 'next/link';
+import {useEffect, useState} from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthUserContext';
 
@@ -11,12 +10,19 @@ export default function Home() {
     const [error, setError] = useState(null);
     const router = useRouter();
     const { signInWithEmailAndPassword } = useAuth();
+    const { authUser, loading} = useAuth();
+
+    // If we are already logged in, redirect to the home page
+    useEffect(() => {
+        if (authUser)
+            router.push('/').then();
+    }, [authUser]);
 
     const onSubmit = event => {
         setError(null);
         signInWithEmailAndPassword(email, password)
             .then(authUser => {
-                router.push('/');
+                router.push('/').then();
             })
             .catch(error => {
                 setError(error.message);
