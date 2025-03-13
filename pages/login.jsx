@@ -68,11 +68,6 @@ export default function Home() {
                                 </Button>
                             </Col>
                         </FormGroup>
-                        <FormGroup row>
-                            <Col className='text-white'>
-                                No account? <Link href="/register">Create one</Link>
-                            </Col>
-                        </FormGroup>
                     </Form>
                 </Col>
             </Row>

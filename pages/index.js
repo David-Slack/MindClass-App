@@ -1,11 +1,8 @@
 import Head from "next/head";
 import {Footer} from "@/components/footer/Footer";
-import Link from "next/link";
-import { useAuth } from '@/context/AuthUserContext';
-import {Button } from 'react-bootstrap';
+import {MainMenu} from "@/components/mainMenu/MainMenu";
 
 export default function Home() {
-    const { authUser, loading, signOut } = useAuth();
 
     return (
         <>
@@ -14,10 +11,10 @@ export default function Home() {
                 <meta name="description" content="MindClass | home page" />
             </Head>
 
+            <MainMenu/>
+
             <h1>Hello World!</h1>
 
-            { authUser && <Button onClick={signOut}>Sign out</Button>}
-            { !authUser && <Link href={`/login`}>Login</Link> }
 
             <Footer />
         </>
