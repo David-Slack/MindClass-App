@@ -24,8 +24,6 @@ export const dazzed = localFont({
 let mainClass = 'home'
 
 export default function App({ Component, pageProps }) {
-    // TODO: Check if the user is logged in and redirect to the login page if they are not
-
     return (
         <>
             <Head>
