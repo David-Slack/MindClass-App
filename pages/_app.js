@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "@/styles/globals.css";
 import localFont from 'next/font/local';
 import Head from "next/head";
