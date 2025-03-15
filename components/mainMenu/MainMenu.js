@@ -71,7 +71,6 @@ export function MainMenu(){
                                         return (
                                             <Nav.Link
                                                 key={key}
-                                                EventKey={key}
                                                 as={Link}
                                                 href={link.url}
                                             >{link.title}</Nav.Link>

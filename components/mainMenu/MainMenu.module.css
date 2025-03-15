@@ -33,6 +33,12 @@
         padding: 0 0 0 22px;
         line-height: 1em;
 
+        &:active{
+            color: #000;
+            background-color: transparent;
+            border-color: #000;
+        }
+
         &:hover{
             width: 160px;
             font-size: 24px;
