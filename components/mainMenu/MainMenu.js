@@ -51,7 +51,7 @@ export function MainMenu(){
     return(
         <>
             { authUser &&
-                <Nav className={`mainMenu ${styles.mainMenu}`}>
+                <Nav className={`leftMenu ${styles.leftMenu} `}>
                     <Link href={`/`}>
                         <Image
                             src={`/img/logo.png`}
