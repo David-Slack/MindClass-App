@@ -21,7 +21,8 @@ export const dazzed = localFont({
     ],
 })
 
-let mainClass = 'home'
+// TODO: Should be the route, without the first / and other / are -
+let mainClass = 'home';
 
 export default function App({ Component, pageProps }) {
     return (
@@ -34,9 +35,14 @@ export default function App({ Component, pageProps }) {
             <AuthUserProvider>
                 <main className={`${mainClass} ${dazzed.className}`}>
                     <LoginCheck/>
+
+                    <div className="mainContent">
+                        <Component {...pageProps} />
+                        <Footer/>
+                    </div>
+
                     <MainMenu/>
-                    <Component {...pageProps} />
-                    <Footer/>
+
                 </main>
             </AuthUserProvider>
         </>

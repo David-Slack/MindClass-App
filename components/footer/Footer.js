@@ -1,7 +1,7 @@
 export function Footer(){
     return(
         <footer>
-            Footer text
+            Copyright MindClass 2025
         </footer>
     );
 }
