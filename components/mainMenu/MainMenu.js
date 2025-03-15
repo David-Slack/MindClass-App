@@ -79,7 +79,7 @@ export function MainMenu(){
                         }
                     </ul>
 
-                    <Button onClick={signOut}>Sign out</Button>
+                    <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
                 </Nav>
             }
         </>
