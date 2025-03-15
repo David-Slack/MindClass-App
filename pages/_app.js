@@ -2,8 +2,8 @@ import "@/styles/globals.css";
 import localFont from 'next/font/local';
 import Head from "next/head";
 import { AuthUserProvider } from '@/context/AuthUserContext';
-import {MainMenu} from "@/components/mainMenu/MainMenu";
-import {Footer} from "@/components/footer/Footer";
+import { MainMenu } from "@/components/mainMenu/MainMenu";
+import { Footer } from "@/components/footer/Footer";
 import {LoginCheck} from "@/components/loginCheck/LoginCheck";
 
 export const dazzed = localFont({
@@ -33,15 +33,13 @@ export default function App({ Component, pageProps }) {
 
             <AuthUserProvider>
                 <main className={`${mainClass} ${dazzed.className}`}>
-                    <LoginCheck/>
-
                     <div className="mainContent">
-                        <Component {...pageProps} />
+                        <LoginCheck>
+                            <Component {...pageProps} />
+                        </LoginCheck>
                         <Footer/>
                     </div>
-
                     <MainMenu/>
-
                 </main>
             </AuthUserProvider>
         </>

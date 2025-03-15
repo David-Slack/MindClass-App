@@ -56,6 +56,7 @@ export function MainMenu(){
                             width={991}
                             height={227}
                             className={styles.logo}
+                            priority={true}
                         />
                     </Link>
                     <ul>
