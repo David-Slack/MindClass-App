@@ -50,6 +50,7 @@
             background-size: 50px 50px;
             border: 4px solid #000;
             border-radius: 50%;
+            transition-duration: 1.4s;
         }
         &:hover:before{
             transform: rotate(360deg);
