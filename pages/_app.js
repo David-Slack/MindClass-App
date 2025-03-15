@@ -34,13 +34,13 @@ export default function App({ Component, pageProps }) {
 
             <AuthUserProvider>
                 <main className={`${mainClass} ${dazzed.className}`}>
+                    <MainMenu/>
                     <div className="mainContent">
                         <LoginCheck>
                             <Component {...pageProps} />
                         </LoginCheck>
                         <Footer/>
                     </div>
-                    <MainMenu/>
                 </main>
             </AuthUserProvider>
         </>

@@ -20,6 +20,11 @@ html, body{
     margin: 0 0 40px 270px;
 }
 
+.topMenu{
+    display: none;
+    opacity: 0;
+}
+
 @media screen and (max-width: 900px){
     .leftMenu{
         display: none;
@@ -28,6 +33,10 @@ html, body{
     .mainContent{
         padding: 20px;
         margin: 0 0 40px 0;
+    }
+    .topMenu{
+        display: block;
+        opacity: 1;
     }
 }
 
@@ -39,7 +48,7 @@ footer{
     width: 100%;
     background: #f4f4f4;
     text-align: right;
-    height: 20px;
+    height: 35px;
     padding: 10px;
     margin: 0 0 0 250px;
     font-size: 14px;

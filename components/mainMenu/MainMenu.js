@@ -1,4 +1,4 @@
-import {Button, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import {Button, Container, Nav, Navbar } from 'react-bootstrap';
 import Link from "next/link";
 import styles from "./MainMenu.module.css";
 import Image from "next/image";
@@ -51,35 +51,44 @@ export function MainMenu(){
     return(
         authUser &&
             <>
-{/*                <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+                <Navbar id="TopMenu" collapseOnSelect expand="lg" className="topMenu bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                        <Navbar.Brand href="/">
+                            <Image
+                                src={`/img/logo.png`}
+                                alt={`MindClass logo`}
+                                width={231}
+                                height={53}
+                                className={styles.logo}
+                                priority={true}
+                            />
+                        </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link href="#features">Features</Nav.Link>
-                                <Nav.Link href="#pricing">Pricing</Nav.Link>
-                                <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">
-                                        Separated link
-                                    </NavDropdown.Item>
-                                </NavDropdown>
+                                {
+                                    nav.map((link, key)=>{
+                                        return (
+                                            <Nav.Link
+                                                key={key}
+                                                EventKey={key}
+                                                as={Link}
+                                                href={link.url}
+                                            >{link.title}</Nav.Link>
+                                        )
+                                    })
+                                }
                             </Nav>
                             <Nav>
-                                <Nav.Link href="#deets">More deets</Nav.Link>
+                                {/*<Nav.Link href="#deets">My Account</Nav.Link>
                                 <Nav.Link eventKey={2} href="#memes">
-                                    Dank memes
-                                </Nav.Link>
+                                    Sign Out
+                                </Nav.Link>*/}
+                                <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
-                </Navbar>*/}
+                </Navbar>
 
                 <div className={`leftMenu ${styles.leftMenu} `}>
                     <Link href={`/`}>
