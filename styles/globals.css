@@ -20,6 +20,17 @@ html, body{
     margin: 0 0 40px 270px;
 }
 
+@media screen and (max-width: 900px){
+    .leftMenu{
+        display: none;
+        opacity: 0;
+    }
+    .mainContent{
+        padding: 20px;
+        margin: 0 0 40px 0;
+    }
+}
+
 footer{
     position: fixed;
     z-index: 1;
