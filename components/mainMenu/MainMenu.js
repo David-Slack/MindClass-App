@@ -43,7 +43,7 @@ const nav = [
 ];
 
 export function MainMenu(){
-    const { authUser, loading, signOut } = useAuth();
+    const { authUser, signOut } = useAuth();
 
     return(
         <>

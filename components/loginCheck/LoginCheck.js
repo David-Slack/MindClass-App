@@ -2,10 +2,10 @@ import { useAuth } from '@/context/AuthUserContext';
 import {useEffect} from "react";
 import {router} from "next/client";
 import { usePathname } from 'next/navigation';
-import {Col, Row} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 
 export function LoginCheck({ children }){
-    const { authUser, loading, signOut } = useAuth();
+    const { authUser } = useAuth();
     const pathname = usePathname()
 
     useEffect(() => {
