@@ -8,11 +8,7 @@ export default function Home() {
                 <meta name="description" content="MindClass | home page" />
             </Head>
 
-            <h1>Hello World!</h1>
-
-            <footer>
-                Footer text
-            </footer>
+            <h1>MindClass Dashboard</h1>
         </>
     );
 }
