@@ -6,7 +6,7 @@ html, body{
 .mainMenu{
     position:absolute;
     top:0;
-    width:250px;
+    width:270px;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -17,7 +17,7 @@ html, body{
 
 .mainContent{
     padding: 20px;
-    margin: 0 0 40px 250px;
+    margin: 0 0 40px 270px;
 }
 
 footer{
