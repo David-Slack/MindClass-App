@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthUserContext';
 
 import { Container, Row, Col, Button, Form, FormGroup, Alert } from 'react-bootstrap';
 
-export default function Home() {
+export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState(null);
@@ -41,8 +41,8 @@ export default function Home() {
                 <Col>
                     <Form onSubmit={onSubmit}>
                         {error && <Alert color="danger">{error}</Alert>}
-                        <FormGroup row>
-                            <Form.Label for="loginEmail" sm={4}>Email</Form.Label>
+                        <FormGroup>
+                            <Form.Label htmlFor="loginEmail" sm={4}>Email</Form.Label>
                             <Col sm={8}>
                                 <Form.Control
                                     type="email"
@@ -54,8 +54,8 @@ export default function Home() {
                                 />
                             </Col>
                         </FormGroup>
-                        <FormGroup row>
-                            <Form.Label for="loginPassword" sm={4}>Password</Form.Label>
+                        <FormGroup>
+                            <Form.Label htmlFor="loginPassword" sm={4}>Password</Form.Label>
                             <Col sm={8}>
                                 <Form.Control
                                     type="password"
@@ -67,7 +67,7 @@ export default function Home() {
                                 />
                             </Col>
                         </FormGroup>
-                        <FormGroup row>
+                        <FormGroup>
                             <Col>
                                 <Button variant="primary" type="submit">
                                     Login
