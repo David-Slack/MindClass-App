@@ -5,8 +5,8 @@ import { useAuth } from '@/context/AuthUserContext';
 import { Container, Row, Col, Button, Form, FormGroup, Alert } from 'react-bootstrap';
 
 export default function Home() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
     const [error, setError] = useState(null);
     const router = useRouter();
     const { signInWithEmailAndPassword } = useAuth();
