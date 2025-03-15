@@ -21,8 +21,7 @@ export const dazzed = localFont({
     ],
 })
 
-// TODO: Should be the route, without the first / and other / are -
-let mainClass = 'home';
+let mainClass = 'home'
 
 export default function App({ Component, pageProps }) {
     return (

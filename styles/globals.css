@@ -2,36 +2,41 @@
 html, body{
     padding: 0;
     margin: 0;
+    background: #f4f4f4;
 }
 .mainMenu{
     position:absolute;
     top:0;
-    width:250px;
+    width:270px;
     height: 100%;
     padding: 0;
     margin: 0;
     border-right: 1px solid #000;
     overflow: hidden;
-    background: white;
 }
 
 .mainContent{
     padding: 20px;
-    margin: 0 0 40px 250px;
+    margin: 0 0 40px 270px;
 }
 
 footer{
     position: fixed;
+    z-index: 1;
     bottom: 0;
     right: 0;
     width: 100%;
-    background: #ccc;
+    background: #f4f4f4;
     text-align: right;
     height: 20px;
     padding: 10px;
     margin: 0 0 0 250px;
     font-size: 14px;
-
     border-top: 1px solid #000;
 }
 /* END Layout */
+
+h1{
+    font-size: 48px;
+    margin: 0;
+}

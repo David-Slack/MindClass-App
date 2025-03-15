@@ -1,3 +1,59 @@
+/* Reset */
+.mainMenu ul,
+.mainMenu li
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* End reset */
 .mainMenu{
+    .logo{
+        width: 231px;
+        height: auto;
+        margin: 10px 0 0 0;
+    }
+}
 
+.mainMenu a{
+    text-decoration: none;
+    color: #000;
+    font-size: 28px;
+    display: block;
+    margin: 5px 20px;
+
+    .titleSpan{
+        display: inline-block;
+        border: 2px solid #000;
+        border-radius: 23px;
+        padding: 5px 20px;
+        transition-duration: .3s;
+
+        &:hover{
+            color: #000;
+            background: #fff;
+            transform: scale(1.05);
+            box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.2);
+        }
+    }
+
+}
+
+.mainMenu li:nth-child(2) a .titleSpan:hover{
+    background: #e6c64f;
+}
+.mainMenu li:nth-child(3) a .titleSpan:hover{
+    background: #dc7245;
+}
+.mainMenu li:nth-child(4) a .titleSpan:hover{
+    background: #34c559;
+}
+.mainMenu li:nth-child(5) a .titleSpan:hover{
+    background: #99e1ea;
+}
+.mainMenu li:nth-child(6) a .titleSpan:hover{
+    background: #d84641;
+}
+.mainMenu li:nth-child(7) a .titleSpan:hover{
+    background: #e4f9fb;
 }

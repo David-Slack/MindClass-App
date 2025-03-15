@@ -1,7 +1,46 @@
 import {Button, Nav} from 'react-bootstrap';
-import { useAuth } from '@/context/AuthUserContext';
 import Link from "next/link";
 import styles from "./MainMenu.module.css";
+import Image from "next/image";
+import { useAuth } from '@/context/AuthUserContext';
+
+const nav = [
+    {
+        url: "/",
+        title: "Home",
+        hover: "this is a hover"
+    },
+    {
+        url: "/courses",
+        title: "Courses",
+        hover: "this is a hover"
+    },
+    {
+        url: "/counsellors",
+        title: "Counselling",
+        hover: "this is a hover"
+    },
+    {
+        url: "/magazine",
+        title: "Magazine",
+        hover: "this is a hover"
+    },
+    {
+        url: "/relax",
+        title: "Relax",
+        hover: "this is a hover"
+    },
+    {
+        url: "/shorts",
+        title: "Shorts",
+        hover: "this is a hover"
+    },
+    {
+        url: "/tools",
+        title: "Tools",
+        hover: "this is a hover"
+    },
+];
 
 export function MainMenu(){
     const { authUser, loading, signOut } = useAuth();
@@ -10,15 +49,27 @@ export function MainMenu(){
         <>
             { authUser &&
                 <Nav className={`mainMenu ${styles.mainMenu}`}>
-                    MindClass logo
+                    <Link href={`/`}>
+                        <Image
+                            src={`/img/logo.png`}
+                            alt={`MindClass logo`}
+                            width={991}
+                            height={227}
+                            className={styles.logo}
+                        />
+                    </Link>
                     <ul>
-                        <li><Link href={`/`}>Home</Link></li>
-                        <li><Link href={`/courses`}>Courses</Link></li>
-                        <li><Link href={`/counsellors`}>Counsellors</Link></li>
-                        <li><Link href={`/magazine`}>Magazine</Link></li>
-                        <li><Link href={`/relax`}>Relax</Link></li>
-                        <li><Link href={`/shorts`}>Shorts</Link></li>
-                        <li><Link href={`/tools`}>Tools</Link></li>
+                        {
+                            nav.map((link)=>{
+                                return (
+                                    <li key={link.url}>
+                                        <Link href={link.url}>
+                                            <span className={styles.titleSpan}>{link.title}</span>
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
 
                     <Button onClick={signOut}>Sign out</Button>
