@@ -35,3 +35,8 @@ footer{
     border-top: 1px solid #000;
 }
 /* END Layout */
+
+h1{
+    font-size: 48px;
+    margin: 0;
+}
