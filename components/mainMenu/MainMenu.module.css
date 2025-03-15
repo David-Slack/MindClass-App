@@ -39,21 +39,31 @@
 
 }
 
+.mainMenu a.active .titleSpan{
+    background: #fff;
+}
+
+.mainMenu li:nth-child(2) a.active .titleSpan,
 .mainMenu li:nth-child(2) a .titleSpan:hover{
     background: #e6c64f;
 }
+.mainMenu li:nth-child(3) a.active .titleSpan,
 .mainMenu li:nth-child(3) a .titleSpan:hover{
     background: #dc7245;
 }
+.mainMenu li:nth-child(4) a.active .titleSpan,
 .mainMenu li:nth-child(4) a .titleSpan:hover{
     background: #34c559;
 }
+.mainMenu li:nth-child(5) a.active .titleSpan,
 .mainMenu li:nth-child(5) a .titleSpan:hover{
     background: #99e1ea;
 }
+.mainMenu li:nth-child(6) a.active .titleSpan,
 .mainMenu li:nth-child(6) a .titleSpan:hover{
     background: #d84641;
 }
+.mainMenu li:nth-child(7) a.active .titleSpan,
 .mainMenu li:nth-child(7) a .titleSpan:hover{
     background: #e4f9fb;
 }

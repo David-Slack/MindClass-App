@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./MainMenu.module.css";
 import Image from "next/image";
 import { useAuth } from '@/context/AuthUserContext';
+import {usePathname} from "next/navigation";
 
 const nav = [
     {
@@ -42,8 +43,10 @@ const nav = [
     },
 ];
 
+
 export function MainMenu(){
     const { authUser, signOut } = useAuth();
+    const pathname = usePathname();
 
     return(
         <>
@@ -64,7 +67,10 @@ export function MainMenu(){
                             nav.map((link)=>{
                                 return (
                                     <li key={link.url}>
-                                        <Link href={link.url}>
+                                        <Link
+                                            href={link.url}
+                                            className={`${pathname === link.url ? styles.active : ''}`}
+                                        >
                                             <span className={styles.titleSpan}>{link.title}</span>
                                         </Link>
                                     </li>

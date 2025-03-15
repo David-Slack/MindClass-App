@@ -6,7 +6,7 @@ import {Row} from "react-bootstrap";
 
 export function LoginCheck({ children }){
     const { authUser } = useAuth();
-    const pathname = usePathname()
+    const pathname = usePathname();
 
     useEffect(() => {
         if (!authUser && pathname !== '/login')
