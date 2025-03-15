@@ -25,14 +25,15 @@
     .titleSpan{
         display: inline-block;
         border: 2px solid #000;
-        border-radius: 58px;
+        border-radius: 23px;
         padding: 5px 20px;
         transition-duration: .3s;
 
         &:hover{
             color: #000;
             background: #fff;
-            transform: scale(1.03);
+            transform: scale(1.05);
+            box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.2);
         }
     }
 

@@ -2,6 +2,7 @@
 html, body{
     padding: 0;
     margin: 0;
+    background: #f4f4f4;
 }
 .mainMenu{
     position:absolute;
@@ -12,7 +13,6 @@ html, body{
     margin: 0;
     border-right: 1px solid #000;
     overflow: hidden;
-    background: white;
 }
 
 .mainContent{
@@ -22,16 +22,16 @@ html, body{
 
 footer{
     position: fixed;
+    z-index: 1;
     bottom: 0;
     right: 0;
     width: 100%;
-    background: #ccc;
+    background: #f4f4f4;
     text-align: right;
     height: 20px;
     padding: 10px;
     margin: 0 0 0 250px;
     font-size: 14px;
-
     border-top: 1px solid #000;
 }
 /* END Layout */
