@@ -51,7 +51,7 @@ export function MainMenu(){
     return(
         authUser &&
             <>
-                <Navbar id="TopMenu" collapseOnSelect expand="lg" className="topMenu bg-body-tertiary">
+                <Navbar id="TopMenu" collapseOnSelect expand="lg" className={`topMenu ${styles.topMenu} bg-body-tertiary`}>
                     <Container>
                         <Navbar.Brand href="/">
                             <Image
@@ -64,7 +64,7 @@ export function MainMenu(){
                             />
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav">
+                        <Navbar.Collapse id="responsive-navbar-nav" className={styles.navBarNav}>
                             <Nav className="me-auto">
                                 {
                                     nav.map((link, key)=>{
