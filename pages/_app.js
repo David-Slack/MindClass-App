@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "@/styles/globals.css";
 import localFont from 'next/font/local';
 import Head from "next/head";
-import { AuthUserProvider } from '@/context/AuthUserContext';
+import { AuthUserProvider } from '@/helpers/firebase/AuthUserContext';
 import { MainMenu } from "@/components/mainMenu/MainMenu";
 import { Footer } from "@/components/footer/Footer";
 import {LoginCheck} from "@/components/loginCheck/LoginCheck";

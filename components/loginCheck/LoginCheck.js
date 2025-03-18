@@ -1,4 +1,4 @@
-import { useAuth } from '@/context/AuthUserContext';
+import { useAuth } from '@/helpers/firebase/AuthUserContext';
 import {useEffect} from "react";
 import {router} from "next/client";
 import { usePathname } from 'next/navigation';

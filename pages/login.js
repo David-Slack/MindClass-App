@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '@/context/AuthUserContext';
+import { useAuth } from '@/helpers/firebase/AuthUserContext';
 
 import { Container, Row, Col, Button, Form, FormGroup, Alert } from 'react-bootstrap';
 

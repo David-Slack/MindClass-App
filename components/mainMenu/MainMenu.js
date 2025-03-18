@@ -2,7 +2,7 @@ import {Button, Container, Nav, Navbar } from 'react-bootstrap';
 import Link from "next/link";
 import styles from "./MainMenu.module.css";
 import Image from "next/image";
-import { useAuth } from '@/context/AuthUserContext';
+import { useAuth } from '@/helpers/firebase/AuthUserContext';
 import {usePathname} from "next/navigation";
 
 const nav = [
