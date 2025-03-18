@@ -6,6 +6,8 @@ import { AuthUserProvider } from '@/helpers/firebase/AuthUserContext';
 import { MainMenu } from "@/components/mainMenu/MainMenu";
 import { Footer } from "@/components/footer/Footer";
 import {LoginCheck} from "@/components/loginCheck/LoginCheck";
+import {textToClass} from "@/helpers/textToClass";
+import { usePathname } from 'next/navigation';
 
 export const dazzed = localFont({
     src: [
@@ -22,9 +24,13 @@ export const dazzed = localFont({
     ],
 })
 
-let mainClass = 'home'
 
 export default function App({ Component, pageProps }) {
+
+    const pathname = usePathname();
+    let mainClass = textToClass(pathname);
+    if(mainClass==='') mainClass = 'home';
+
     return (
         <>
             <Head>
