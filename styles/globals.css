@@ -1,3 +1,26 @@
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #000;
+    --bs-btn-border-color: #fff;
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #fff;
+    --bs-btn-hover-border-color: #000;
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #fff;
+    --bs-btn-active-border-color: #000;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #ccc;
+    --bs-btn-disabled-bg: #333;
+    --bs-btn-disabled-border-color: #ccc;
+    border-radius: 20px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    background: #fdfdfe !important;
+    -webkit-box-shadow: 0 0 0 1000px #fdfdfe inset;
+}
+
 /* Layout */
 html, body{
     padding: 0;
@@ -18,6 +41,9 @@ html, body{
 .mainContent{
     padding: 20px;
     margin: 0 0 40px 270px;
+}
+.login .mainContent{
+    margin:40px 0;
 }
 
 .topMenu{
@@ -60,3 +86,28 @@ h1{
     font-size: 48px;
     margin: 0;
 }
+
+
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+}
+

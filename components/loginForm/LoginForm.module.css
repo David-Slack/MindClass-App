@@ -1,0 +1,43 @@
+.loginRow{
+    background: #ffffff;
+    padding: 30px;
+    border: 2px solid #000000;
+    margin-top: calc( 50vh - 250px );
+}
+.loginRow input{
+    border: 2px solid #000;
+
+    &:focus{
+        border-color: #aaa;
+        box-shadow: 0 0 0 .25rem rgba(130, 130, 130, .25);
+    }
+}
+
+.loginImageRow{
+    border-radius:10px 0 0 10px;
+    border-right: none;
+}
+.loginFormRow{
+    border-radius:0 10px 10px 0;
+    border-left: none;
+}
+
+@media (max-width: 992px) {
+    .loginRow{
+        background: #ffffff;
+        padding: 30px;
+        border: 2px solid #000000;
+        margin-top: 0;
+    }
+
+    .loginImageRow{
+        border-radius:10px 10px 0 0;
+        border-right: 2px solid #000000;
+        border-bottom: none;
+    }
+    .loginFormRow{
+        border-radius:0 0 10px 10px;
+        border-left: 2px solid #000000;
+        border-top: none;
+    }
+}
