@@ -1,4 +1,4 @@
-"use client"
+"use server"
 
 import { useEffect, useState } from "react"
 import { collection, getDocs } from "firebase/firestore"
@@ -8,14 +8,14 @@ import Image from "next/image";
 const ListItems = () => {
     const [items, setItems] = useState([]);
 
-    useEffect(() => {
+    //useEffect(() => {
         const fetchItems = async () => {
             const querySnapshot = await getDocs(collection(db, "resources"));
             setItems(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         }
 
         fetchItems().then();
-    }, []);
+    //}, []);
 
     return (
         <>
