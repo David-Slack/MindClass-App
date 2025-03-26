@@ -4,7 +4,7 @@ import {getCollection} from "@/helpers/firebase/getCollection";
 import {MagazineArticles} from "@/components/MagazineArticles/MagazineArticles";
 
 export async function getServerSideProps() {
-    return getCollection("resources");
+    return getCollection("resources", "publish_date");
 }
 
 export default function Magazine({ collection }) {
