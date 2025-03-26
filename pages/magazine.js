@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ListItems from "@/components/listItems/ListItems";
+import {MagazineArticles} from "@/components/magazines/MagazineArticles";
 
 export default function Magazine() {
 
@@ -15,7 +15,7 @@ export default function Magazine() {
 
             <h1>{title}</h1>
             <p>{description}</p>
-            <ListItems/>
+            <MagazineArticles />
         </>
     );
 }
