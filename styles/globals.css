@@ -21,6 +21,17 @@ input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 1000px #fdfdfe inset;
 }
 
+/* Colours */
+:root {
+    --yellowAlt: #e6c64f;
+    --yellowLight: #fdf1cb;
+    --green: #34c559;
+}
+
+.bg-yellowAlt{ background: var(--yellowAlt) !important;}
+.bg-yellowLight{ background: var(--yellowLight) !important;}
+.bg-green{ background: var(--green) !important;}
+
 /* Layout */
 html, body{
     padding: 0;
