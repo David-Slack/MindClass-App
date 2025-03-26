@@ -1,11 +1,19 @@
-import { collection, getDocs, query, where, Timestamp } from "firebase/firestore";
+import { collection, getDocs, query, where, Timestamp, orderBy } from "firebase/firestore";
 import {db} from "@/helpers/firebase/firebase";
 
-export async function getCollection(collectionID="resources", live=true) {
+export async function getCollection(
+    collectionID="resources",
+    sortBy = "publish_date",
+    live=true
+) {
     let querySnapshot = null;
     try {
         if(live===true){
-            const q = query(collection(db, collectionID), where("live", "==", true)); // Added where clause
+            const q = query(
+                collection(db, collectionID),
+                where("live", "==", true),
+                orderBy(sortBy, "desc") // THIS CAUSES A NEED FOR AN INDEX
+            );
             querySnapshot = await getDocs(q);
         }else{
             querySnapshot = await getDocs(collection(db, collectionID));
