@@ -1,5 +1,6 @@
-import {Card, Col, Row} from "react-bootstrap";
+import {Badge, Card, Col, Row} from "react-bootstrap";
 import styles from "./MagazineArticles.module.css";
+import Link from "next/link";
 
 
 export function MagazineArticles({ magazineArticles }) {
@@ -9,15 +10,17 @@ export function MagazineArticles({ magazineArticles }) {
 
             { magazineArticles.map((item, count) => (
 
-                <Col className={styles.col} key={item.id} lg={count > 1 ? "3" : "6"}>
-                    <Card className={styles.card} bg={item.colour}>
-                        <Card.Body>
-                            <Card.Title>{item.title}</Card.Title>
+                <Col className={`mx-auto ${styles.col}`} key={item.id} lg={count > 1 ? "3" : "6"}>
+                    <Card className={`mx-auto ${styles.card}`} bg={item.colour}>
+                        <Card.Body  className={styles.body}>
+                            <Card.Title className={styles.title}>{item.title}</Card.Title>
                             <Card.Text>
-                                {item.type}
+                                <Badge className={styles.badge} pill>{item.type}</Badge>
+                                <span className={styles.arrow}>&rarr;</span>
                             </Card.Text>
                         </Card.Body>
                         <Card.Img src={item.image} className={styles.img} />
+                        <Link href="/" className="stretched-link"></Link>
                     </Card>
                 </Col>
 

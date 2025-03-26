@@ -26,11 +26,19 @@ input:-webkit-autofill:focus {
     --yellowAlt: #e6c64f;
     --yellowLight: #fdf1cb;
     --green: #34c559;
+    --blue: #99e1ea;
+    --orange: #dc7245;
+    --red: #d84641;
+    --redLight: #fae4e5;
 }
 
-.bg-yellowAlt{ background: var(--yellowAlt) !important;}
-.bg-yellowLight{ background: var(--yellowLight) !important;}
-.bg-green{ background: var(--green) !important;}
+.bg-yellowAlt{background: var(--yellowAlt) !important;}
+.bg-yellowLight{background: var(--yellowLight) !important;}
+.bg-green{background: var(--green) !important;}
+.bg-blue{background: var(--blue) !important;}
+.bg-orange{background: var(--orange) !important;}
+.bg-red{background: var(--red) !important;}
+.bg-redLight{background: var(--redLight) !important;}
 
 /* Layout */
 html, body{
