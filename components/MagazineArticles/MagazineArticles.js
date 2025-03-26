@@ -1,24 +1,13 @@
-"use server"
-
-import {useState} from "react";
-import {collection, getDocs} from "firebase/firestore";
-import {db} from "@/helpers/firebase/firebase";
 import {Card, Col, Row} from "react-bootstrap";
 import styles from "./MagazineArticles.module.css";
 
-export function MagazineArticles() {
-    const collectionType = "resources"; // Magazine articles are called resources in the DB
-    const [magazine, setMagazine] = useState([]);
 
-    (async (collectionType) => {
-        const querySnapshot = await getDocs(collection(db, collectionType));
-        setMagazine(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    })(collectionType);
+export function MagazineArticles({ magazineArticles }) {
 
     return (
         <Row>
 
-            { magazine.map((item, count) => (
+            { magazineArticles.map((item, count) => (
 
                 <Col className={styles.col} key={item.id} lg={count > 1 ? "3" : "6"}>
                     <Card className={styles.card} bg={item.colour}>
