@@ -1,5 +1,6 @@
 import Head from "next/head";
-import {MagazineArticles} from "@/components/magazines/MagazineArticles";
+import {MagazineArticles} from "@/components/MagazineArticles/MagazineArticles";
+import {Container} from "react-bootstrap";
 
 export default function Magazine() {
 
@@ -15,7 +16,9 @@ export default function Magazine() {
 
             <h1>{title}</h1>
             <p>{description}</p>
-            <MagazineArticles />
+            <Container fluid>
+                <MagazineArticles />
+            </Container>
         </>
     );
 }
