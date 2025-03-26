@@ -1,9 +1,16 @@
-import { collection, getDocs, Timestamp } from "firebase/firestore";
+import { collection, getDocs, query, where, Timestamp } from "firebase/firestore";
 import {db} from "@/helpers/firebase/firebase";
 
-export async function getCollection(collectionID) {
+export async function getCollection(collectionID="resources", live=true) {
+    let querySnapshot = null;
     try {
-        const querySnapshot = await getDocs(collection(db, collectionID));
+        if(live===true){
+            const q = query(collection(db, collectionID), where("live", "==", true)); // Added where clause
+            querySnapshot = await getDocs(q);
+        }else{
+            querySnapshot = await getDocs(collection(db, collectionID));
+        }
+
         const data = [];
         querySnapshot.forEach((doc) => {
             const docData = doc.data();
