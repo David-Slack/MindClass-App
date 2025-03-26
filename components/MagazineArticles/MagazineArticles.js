@@ -20,34 +20,15 @@ export function MagazineArticles() {
 
             { magazine.map((item, count) => (
 
-                <Col
-                    key={item.id}
-                    lg={count > 1 ? "3" : "6"}
-                    style={{paddingBottom: "24px"}}
-                >
-                    <Card
-                        className={styles.card}
-                        bg={item.colour}
-                    >
+                <Col className={styles.col} key={item.id} lg={count > 1 ? "3" : "6"}>
+                    <Card className={styles.card} bg={item.colour}>
                         <Card.Body>
                             <Card.Title>{item.title}</Card.Title>
                             <Card.Text>
-                                {count}
-                                &nbsp;
                                 {item.type}
-                                &nbsp;
-                                {item.colour}
                             </Card.Text>
                         </Card.Body>
-                        <Card.Img
-                            variant="bottom"
-                            src={item.image}
-                            style={{
-                                aspectRatio: "1/1",
-                                objectFit: "cover",
-                                padding: 12
-                            }}
-                        />
+                        <Card.Img src={item.image} className={styles.img} />
                     </Card>
                 </Col>
 
