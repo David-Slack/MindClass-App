@@ -1,12 +1,10 @@
-import {Badge, Card, Col, Row} from "react-bootstrap";
+import { Badge, Card, Col, Row } from "react-bootstrap";
 import styles from "./MagazineArticles.module.css";
 import Link from "next/link";
-import {useState} from "react";
+import { useState } from "react";
 
 export function MagazineArticles({ magazineArticles }) {
-
-    const allCategories = ["All", "Tips", "Interviews"]; // Get unique categories
-
+    const allCategories = ["All", ...new Set(magazineArticles.map((article) => article.type))];
     const [activeFilter, setActiveFilter] = useState("All");
 
     const filteredMagazineArticles =
@@ -18,28 +16,36 @@ export function MagazineArticles({ magazineArticles }) {
         <>
             <Row className={styles.filter}>Filter by:</Row>
             <Row className={styles.filter}>
-
                 {allCategories.map((category) => (
                     <Badge
                         key={category}
                         onClick={() => setActiveFilter(category)}
-                        className={`${styles.active} 
-                        ${styles.badge}`}
+                        className={`${styles.badge} ${activeFilter === category ? styles.active : ""}`}
                         pill
-                    >{category}</Badge>
+                    >
+                        {category}
+                    </Badge>
                 ))}
             </Row>
 
             <Row>
-
-                { filteredMagazineArticles.map((article, count) => (
-
-                    <Col className={`mx-auto ${styles.col}`} key={article.id} lg={count > 1 ? "3" : "6"}>
+                {magazineArticles.map((article, count) => ( // iterate over magazineArticles
+                    <Col
+                        className={`
+                            NOTmx-auto 
+                            ${styles.col} 
+                            ${ filteredMagazineArticles.includes(article) ? "" : styles.filteredOut }
+                        `}
+                        key={article.id}
+                        lg={count > 1 ? "3" : "6"}
+                    >
                         <Card className={`mx-auto ${styles.card}`} bg={article.colour}>
-                            <Card.Body  className={styles.body}>
+                            <Card.Body className={styles.body}>
                                 <Card.Title className={styles.title}>{article.title}</Card.Title>
                                 <Card.Text>
-                                    <Badge className={styles.badge} pill>{article.type}</Badge>
+                                    <Badge className={styles.badge} pill>
+                                        {article.type}
+                                    </Badge>
                                     <span className={styles.arrow}>&rarr;</span>
                                 </Card.Text>
                             </Card.Body>
@@ -47,9 +53,7 @@ export function MagazineArticles({ magazineArticles }) {
                             <Link href="/" className="stretched-link"></Link>
                         </Card>
                     </Col>
-
                 ))}
-
             </Row>
         </>
     );
