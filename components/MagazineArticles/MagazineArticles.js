@@ -28,13 +28,13 @@ export function MagazineArticles({ magazineArticles }) {
                 ))}
             </Row>
 
-            <Row>
+            <Row className={styles.articleRow}>
                 {magazineArticles.map((article, count) => ( // iterate over magazineArticles
                     <Col
                         className={`
                             NOTmx-auto 
                             ${styles.col} 
-                            ${ filteredMagazineArticles.includes(article) ? "" : styles.filteredOut }
+                            ${ filteredMagazineArticles.includes(article) ? styles.filteredIn : styles.filteredOut }
                         `}
                         key={article.id}
                         lg={count > 1 ? "3" : "6"}

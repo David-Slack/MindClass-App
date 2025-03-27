@@ -24,22 +24,37 @@
 }
 /* TODO: Look at framer-motion */
 .filteredOut {
-    opacity: 0;
-    transform: scale(0.9) translateX(-100px);
-    animation: hideCard 0.4s forwards;
+    animation: hideCard .5s forwards;
+}
+.filteredIn {
+    animation: showCard .5s forwards;
 }
 
 @keyframes hideCard {
     to {
+        overflow: hidden;
+        padding: 0;
         width: 0;
         height: 0;
-        display: none;
+        opacity: 0;
     }
+}
+@keyframes showCard {
+    from {
+        overflow: hidden;
+        padding: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.articleRow{
+    position: relative;
 }
 
 .col{
     padding-bottom: 24px;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .card{
