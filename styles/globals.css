@@ -21,6 +21,25 @@ input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 1000px #fdfdfe inset;
 }
 
+/* Colours */
+:root {
+    --yellowAlt: #e6c64f;
+    --yellowLight: #fdf1cb;
+    --green: #34c559;
+    --blue: #99e1ea;
+    --orange: #dc7245;
+    --red: #d84641;
+    --redLight: #fae4e5;
+}
+
+.bg-yellowAlt{background: var(--yellowAlt) !important;}
+.bg-yellowLight{background: var(--yellowLight) !important;}
+.bg-green{background: var(--green) !important;}
+.bg-blue{background: var(--blue) !important;}
+.bg-orange{background: var(--orange) !important;}
+.bg-red{background: var(--red) !important;}
+.bg-redLight{background: var(--redLight) !important;}
+
 /* Layout */
 html, body{
     padding: 0;
@@ -28,7 +47,7 @@ html, body{
     background: #f4f4f4;
 }
 .leftMenu{
-    position:absolute;
+    position:fixed;
     top:0;
     width:270px;
     height: 100%;
@@ -40,7 +59,7 @@ html, body{
 
 .mainContent{
     padding: 20px;
-    margin: 0 0 40px 270px;
+    margin: 0 0 35px 270px;
 }
 .login .mainContent{
     margin:40px 0;

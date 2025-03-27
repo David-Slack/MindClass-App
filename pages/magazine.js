@@ -1,8 +1,14 @@
 import Head from "next/head";
+import {Container} from "react-bootstrap";
+import {getCollection} from "@/helpers/firebase/getCollection";
+import {MagazineArticles} from "@/components/MagazineArticles/MagazineArticles";
 
-export default function Home() {
+export async function getServerSideProps() {
+    return getCollection("resources", "publish_date");
+}
 
-    const title = 'Magazine';
+export default function Magazine({ collection }) {
+    const title = "Magazine";
     const description = "Our magazine articles";
 
     return (
@@ -14,6 +20,9 @@ export default function Home() {
 
             <h1>{title}</h1>
             <p>{description}</p>
+            <Container fluid>
+                <MagazineArticles magazineArticles={collection} />
+            </Container>
         </>
     );
 }

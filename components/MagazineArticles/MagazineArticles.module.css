@@ -1,0 +1,114 @@
+@keyframes padding {
+    0%   {padding-left: 0;}
+    50%  {padding-left: 40px;}
+    100% {padding-right: 0;}
+}
+
+.filter{
+    margin-left:6px;
+
+    .badge{
+        font-size: 22px;
+        font-weight: normal;
+        border: 2px solid #000;
+        background-color: transparent !important;
+        color: #000;
+        width: auto;
+        margin: 6px 12px 12px 0;
+        cursor: pointer;
+    }
+    .active{
+        background-color: #000 !important;
+        color: #fff;
+    }
+}
+/* TODO: Look at framer-motion */
+.filteredOut {
+    animation: hideCard .5s forwards;
+}
+.filteredIn {
+    animation: showCard .5s forwards;
+}
+
+@keyframes hideCard {
+    to {
+        overflow: hidden;
+        padding: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+@keyframes showCard {
+    from {
+        overflow: hidden;
+        padding: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.articleRow{
+    position: relative;
+}
+
+.col{
+    padding-bottom: 24px;
+}
+
+.card{
+    border: 2px solid #000;
+    color: #000;
+    transition-duration: .3s;
+
+    .title{
+        min-height:64px;
+        font-size: 26px;
+    }
+
+    .badge{
+        border: 1px solid #000;
+        background-color: transparent !important;
+        color: #000;
+    }
+
+    .arrow{
+        position: absolute;
+        right: 12px;
+        bottom: 0;
+        font-size: 45px;
+        background: #000;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: #fff;
+        text-align: center;
+        line-height: 40px;
+        overflow: hidden;
+        transition-duration: .3s;
+    }
+
+    .body{
+        padding-bottom: 0;
+        position: relative;
+    }
+
+    .img{
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        padding:12px;
+        border-radius: 16px;
+    }
+
+    &:hover{
+        box-shadow: 1px 1px 4px 2px rgba(0,0,0,0.2);
+        transform: scale(1.05);
+
+        .arrow{
+            animation-name: padding;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        }
+    }
+}

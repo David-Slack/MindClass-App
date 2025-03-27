@@ -11,7 +11,7 @@ export function LoginCheck({ children }){
     useEffect(() => {
         if (!authUser && pathname !== '/login')
             router.push('/login').then();
-    }, [authUser]);
+    }, [authUser, pathname]);
 
     return (
         <Row>

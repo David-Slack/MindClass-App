@@ -18,7 +18,7 @@ export function LoginForm( ){
     useEffect(() => {
         if (authUser)
             router.push('/').then();
-    }, [authUser]);
+    }, [authUser, router]);
 
     const onSubmit = event => {
         setError(null);
