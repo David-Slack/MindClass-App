@@ -50,7 +50,7 @@ export function MagazineArticles({ magazineArticles }) {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Img src={article.image} className={styles.img} />
-                            <Link href="/" className="stretched-link"></Link>
+                            <Link href={`/magazine/${article.id}`} className="stretched-link"></Link>
                         </Card>
                     </Col>
                 ))}
