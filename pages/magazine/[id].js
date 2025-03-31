@@ -14,7 +14,7 @@ export default function ArticlePage({ article }) {
     }
 
     const title = article.title + " | MindClass";
-    const description = article.title + " article";
+    const description = article.title + " article short description";
 
     return (
         <>
