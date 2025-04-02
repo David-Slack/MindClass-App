@@ -12,6 +12,7 @@
         position: absolute;
         top:0;
         right:24px;
+        z-index: 5;
 
         object-fit: cover;
         background: url('/img/bigSmiley.png') no-repeat;
