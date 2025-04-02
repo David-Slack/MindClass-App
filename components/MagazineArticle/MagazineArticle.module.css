@@ -5,12 +5,14 @@
 }
 
 .article img{
-    aspect-ratio: 16/9; /* HD ratio */
-    object-fit: cover;
     border: 5px solid #000;
     border-radius: 14px;
     text-align: center;
     margin: 20px auto;
     max-width: 100%;
     height: auto;
+}
+.article img:first-child{
+    aspect-ratio: 16/9; /* HD ratio */
+    object-fit: cover;
 }
