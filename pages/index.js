@@ -1,15 +1,18 @@
 import Head from "next/head";
+import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
 export default function Home() {
+    const title = 'MindClass';
+    const subtitle = "See the latest MindClass has to offer you";
 
     return (
         <>
             <Head>
-                <title>MindClass</title>
+                <title>{title}</title>
                 <meta name="description" content="MindClass | home page" />
             </Head>
 
-            <h1>MindClass Dashboard</h1>
+            <TitleHeader title={title} subtitle={subtitle} />
         </>
     );
 }

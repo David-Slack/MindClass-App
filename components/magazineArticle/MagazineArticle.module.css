@@ -1,0 +1,18 @@
+.article{
+    max-width:900px;
+    width:100%;
+    margin: 0 auto;
+}
+
+.article img{
+    border: 5px solid #000;
+    border-radius: 14px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+}
+.article img:first-child{
+    aspect-ratio: 16/9; /* HD ratio */
+    object-fit: cover;
+}

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
 export default function Home() {
 
@@ -12,8 +13,7 @@ export default function Home() {
                 <meta name="description" content={description} />
             </Head>
 
-            <h1>{title}</h1>
-            <p>{description}</p>
+            <TitleHeader title={title} subtitle={description} />
         </>
     );
 }

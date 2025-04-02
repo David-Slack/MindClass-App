@@ -1,9 +1,9 @@
-import { Badge, Card, Col, Row } from "react-bootstrap";
-import styles from "./MagazineArticles.module.css";
+import {Badge, Card, Col, Container, Row} from "react-bootstrap";
+import styles from "./MagazineCards.module.css";
 import Link from "next/link";
 import { useState } from "react";
 
-export function MagazineArticles({ magazineArticles }) {
+export function MagazineCards({ magazineArticles }) {
     const allCategories = ["All", ...new Set(magazineArticles.map((article) => article.type))];
     const [activeFilter, setActiveFilter] = useState("All");
 
@@ -13,9 +13,10 @@ export function MagazineArticles({ magazineArticles }) {
             : magazineArticles.filter((article) => article.type.includes(activeFilter));
 
     return (
-        <>
-            <Row className={styles.filter}>Filter by:</Row>
+        <Container fluid>
+            <Row className={styles.filter}><div>Filter by:</div></Row>
             <Row className={styles.filter}>
+                <div>
                 {allCategories.map((category) => (
                     <Badge
                         key={category}
@@ -26,6 +27,7 @@ export function MagazineArticles({ magazineArticles }) {
                         {category}
                     </Badge>
                 ))}
+                </div>
             </Row>
 
             <Row className={styles.articleRow}>
@@ -50,11 +52,11 @@ export function MagazineArticles({ magazineArticles }) {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Img src={article.image} className={styles.img} />
-                            <Link href="/" className="stretched-link"></Link>
+                            <Link href={`/magazine/${article.id}`} className="stretched-link"></Link>
                         </Card>
                     </Col>
                 ))}
             </Row>
-        </>
+        </Container>
     );
 }

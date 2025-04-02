@@ -5,7 +5,6 @@
 }
 
 .filter{
-    margin-left:6px;
 
     .badge{
         font-size: 22px;
@@ -61,6 +60,7 @@
     border: 2px solid #000;
     color: #000;
     transition-duration: .3s;
+    border-radius: 16px;
 
     .title{
         min-height:64px;
@@ -95,10 +95,12 @@
     }
 
     .img{
-        aspect-ratio: 1/1;
+        aspect-ratio: 16/9; /* HD ratio */
         object-fit: cover;
-        padding:12px;
+        margin:12px;
         border-radius: 16px;
+        border: 1px solid;
+        width: calc(100% - 26px);
     }
 
     &:hover{
