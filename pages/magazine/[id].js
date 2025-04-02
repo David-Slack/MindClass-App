@@ -25,6 +25,7 @@ export default function ArticlePage({ article }) {
             </Head>
             <TitleHeader title={article.title} subtitle={description} />
             <Container fluid>
+
                 <MagazineArticle article={article} />
             </Container>
         </>

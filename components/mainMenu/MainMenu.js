@@ -74,7 +74,7 @@ export function MainMenu(){
                                                 as={Link}
                                                 href={link.url}
                                             >{link.title}</Nav.Link>
-                                        )
+                                        );
                                     })
                                 }
                             </Nav>
@@ -107,7 +107,7 @@ export function MainMenu(){
                                     <li key={link.url}>
                                         <Link
                                             href={link.url}
-                                            className={`${pathname === link.url ? styles.active : ''}`}
+                                            className={`${pathname.includes(link.url) ? styles.active : ''}`}
                                         >
                                             <span className={styles.titleSpan}>{link.title}</span>
                                         </Link>
