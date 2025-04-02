@@ -1,9 +1,9 @@
 import { Badge, Card, Col, Row } from "react-bootstrap";
-import styles from "./MagazineArticles.module.css";
+import styles from "./MagazineCards.module.css";
 import Link from "next/link";
 import { useState } from "react";
 
-export function MagazineArticles({ magazineArticles }) {
+export function MagazineCards({ magazineArticles }) {
     const allCategories = ["All", ...new Set(magazineArticles.map((article) => article.type))];
     const [activeFilter, setActiveFilter] = useState("All");
 
