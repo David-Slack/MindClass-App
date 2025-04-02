@@ -2,6 +2,7 @@ import {getItem} from "@/helpers/firebase/getItem";
 import Head from "next/head";
 import {Container} from "react-bootstrap";
 import {MagazineArticle} from "@/components/magazineArticle/MagazineArticle";
+import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
 export async function getServerSideProps(context) {
     const { id } = context.params;
@@ -22,9 +23,7 @@ export default function ArticlePage({ article }) {
                 <title>{title} | MindClass</title>
                 <meta name="description" content={description} />
             </Head>
-
-            <h1>{article.title}</h1>
-            <p>{description}</p>
+            <TitleHeader title={article.title} subtitle={description} />
             <Container fluid>
                 <MagazineArticle article={article} />
             </Container>

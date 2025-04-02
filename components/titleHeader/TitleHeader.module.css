@@ -1,0 +1,7 @@
+.titleHeader{
+    margin-left: -8px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 24px;
+    width: 120%;
+    max-width: calc(100% + 16px);
+}
