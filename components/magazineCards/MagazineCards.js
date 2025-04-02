@@ -14,7 +14,6 @@ export function MagazineCards({ magazineArticles }) {
 
     return (
         <Container fluid>
-            <Row className={styles.filter}><div>Filter by:</div></Row>
             <Row className={styles.filter}>
                 <div>
                 {allCategories.map((category) => (
