@@ -1,7 +1,7 @@
 import {getItem} from "@/helpers/firebase/getItem";
 import Head from "next/head";
 import {Container} from "react-bootstrap";
-import {MagazineArticle} from "@/components/MagazineArticle/MagazineArticle";
+import {MagazineArticle} from "@/components/magazineArticle/MagazineArticle";
 
 export async function getServerSideProps(context) {
     const { id } = context.params;

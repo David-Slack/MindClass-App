@@ -1,4 +1,4 @@
-import { Badge, Card, Col, Row } from "react-bootstrap";
+import {Badge, Card, Col, Container, Row} from "react-bootstrap";
 import styles from "./MagazineCards.module.css";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,9 +13,10 @@ export function MagazineCards({ magazineArticles }) {
             : magazineArticles.filter((article) => article.type.includes(activeFilter));
 
     return (
-        <>
-            <Row className={styles.filter}>Filter by:</Row>
+        <Container fluid>
+            <Row className={styles.filter}><div>Filter by:</div></Row>
             <Row className={styles.filter}>
+                <div>
                 {allCategories.map((category) => (
                     <Badge
                         key={category}
@@ -26,6 +27,7 @@ export function MagazineCards({ magazineArticles }) {
                         {category}
                     </Badge>
                 ))}
+                </div>
             </Row>
 
             <Row className={styles.articleRow}>
@@ -55,6 +57,6 @@ export function MagazineCards({ magazineArticles }) {
                     </Col>
                 ))}
             </Row>
-        </>
+        </Container>
     );
 }
