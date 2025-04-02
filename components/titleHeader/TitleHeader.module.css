@@ -1,0 +1,55 @@
+.titleHeader{
+    margin-left: -8px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 24px;
+    width: 120%;
+    max-width: calc(100% + 16px);
+    position: relative;
+
+    .smiley{
+        width: 92px;
+        height: 92px;
+        position: absolute;
+        top:0;
+        right:24px;
+        z-index: 5;
+
+        object-fit: cover;
+        background: url('/img/bigSmiley.png') no-repeat;
+        background-position-x: -14px;
+        background-position-y: -14px;
+        background-size: 120px 120px;
+        border-radius: 50%;
+        cursor: pointer;
+        animation: 10s linear 0s infinite normal none paused smiley;
+
+        &:hover{
+            animation-play-state: running;
+        }
+    }
+}
+
+
+
+.titleHeader h1{
+    width: 80%;
+}
+
+@keyframes smiley {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 600px){
+    .titleHeader{
+        .smiley{
+            transform: scale(0.7) !important;
+            top:-24px;
+            right: 0;
+        }
+    }
+}
