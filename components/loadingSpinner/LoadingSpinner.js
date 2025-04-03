@@ -1,5 +1,6 @@
+import styles from "./LoadingSpinner.module.css";
 export function LoadingSpinner(){
     return(
-        <p>Loading.........</p>
+        <span className={styles.loader}></span>
     )
 }
