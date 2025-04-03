@@ -44,6 +44,10 @@ input:-webkit-autofill:focus {
 body{
     overflow-y: scroll;
 }
+/* Our courses has a scroll bar on the iframe so lets remove the second one */
+body:has(main.courses){
+    overflow-y: hidden;
+}
 html, body{
     padding: 0;
     margin: 0;
@@ -68,6 +72,7 @@ html, body{
 .login .mainContent{
     margin:40px 0;
 }
+
 
 .topMenu{
     display: none;

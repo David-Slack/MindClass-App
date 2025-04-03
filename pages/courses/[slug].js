@@ -2,6 +2,7 @@ import Head from 'next/head';
 import {getItem} from "@/helpers/firebase/getItem";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 import {Container} from "react-bootstrap";
+import {CourseIFrame} from "@/components/courseIFrame/CourseIFrame";
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
@@ -20,12 +21,7 @@ export default function Course({ article }) {
             </Head>
             <TitleHeader title={article.title} subtitle={description} />
             <Container fluid>
-                <iframe
-                    src={`/api/course/${article.id}/index.html`}
-                    width="100%"
-                    height="600"
-                    allowFullScreen
-                />
+                <CourseIFrame course={article} />
             </Container>
         </>
     );
