@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export default function handler(req, res) {
+    // TODO: We need server side auth for this to be safe
     // Replace with your actual authentication logic
     /*const isAuthenticated = req.headers.authorization; // Example: using Authorization header
 
