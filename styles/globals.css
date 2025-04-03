@@ -42,7 +42,7 @@ input:-webkit-autofill:focus {
 
 /* Layout */
 body{
-    overflow: scroll;
+    overflow-y: scroll;
 }
 html, body{
     padding: 0;
