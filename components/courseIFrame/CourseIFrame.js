@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './CourseIFrame.module.css';
+import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner";
 
 export function CourseIFrame({ course }) {
     const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ export function CourseIFrame({ course }) {
     return (
         <div className={styles.iFrameContainer}>
             {loading ? (
-                <p>Loading...</p>
+                <LoadingSpinner/>
             ) : iframeSrc ? (
                 <iframe
                     key={course.id}
