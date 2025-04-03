@@ -44,6 +44,10 @@ input:-webkit-autofill:focus {
 body{
     overflow-y: scroll;
 }
+/* Our courses has a scroll bar on the iframe so lets remove the second one */
+body:has(main.courses){
+    overflow-y: hidden;
+}
 html, body{
     padding: 0;
     margin: 0;
@@ -68,6 +72,7 @@ html, body{
 .login .mainContent{
     margin:40px 0;
 }
+
 
 .topMenu{
     display: none;
@@ -104,11 +109,13 @@ footer{
     border-top: 1px solid #000;
 }
 /* END Layout */
-li {font-size: 20px;}
+p,
+li {
+    font-size: 16px;
+}
 
 p{
     margin-bottom: 1.2em;
-    font-size: 20px;
     line-height: 1.5em;
 }
 h1{
@@ -130,6 +137,9 @@ h2{
 }
 strong{
     font-weight: 600;
+}
+li{
+    line-height: 1.8em;
 }
 
 
