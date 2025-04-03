@@ -28,7 +28,7 @@ export const dazzed = localFont({
 export default function App({ Component, pageProps }) {
 
     const pathname = usePathname();
-    let mainClass = textToClass(pathname);
+    let mainClass = pathname ? textToClass(pathname) : 'home';
     if(mainClass==='') mainClass = 'home';
 
     return (
