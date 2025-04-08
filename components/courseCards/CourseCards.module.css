@@ -1,20 +1,51 @@
 .col{
     .card{
+        border: 2px solid #000000;
+        border-radius: 16px;
+        transition-duration: .3s;
+        color: #fff;
+        overflow: hidden;
+        height: 254px;
+        margin-bottom: 20px;
+        background: #000;
+
 
         .body{
-
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(3px);
+            padding: 10px 50px 10px 10px;
         }
         .title{
-
+            font-size: 18px;
         }
-        .badge{
+        .sessions{
 
         }
         .arrow{
-
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-size: 45px;
+            background: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            overflow: hidden;
+            transition-duration: .3s;
         }
         .img{
-
+            object-fit: cover;
+            border-radius: 14px;
+            height: auto;
+            min-height: 100%;
+            width: 100%;
         }
     }
 }
