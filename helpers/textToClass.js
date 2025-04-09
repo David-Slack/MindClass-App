@@ -6,9 +6,10 @@
 export function textToClass(text){
     return text
         .toLowerCase() // Lower case all letters
-        .replace(/\//g, "") // Remove slashes
-        .replace(/\\/g, '') // Remove backslashes
         .replace(/\s/g, '_') // Spaces to underscores
-        .replace(/\W/g, '') // Remove non-alphanumeric chars
-        .replace(/_/g, '-'); // Underscores to dashes
+        .replace(/_/g, '-') // Underscores to dashes
+        .replace(/\//g, " ") // Remove slashes
+        .replace(/\\/g, '') // Backslashes to spaces
+        //.replace(/\W/g, '') // Remove non-alphanumeric chars
+    ;
 }

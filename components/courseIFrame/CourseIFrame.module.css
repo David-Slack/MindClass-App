@@ -1,0 +1,18 @@
+.iFrameContainer{
+    width: calc(100% + 40px);
+    height: calc(100vh - 30px);
+    overflow: hidden;
+    margin-left: -20px;
+    margin-top: -24px;
+}
+
+.iFrame{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 900px){
+    .iFrameContainer {
+        height: calc(100vh - 80px - 30px);
+    }
+}
