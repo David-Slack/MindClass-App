@@ -1,8 +1,7 @@
-import {Button, Container, Nav, Navbar } from 'react-bootstrap';
+import {Container, Nav, Navbar } from 'react-bootstrap';
 import Link from "next/link";
 import styles from "./MainMenu.module.css";
 import Image from "next/image";
-import { useAuth } from '@/helpers/firebase/AuthUserContext';
 import {usePathname} from "next/navigation";
 
 const nav = [
@@ -45,11 +44,9 @@ const nav = [
 
 
 export function MainMenu(){
-    const { authUser, signOut } = useAuth();
     const pathname = usePathname();
 
     return(
-        authUser &&
             <>
                 <Navbar id="TopMenu" collapseOnSelect expand="lg" className={`topMenu ${styles.topMenu} bg-body-tertiary`}>
                     <Container>
@@ -79,11 +76,7 @@ export function MainMenu(){
                                 }
                             </Nav>
                             <Nav>
-                                {/*<Nav.Link href="#deets">My Account</Nav.Link>
-                                <Nav.Link eventKey={2} href="#memes">
-                                    Sign Out
-                                </Nav.Link>*/}
-                                <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
+                                {/*<Button className={styles.signOut} onClick={signOut}>Sign out</Button>*/}
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -117,9 +110,8 @@ export function MainMenu(){
                         }
                     </ul>
 
-                    <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
+                    {/*<Button className={styles.signOut} onClick={signOut}>Sign out</Button>*/}
                 </div>
-
         </>
     );
 }
