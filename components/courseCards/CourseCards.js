@@ -20,7 +20,7 @@ export function CourseCards({ collection }) {
                                 <Card.Title className={styles.title}>{card.title}</Card.Title>
                                 <Badge className={styles.sessions} pill>
                                     {
-                                        // We do not have
+                                        // We do not have lessons in the DB
                                         card?.lessons > 1
                                             ? `${card?.lessons} lessons`
                                             : `1 lesson`
