@@ -3,34 +3,39 @@ import Image from "next/image";
 import styles from "./LoginForm.module.css";
 import people from "../../public/img/people.webp";
 import {useState} from "react";
-// import { useAuth } from '@/helpers/firebase/AuthUserContext';
-// import {useRouter} from "next/router";
+import {useRouter} from "next/router";
 
 export function LoginForm( ){
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [error, setError] = useState(null);
+    const router = useRouter();
 
-    // const [error, setError] = useState(null);
-    // const router = useRouter();
-    // const { signInWithEmailAndPassword } = useAuth();
-    // const { authUser, loading} = useAuth();
-    //
-    // // If we are already logged in, redirect to the home page
-    // useEffect(() => {
-    //     if (authUser)
-    //         router.push('/').then();
-    // }, [authUser, router]);
-    //
-    const onSubmit = event => {
-    //     setError(null);
-    //     signInWithEmailAndPassword(email, password)
-    //         .then(authUser => {
-    //             router.push('/').then();
-    //         })
-    //         .catch(error => {
-    //             setError(error.message);
-    //         });
-    //     event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Login successful, redirect or update UI
+                router.push('/dashboard'); // Example redirect
+            } else {
+                setError(data.error || 'Login failed');
+            }
+        } catch (err) {
+            console.error('Login request error:', err);
+            setError('Failed to connect to the server');
+        }
     };
 
     return(
@@ -45,19 +50,21 @@ export function LoginForm( ){
                     />
                 </Col>
                 <Col lg={3} className={`${styles.loginFormRow} ${styles.loginRow}`}>
-                    <Form onSubmit={onSubmit}>
+                    <Form onSubmit={handleSubmit}>
 
                         {/*{error && <Alert color="danger">{error}</Alert>}*/}
+                        {error && <p style={{ color: 'red' }}>{error}</p>}
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput0">
                             <h1>Login</h1>
                         </Form.Group>
                         <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Control
+                                id="email"
                                 type="email"
                                 name="email"
                                 value={email}
-                                onChange={(event) => setEmail(event.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="name@example.com"
                             />
                             <Form.Label>Email address</Form.Label>
@@ -65,10 +72,11 @@ export function LoginForm( ){
 
                         <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput2">
                             <Form.Control
+                                id="password"
                                 type="password"
                                 name="password"
                                 value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="password"
                             />
                             <Form.Label>Password</Form.Label>
