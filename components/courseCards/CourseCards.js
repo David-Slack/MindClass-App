@@ -1,46 +1,9 @@
 import {Badge, Card, Col, Container, Row} from "react-bootstrap";
 import styles from "./CourseCards.module.css";
 import Link from "next/link";
+import {minutesToHoursMinutes} from "@/helpers/minutesToHoursMinutes";
 
 export function CourseCards({ collection }) {
-
-    const formatDuration = "1h 20m";
-
-    /*const totalDuration = (modules || [])?.reduce((acc, module) => {
-        const duration = module?.estimated_length;
-        let totalMinutes = 0;
-
-        if (duration && typeof duration === "string") {
-            const parts = duration.split(" ");
-
-            parts.forEach((part) => {
-                if (part.includes("h") && !isNaN(parseInt(part))) {
-                    totalMinutes += parseInt(part) * 60; // Convert hours to minutes
-                } else if (part.includes("m") && !isNaN(parseInt(part))) {
-                    totalMinutes += parseInt(part); // Add minutes directly
-                }
-            });
-        }
-
-        return acc + totalMinutes;
-    }, 0);
-
-    const formattedDuration = formatDuration(totalDuration);
-
-    const formatDuration = (totalMinutes) => {
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = totalMinutes % 60;
-
-        let result = "";
-        if (hours > 0) {
-            result += `${hours}h `;
-        }
-        if (minutes > 0 || hours === 0) {
-            result += `${minutes}m`;
-        }
-
-        return result.trim();
-    };*/
 
     return (
         <Container fluid>
@@ -57,14 +20,24 @@ export function CourseCards({ collection }) {
                                 <Card.Title className={styles.title}>{card.title}</Card.Title>
                                 <Badge className={styles.sessions} pill>
                                     {
-                                        card.modules?.length > 1
-                                            ? `${card.modules?.length} sessions`
-                                            : `1 session`
+                                        // We do not have
+                                        card?.lessons > 1
+                                            ? `${card?.lessons} lessons`
+                                            : `1 lesson`
                                     }
                                 </Badge>
                                 <span className={styles.arrow}>&rarr;</span>
                                 <Card.Text>
-                                    {formatDuration}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-clock" viewBox="0 0 16 16">
+                                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                                    </svg>&nbsp;
+                                    {
+                                        // We do not have a duration in the DB
+                                        card?.duration > 59
+                                            ? minutesToHoursMinutes( card?.duration )
+                                            : `1h 15m`
+                                    }
                                 </Card.Text>
                             </Card.Body>
                             <Link href={`/courses/${card.id}`} className="stretched-link"></Link>
