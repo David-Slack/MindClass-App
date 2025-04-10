@@ -1,7 +1,12 @@
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
+import {getCollection} from "@/helpers/firebase/getCollection";
+import {CounsellorCards} from "@/components/counsellorCards/CounsellorCards";
 
-export default function Home() {
+export async function getServerSideProps() {
+    return getCollection("counsellors", "name");
+}
+export default function counsellors({ collection  }) {
 
     const title = 'Counsellors';
     const description = "Choose one of our counsellors";
@@ -14,6 +19,7 @@ export default function Home() {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
+            <CounsellorCards collection={collection} />
         </>
     );
 }
