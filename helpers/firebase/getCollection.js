@@ -27,6 +27,14 @@ export async function getCollection(
                 docData["publish_date"] = docData["publish_date"].toDate().toISOString();
             }
 
+            if (docData["modules"]) {
+                docData.modules = null;
+            }
+
+            if (docData["expert"]) {
+                docData.expert = null;
+            }
+
             data.push({ id: doc.id, ...docData });
         });
 

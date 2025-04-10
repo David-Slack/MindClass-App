@@ -17,6 +17,14 @@ export async function getItem(
                 articleData.publish_date = articleData.publish_date.toDate().toISOString();
             }
 
+            if (articleData["modules"]) {
+                articleData.modules = null;
+            }
+
+            if (articleData["expert"]) {
+                articleData.expert = null;
+            }
+
             return {
                 props: {
                     article: articleData,
