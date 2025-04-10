@@ -38,7 +38,10 @@ export default function App({ Component, pageProps }) {
             </Head>
 
             <main className={`${mainClass} ${dazzed.className}`}>
-                <MainMenu/>
+                {
+                    pathname !== '/login' &&
+                    <MainMenu/>
+                }
                 <div className="mainContent">
                     <Row>
                         <Component {...pageProps} />
