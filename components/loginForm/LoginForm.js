@@ -22,6 +22,22 @@ export function LoginForm( ){
         setError('');
         setErrorBox(false);
 
+        if (!email) {
+            setError('Please enter your email address.');
+            setErrorBox(true);
+            return;
+        }
+        if (!password) {
+            setError('Please enter your password.');
+            setErrorBox(true);
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Please enter a valid email address.');
+            setErrorBox(true);
+            return;
+        }
+
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const idToken = await userCredential.user.getIdToken();
