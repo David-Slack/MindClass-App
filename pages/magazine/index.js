@@ -14,7 +14,7 @@ export default function Magazine({ collection }) {
     return (
         <>
             <Head>
-                <title>{title} | MindClass</title>
+                <title>{`${title} | MindClass`}</title>
                 <meta name="description" content={description} />
             </Head>
 

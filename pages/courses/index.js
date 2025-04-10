@@ -15,7 +15,7 @@ export default function Courses({ collection }) {
     return (
         <>
             <Head>
-                <title>{title} | MindClass</title>
+                <title>{`${title} | MindClass`}</title>
                 <meta name="description" content={description} />
             </Head>
 

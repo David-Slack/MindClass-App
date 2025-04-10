@@ -1,35 +1,79 @@
-import { Container, Row, Col, Button, Form, Alert } from 'react-bootstrap';
+import {Container, Row, Col, Button, Form, Alert} from 'react-bootstrap';
 import Image from "next/image";
 import styles from "./LoginForm.module.css";
 import people from "../../public/img/people.webp";
-import { useAuth } from '@/helpers/firebase/AuthUserContext';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useRouter} from "next/router";
 
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { firebaseApp } from "@/helpers/firebase/firebase";
+
 export function LoginForm( ){
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const router = useRouter();
-    const { signInWithEmailAndPassword } = useAuth();
-    const { authUser, loading} = useAuth();
+    const auth = getAuth(firebaseApp);
+    const [error, setError] = useState(null);
+    const [errorBox, setErrorBox] = useState(false);
 
-    // If we are already logged in, redirect to the home page
-    useEffect(() => {
-        if (authUser)
-            router.push('/').then();
-    }, [authUser, router]);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        setErrorBox(false);
 
-    const onSubmit = event => {
-        setError(null);
-        signInWithEmailAndPassword(email, password)
-            .then(authUser => {
-                router.push('/').then();
-            })
-            .catch(error => {
-                setError(error.message);
+        if (!email) {
+            setError('Please enter your email address.');
+            setErrorBox(true);
+            return;
+        }
+        if (!password) {
+            setError('Please enter your password.');
+            setErrorBox(true);
+            return;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setError('Please enter a valid email address.');
+            setErrorBox(true);
+            return;
+        }
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const idToken = await userCredential.user.getIdToken();
+
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`,
+                },
+                body: JSON.stringify({ rememberMe }),
             });
-        event.preventDefault();
+
+            const data = await response.json();
+
+            if (response.ok) {
+                router.push('/');
+            } else {
+                setError(data.error || 'Login failed');
+                setErrorBox(true);
+            }
+        } catch (err) {
+            console.error('Firebase sign-in error:', err);
+
+            if (err.code === 'auth/invalid-credential') {
+                setError('Invalid email or password.');
+            } else if (err.code === 'auth/user-not-found') {
+                setError('User not found.');
+            } else if (err.code === 'auth/wrong-password') {
+                setError('Incorrect password.');
+            }
+            else {
+                setError(err.message || 'Login failed');
+            }
+            setErrorBox(true);
+        }
     };
 
     return(
@@ -44,37 +88,49 @@ export function LoginForm( ){
                     />
                 </Col>
                 <Col lg={3} className={`${styles.loginFormRow} ${styles.loginRow}`}>
-                    <Form onSubmit={onSubmit}>
+                    <Form onSubmit={handleSubmit}>
 
-                        {error && <Alert color="danger">{error}</Alert>}
+                        { errorBox &&
+                            <Alert variant="danger" onClose={() => setErrorBox(false)} dismissible>
+                                {error}
+                            </Alert>
+                        }
 
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput0">
+                        <Form.Group className="mb-3" controlId="loginForm.title">
                             <h1>Login</h1>
                         </Form.Group>
-                        <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.email">
                             <Form.Control
                                 type="email"
                                 name="email"
                                 value={email}
-                                onChange={(event) => setEmail(event.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="name@example.com"
                             />
                             <Form.Label>Email address</Form.Label>
                         </Form.Group>
 
-                        <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput2">
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.password">
                             <Form.Control
                                 type="password"
                                 name="password"
                                 value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="password"
                             />
                             <Form.Label>Password</Form.Label>
                         </Form.Group>
 
+                        <Form.Group className="mb-3" controlId="loginForm.rememberMe">
+                            <Form.Check
+                                type="checkbox"
+                                label="Remember Me"
+                                checked={rememberMe}
+                                onChange={(e) => setRememberMe(e.target.checked)}
+                            />
+                        </Form.Group>
 
-                        <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput3">
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.submit">
                             <Button variant="primary" type="submit">
                                 Login
                             </Button>

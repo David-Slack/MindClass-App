@@ -2,12 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "@/styles/globals.css";
 import localFont from 'next/font/local';
 import Head from "next/head";
-import { AuthUserProvider } from '@/helpers/firebase/AuthUserContext';
 import { MainMenu } from "@/components/mainMenu/MainMenu";
 import { Footer } from "@/components/footer/Footer";
-import {LoginCheck} from "@/components/loginCheck/LoginCheck";
 import {textToClass} from "@/helpers/textToClass";
 import { usePathname } from 'next/navigation';
+import {Row} from "react-bootstrap";
 
 export const dazzed = localFont({
     src: [
@@ -38,17 +37,18 @@ export default function App({ Component, pageProps }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
-            <AuthUserProvider>
-                <main className={`${mainClass} ${dazzed.className}`}>
+            <main className={`${mainClass} ${dazzed.className}`}>
+                {
+                    pathname !== '/login' &&
                     <MainMenu/>
-                    <div className="mainContent">
-                        <LoginCheck>
-                            <Component {...pageProps} />
-                        </LoginCheck>
-                        <Footer/>
-                    </div>
-                </main>
-            </AuthUserProvider>
+                }
+                <div className="mainContent">
+                    <Row>
+                        <Component {...pageProps} />
+                    </Row>
+                    <Footer/>
+                </div>
+            </main>
         </>
     );
 }
