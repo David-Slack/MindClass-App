@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    // loader: 'custom',
+    // loaderFile: 'components/loadingSpinner/LoadingSpinner.js',
     remotePatterns: [
       {
         protocol: 'https',

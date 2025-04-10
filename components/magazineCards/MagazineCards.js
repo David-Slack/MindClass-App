@@ -2,6 +2,7 @@ import {Badge, Card, Col, Container, Row} from "react-bootstrap";
 import styles from "./MagazineCards.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export function MagazineCards({ magazineArticles }) {
     const allCategories = ["All", ...new Set(magazineArticles.map((article) => article.type))];
@@ -50,7 +51,14 @@ export function MagazineCards({ magazineArticles }) {
                                     <span className={styles.arrow}>&rarr;</span>
                                 </Card.Text>
                             </Card.Body>
-                            <Card.Img src={article.image} className={styles.img} />
+                            <Image
+                                src={article.image}
+                                alt={article.title}
+                                className={styles.img}
+                                width={655}
+                                height={374}
+                                priority={magazineArticles.indexOf(article) < 2} // Prioritize the first few
+                            />
                             <Link href={`/magazine/${article.id}`} className="stretched-link"></Link>
                         </Card>
                     </Col>
