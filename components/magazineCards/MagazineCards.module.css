@@ -68,8 +68,9 @@
     border-radius: 16px;
 
     .title{
-        min-height:64px;
-        font-size: 26px;
+        min-height:80px;
+        font-size: 21px;
+        margin-right: 38px;
     }
 
     .badge{
