@@ -8,9 +8,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'framerusercontent.com',
-        port: '',
-        pathname: '/images/**',
-        search: '',
       },
       {
         protocol: 'https',
