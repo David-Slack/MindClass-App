@@ -11,6 +11,7 @@ import { firebaseApp } from "@/helpers/firebase/firebase";
 export function LoginForm( ){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const router = useRouter();
     const auth = getAuth(firebaseApp);
     const [error, setError] = useState(null);
@@ -19,6 +20,7 @@ export function LoginForm( ){
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setErrorBox(false);
 
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -28,8 +30,9 @@ export function LoginForm( ){
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${idToken}`, // Send ID token in Authorization header
+                    'Authorization': `Bearer ${idToken}`,
                 },
+                body: JSON.stringify({ rememberMe }),
             });
 
             const data = await response.json();
@@ -100,6 +103,15 @@ export function LoginForm( ){
                                 placeholder="password"
                             />
                             <Form.Label>Password</Form.Label>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="loginForm.rememberMe">
+                            <Form.Check
+                                type="checkbox"
+                                label="Remember Me"
+                                checked={rememberMe}
+                                onChange={(e) => setRememberMe(e.target.checked)}
+                            />
                         </Form.Group>
 
                         <Form.Group className="form-floating mb-3" controlId="loginForm.submit">
