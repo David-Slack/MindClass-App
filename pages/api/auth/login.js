@@ -3,35 +3,22 @@ import { serialize } from 'cookie';
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { email, password } = req.body;
+        const authHeader = req.headers.authorization;
+
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+
+        const idToken = authHeader.split('Bearer ')[1];
 
         try {
-            const user = await adminAuth.getUserByEmail(email);
-            // In a real application, you would verify the password securely
-            // (Firebase Admin SDK doesn't directly provide password verification).
-            // You might need to store password hashes in your database
-            // or use Firebase Authentication's built-in email/password sign-in
-            // and then verify the ID token.
+            const decodedToken = await adminAuth.verifyIdToken(idToken);
+            const uid = decodedToken.uid;
 
-            // For demonstration purposes, let's assume the user exists.
-            // In a real scenario, you'd likely use Firebase Authentication
-            // to sign in the user and get an ID token.
-
-            // **Important:** If you are migrating from client-side auth,
-            // you might need to handle the initial password verification
-            // using the client-side SDK once and then transition to
-            // server-side session management.
-
-            // After successful authentication (e.g., verifying password),
-            // you can create a custom token or directly establish a session.
-
-            // Example: Creating a custom token (optional, but often useful)
-            const customToken = await adminAuth.createCustomToken(user.uid);
-
-            // Set an HTTP-only cookie with the custom token or a session ID
-            const cookie = serialize('session', customToken, {
+            const sessionToken = await adminAuth.createCustomToken(uid);
+            const cookie = serialize('session', sessionToken, {
                 httpOnly: true,
-                secure: process.env.NODE_ENV !== 'development', // Set to true in production
+                secure: process.env.NODE_ENV !== 'development',
                 sameSite: 'strict',
                 maxAge: 60 * 60 * 24 * 7, // 7 days
                 path: '/',
@@ -40,7 +27,7 @@ export default async function handler(req, res) {
 
             return res.status(200).json({ message: 'Login successful' });
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('ID token verification error:', error);
             return res.status(401).json({ error: 'Invalid credentials' });
         }
     } else {
