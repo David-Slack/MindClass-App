@@ -1,8 +1,10 @@
-import {Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import Link from "next/link";
 import styles from "./MainMenu.module.css";
 import Image from "next/image";
-import {usePathname} from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from 'next/navigation';
+
 
 const nav = [
     {
@@ -45,6 +47,29 @@ const nav = [
 
 export function MainMenu(){
     const pathname = usePathname();
+    const router = useRouter();
+
+    const signOut = async () => {
+        try {
+            const response = await fetch('/api/auth/signout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                // Redirect to the login page after successful sign out
+                router.push('/login');
+            } else {
+                console.error('Sign out failed');
+                // Optionally display an error message to the user
+            }
+        } catch (error) {
+            console.error('Error signing out:', error);
+            // Optionally display an error message to the user
+        }
+    };
 
     return(
             <>
@@ -77,6 +102,7 @@ export function MainMenu(){
                             </Nav>
                             <Nav>
                                 {/*<Button className={styles.signOut} onClick={signOut}>Sign out</Button>*/}
+                                <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -111,6 +137,7 @@ export function MainMenu(){
                     </ul>
 
                     {/*<Button className={styles.signOut} onClick={signOut}>Sign out</Button>*/}
+                    <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
                 </div>
         </>
     );
