@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Form} from 'react-bootstrap';
+import {Container, Row, Col, Button, Form, Alert} from 'react-bootstrap';
 import Image from "next/image";
 import styles from "./LoginForm.module.css";
 import people from "../../public/img/people.webp";
@@ -51,15 +51,13 @@ export function LoginForm( ){
                 <Col lg={3} className={`${styles.loginFormRow} ${styles.loginRow}`}>
                     <Form onSubmit={handleSubmit}>
 
-                        {/*{error && <Alert color="danger">{error}</Alert>}*/}
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
+                        {error && <Alert color="danger">{error}</Alert>}
 
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput0">
+                        <Form.Group className="mb-3" controlId="loginForm.title">
                             <h1>Login</h1>
                         </Form.Group>
-                        <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput1">
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.email">
                             <Form.Control
-                                id="email"
                                 type="email"
                                 name="email"
                                 value={email}
@@ -69,9 +67,8 @@ export function LoginForm( ){
                             <Form.Label>Email address</Form.Label>
                         </Form.Group>
 
-                        <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput2">
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.password">
                             <Form.Control
-                                id="password"
                                 type="password"
                                 name="password"
                                 value={password}
@@ -81,7 +78,7 @@ export function LoginForm( ){
                             <Form.Label>Password</Form.Label>
                         </Form.Group>
 
-                        <Form.Group className="form-floating mb-3" controlId="exampleForm.ControlInput3">
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.submit">
                             <Button variant="primary" type="submit">
                                 Login
                             </Button>
