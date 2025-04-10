@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server';
-import { adminAuth } from './helpers/firebase/firebaseAdmin';
 
 export async function middleware(req) {
     const sessionCookie = req.cookies.get('session')?.value;
     const pathname = req.nextUrl.pathname;
 
-    // Allow access to login and signup pages
-    if (pathname.startsWith('/login') || pathname.startsWith('/signup')) {
+    if (pathname.startsWith('/login')) {
         return NextResponse.next();
     }
 
@@ -16,15 +14,39 @@ export async function middleware(req) {
     }
 
     try {
-        await adminAuth.verifyIdToken(sessionCookie);
-        return NextResponse.next();
+        const verifyUrl = `${req.nextUrl.origin}/api/auth/verify-middleware`;
+        const response = await fetch(verifyUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ sessionCookie }),
+        });
+
+        const data = await response.json();
+
+        if (data && data.isValid) {
+            return NextResponse.next();
+        } else {
+            const url = new URL(`/login`, req.url);
+            return NextResponse.redirect(url);
+        }
+
     } catch (error) {
+        console.error('Middleware verification error:', error);
         const url = new URL(`/login`, req.url);
         return NextResponse.redirect(url);
     }
 }
 
-// Define which paths this middleware should run for
 export const config = {
-    matcher: ['/dashboard/:path*', '/profile/:path*'], // Example protected paths
+    matcher: [
+        '/',
+        '/courses/:path*',
+        '/counsellors/:path*',
+        '/magazine/:path*',
+        '/relax/:path*',
+        '/shorts/:path*',
+        '/tools/:path*',
+    ],
 };
