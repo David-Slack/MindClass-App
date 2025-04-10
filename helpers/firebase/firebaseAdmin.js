@@ -1,6 +1,7 @@
+'use server'
+
 import admin from 'firebase-admin';
 
-// Initialize Firebase Admin SDK if not already initialized
 if (!admin.apps.length) {
     try {
         admin.initializeApp({
@@ -12,4 +13,3 @@ if (!admin.apps.length) {
 }
 
 export const adminAuth = admin.auth();
-export const adminDb = admin.firestore(); // If you use Firestore
