@@ -5,7 +5,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from 'next/navigation';
 
-
 const nav = [
     {
         url: "/",
@@ -44,7 +43,6 @@ const nav = [
     },
 ];
 
-
 export function MainMenu(){
     const pathname = usePathname();
     const router = useRouter();
@@ -59,7 +57,6 @@ export function MainMenu(){
             });
 
             if (response.ok) {
-                // Redirect to the login page after successful sign out
                 router.push('/login');
             } else {
                 console.error('Sign out failed');
@@ -72,73 +69,70 @@ export function MainMenu(){
     };
 
     return(
-            <>
-                <Navbar id="TopMenu" collapseOnSelect expand="lg" className={`topMenu ${styles.topMenu} bg-body-tertiary`}>
-                    <Container>
-                        <Navbar.Brand href="/">
-                            <Image
-                                src={`/img/logo.png`}
-                                alt={`MindClass logo`}
-                                width={231}
-                                height={53}
-                                className={styles.logo}
-                                priority={true}
-                            />
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav" className={styles.navBarNav}>
-                            <Nav className="me-auto">
-                                {
-                                    nav.map((link, key)=>{
-                                        return (
-                                            <Nav.Link
-                                                key={key}
-                                                as={Link}
-                                                href={link.url}
-                                            >{link.title}</Nav.Link>
-                                        );
-                                    })
-                                }
-                            </Nav>
-                            <Nav>
-                                {/*<Button className={styles.signOut} onClick={signOut}>Sign out</Button>*/}
-                                <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-
-                <div className={`leftMenu ${styles.leftMenu} `}>
-                    <Link href={`/`}>
+        <>
+            <Navbar id="TopMenu" collapseOnSelect expand="lg" className={`topMenu ${styles.topMenu} bg-body-tertiary`}>
+                <Container>
+                    <Navbar.Brand href="/">
                         <Image
                             src={`/img/logo.png`}
                             alt={`MindClass logo`}
-                            width={991}
-                            height={227}
+                            width={231}
+                            height={53}
                             className={styles.logo}
                             priority={true}
                         />
-                    </Link>
-                    <ul>
-                        {
-                            nav.map((link)=>{
-                                return (
-                                    <li key={link.url}>
-                                        <Link
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav" className={styles.navBarNav}>
+                        <Nav className="me-auto">
+                            {
+                                nav.map((link, key)=>{
+                                    return (
+                                        <Nav.Link
+                                            key={key}
+                                            as={Link}
                                             href={link.url}
-                                            className={`${pathname.includes(link.url) ? styles.active : ''}`}
-                                        >
-                                            <span className={styles.titleSpan}>{link.title}</span>
-                                        </Link>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
+                                        >{link.title}</Nav.Link>
+                                    );
+                                })
+                            }
+                        </Nav>
+                        <Nav>
+                            <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
 
-                    {/*<Button className={styles.signOut} onClick={signOut}>Sign out</Button>*/}
-                    <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
-                </div>
+            <div className={`leftMenu ${styles.leftMenu} `}>
+                <Link href={`/`}>
+                    <Image
+                        src={`/img/logo.png`}
+                        alt={`MindClass logo`}
+                        width={991}
+                        height={227}
+                        className={styles.logo}
+                        priority={true}
+                    />
+                </Link>
+                <ul>
+                    {
+                        nav.map((link)=>{
+                            return (
+                                <li key={link.url}>
+                                    <Link
+                                        href={link.url}
+                                        className={`${pathname.includes(link.url) ? styles.active : ''}`}
+                                    >
+                                        <span className={styles.titleSpan}>{link.title}</span>
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+                <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
+            </div>
         </>
     );
 }
