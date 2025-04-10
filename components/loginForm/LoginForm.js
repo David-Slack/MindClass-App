@@ -5,23 +5,31 @@ import people from "../../public/img/people.webp";
 import {useState} from "react";
 import {useRouter} from "next/router";
 
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { firebaseApp } from "@/helpers/firebase/firebase";
+
 export function LoginForm( ){
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const router = useRouter();
+    const auth = getAuth(firebaseApp);
+    const [error, setError] = useState(null);
+    const [errorBox, setErrorBox] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
         try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const idToken = await userCredential.user.getIdToken();
+
             const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${idToken}`, // Send ID token in Authorization header
                 },
-                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
@@ -30,10 +38,22 @@ export function LoginForm( ){
                 router.push('/');
             } else {
                 setError(data.error || 'Login failed');
+                setErrorBox(true);
             }
         } catch (err) {
-            console.error('Login request error:', err);
-            setError('Failed to connect to the server');
+            console.error('Firebase sign-in error:', err);
+
+            if (err.code === 'auth/invalid-credential') {
+                setError('Invalid email or password.');
+            } else if (err.code === 'auth/user-not-found') {
+                setError('User not found.');
+            } else if (err.code === 'auth/wrong-password') {
+                setError('Incorrect password.');
+            }
+            else {
+                setError(err.message || 'Login failed');
+            }
+            setErrorBox(true);
         }
     };
 
@@ -51,7 +71,11 @@ export function LoginForm( ){
                 <Col lg={3} className={`${styles.loginFormRow} ${styles.loginRow}`}>
                     <Form onSubmit={handleSubmit}>
 
-                        {error && <Alert color="danger">{error}</Alert>}
+                        { errorBox &&
+                            <Alert variant="danger" onClose={() => setErrorBox(false)} dismissible>
+                                {error}
+                            </Alert>
+                        }
 
                         <Form.Group className="mb-3" controlId="loginForm.title">
                             <h1>Login</h1>
