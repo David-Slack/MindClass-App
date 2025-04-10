@@ -27,8 +27,7 @@ export function LoginForm( ){
             const data = await response.json();
 
             if (response.ok) {
-                // Login successful, redirect or update UI
-                router.push('/dashboard'); // Example redirect
+                router.push('/');
             } else {
                 setError(data.error || 'Login failed');
             }
