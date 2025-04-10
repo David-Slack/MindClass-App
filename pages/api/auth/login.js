@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             const cookie = serialize('session', sessionToken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV !== 'development',
-                sameSite: 'strict',
+                sameSite: 'strict', // This may need changing to lax later
                 maxAge: maxAge, // Use the conditional maxAge
                 path: '/',
             });
