@@ -18,7 +18,7 @@ export default function Course({ article }) {
                 <title>{title}</title>
                 <meta name="description" content={description} />
             </Head>
-            <Container fluid>
+            <Container className={'course'} fluid>
                 <CourseIFrame course={article} />
             </Container>
         </>
