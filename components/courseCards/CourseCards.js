@@ -1,10 +1,10 @@
-import {Badge, Card, Col, Container, Row} from "react-bootstrap";
+import { Badge, Card, Col, Container, Row } from "react-bootstrap";
 import styles from "./CourseCards.module.css";
 import Link from "next/link";
-import {minutesToHoursMinutes} from "@/helpers/minutesToHoursMinutes";
+import { minutesToHoursMinutes } from "@/helpers/minutesToHoursMinutes";
+import Image from "next/image"; // Import Next.js Image
 
 export function CourseCards({ collection }) {
-
     return (
         <Container fluid>
             <Row>
@@ -15,7 +15,13 @@ export function CourseCards({ collection }) {
                         lg={3}
                     >
                         <Card className={`mx-auto ${styles.card}`}>
-                            <Card.Img src={card.image} className={styles.img} />
+                            <Image
+                                src={card.image}
+                                alt={card.title}
+                                className={styles.img}
+                                fill={true}
+                                priority={collection.indexOf(card) < 2} // Prioritize the first few
+                            />
                             <Card.Body className={styles.body}>
                                 <Card.Title className={styles.title}>{card.title}</Card.Title>
                                 <Badge className={styles.lessons} pill>

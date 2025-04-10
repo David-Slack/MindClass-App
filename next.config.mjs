@@ -10,6 +10,10 @@ const nextConfig = {
         pathname: '/images/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
     ],
   },
   serverExternalPackages: ['firebase-admin'],

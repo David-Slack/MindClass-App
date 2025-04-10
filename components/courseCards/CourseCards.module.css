@@ -54,6 +54,7 @@
         }
         .img{
             object-fit: cover;
+            aspect-ratio: 16/9; /* HD ratio */
             border-radius: 14px;
             height: auto;
             min-height: 100%;
