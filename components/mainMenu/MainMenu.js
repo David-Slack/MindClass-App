@@ -51,7 +51,7 @@ export function MainMenu(){
 
     const signOut = async () => {
         try {
-            const response = await fetch('/api/auth/signout', {
+            const response = await fetch('/api/auth/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
