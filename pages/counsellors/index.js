@@ -2,7 +2,7 @@ import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 import {getCollection} from "@/helpers/firebase/getCollection";
 import {CounsellorCards} from "@/components/cards/counsellorCards/CounsellorCards";
-import {Row} from "react-bootstrap";
+import {CounsellorMainBlock} from "@/components/blocks/counsellorMainBlock/CounsellorMainBlock";
 
 export async function getServerSideProps() {
     return getCollection("counsellors", "name");
@@ -20,6 +20,7 @@ export default function counsellors({ collection  }) {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
+            <CounsellorMainBlock />
             <CounsellorCards collection={collection} />
         </>
     );
