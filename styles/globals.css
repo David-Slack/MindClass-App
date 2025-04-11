@@ -165,3 +165,35 @@ li{
         border-bottom-right-radius: .3rem;
     }
 }
+
+.card{
+    .cardArrow{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        font-size: 45px;
+        background: #000;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: #fff;
+        text-align: center;
+        line-height: 40px;
+        overflow: hidden;
+        transition-duration: .3s;
+    }
+    &:hover{
+        .cardArrow{
+            animation-name: cardArrow;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+        }
+    }
+}
+
+@keyframes cardArrow {
+    0%   {padding-left: 0;}
+    50%  {padding-left: 40px;}
+    100% {padding-right: 0;}
+}
+
