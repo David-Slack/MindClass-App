@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import {getItem} from "@/helpers/firebase/getItem";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
+import {CounsellorBio} from "@/components/counsellorBio/CounsellorBio";
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
@@ -19,6 +20,7 @@ export default function Course({ article }) {
             </Head>
 
             <TitleHeader title={title} subtitle={article.job_title} />
+            <CounsellorBio bio={article} />
         </>
     );
 }
