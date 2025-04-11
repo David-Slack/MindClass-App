@@ -1,5 +1,6 @@
 import {Col, Container, Row} from "react-bootstrap";
 import Image from "next/image";
+import styles from "./CounsellorMainBlock.module.css";
 
 // TODO: Store in the DB with CMS to change
 const block = {
@@ -23,11 +24,11 @@ export function CounsellorMainBlock(){
                 </Col>
                 <Col xs={12} xl={6}>
                     <Image
+                        className={styles.mainImage}
                         src={block.img}
                         alt={block.imgAlt}
                         width="1199"
                         height="800"
-                        style={{width:'100%', height:'auto'}}
                     />
                 </Col>
             </Row>
