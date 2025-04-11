@@ -1,7 +1,8 @@
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 import {getCollection} from "@/helpers/firebase/getCollection";
-import {CounsellorCards} from "@/components/counsellorCards/CounsellorCards";
+import {CounsellorCards} from "@/components/cards/counsellorCards/CounsellorCards";
+import {Row} from "react-bootstrap";
 
 export async function getServerSideProps() {
     return getCollection("counsellors", "name");

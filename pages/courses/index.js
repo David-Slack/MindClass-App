@@ -1,7 +1,7 @@
 import Head from "next/head";
 import {getCollection} from "@/helpers/firebase/getCollection";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
-import {CourseCards} from "@/components/courseCards/CourseCards";
+import {CourseCards} from "@/components/cards/courseCards/CourseCards";
 
 export async function getServerSideProps() {
     return getCollection("courses", "publish_date");
