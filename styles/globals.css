@@ -33,6 +33,7 @@ input:-webkit-autofill:focus {
     --greenLight: #e4faeb;
     --blueLight: #e4f9fb;
     --yellow: #e6c64f;
+    --orangeLight: #fae9e5;
 }
 
 .bg-yellowAlt{background: var(--yellowAlt) !important;}
@@ -45,6 +46,7 @@ input:-webkit-autofill:focus {
 .bg-greenLight{background: var(--greenLight) !important;}
 .bg-blueLight{background: var(--blueLight) !important;}
 .bg-yellow{background: var(--yellow) !important;}
+.bg-orangeLight{background: var(--orangeLight) !important;}
 
 /* Layout */
 body{
