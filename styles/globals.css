@@ -30,6 +30,9 @@ input:-webkit-autofill:focus {
     --orange: #dc7245;
     --red: #d84641;
     --redLight: #fae4e5;
+    --greenLight: #e4faeb;
+    --blueLight: #e4f9fb;
+    --yellow: #e6c64f;
 }
 
 .bg-yellowAlt{background: var(--yellowAlt) !important;}
@@ -39,15 +42,20 @@ input:-webkit-autofill:focus {
 .bg-orange{background: var(--orange) !important;}
 .bg-red{background: var(--red) !important;}
 .bg-redLight{background: var(--redLight) !important;}
+.bg-greenLight{background: var(--greenLight) !important;}
+.bg-blueLight{background: var(--blueLight) !important;}
+.bg-yellow{background: var(--yellow) !important;}
 
 /* Layout */
 body{
     overflow-y: scroll;
+
+    /* Our courses has a scroll bar on the iframe so lets remove the second one */
+    &:has(.course.container-fluid){
+        overflow-y: hidden;
+    }
 }
-/* Our courses has a scroll bar on the iframe so lets remove the second one */
-body:has(.course.container-fluid){
-    overflow-y: hidden;
-}
+
 html, body{
     padding: 0;
     margin: 0;
@@ -72,7 +80,6 @@ html, body{
 .login .mainContent{
     margin:40px 0;
 }
-
 
 .topMenu{
     display: none;
@@ -142,15 +149,15 @@ li{
     line-height: 1.8em;
 }
 
-
+/* NOT USED??
 .gradient-custom-2 {
-    /* fallback for old browsers */
+    /* fallback for old browsers *
     background: #fccb90;
 
-    /* Chrome 10-25, Safari 5.1-6 */
+    /* Chrome 10-25, Safari 5.1-6 *
     background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *
     background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
@@ -165,6 +172,7 @@ li{
         border-bottom-right-radius: .3rem;
     }
 }
+*/
 
 .card{
     .cardArrow{
