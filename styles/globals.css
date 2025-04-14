@@ -34,6 +34,7 @@ input:-webkit-autofill:focus {
     --blueLight: #e4f9fb;
     --yellow: #e6c64f;
     --orangeLight: #fae9e5;
+    --purple: #9441d8;
 }
 
 .bg-yellowAlt{background: var(--yellowAlt) !important;}
