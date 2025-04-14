@@ -24,7 +24,6 @@ export const dazzed = localFont({
     ],
 })
 
-
 export default function App({ Component, pageProps }) {
 
     const pathname = usePathname();
@@ -39,18 +38,18 @@ export default function App({ Component, pageProps }) {
             </Head>
 
             <UserProvider>
-            <main className={`${mainClass} ${dazzed.className}`}>
-                {
-                    pathname !== '/login' &&
-                    <MainMenu/>
-                }
-                <div className="mainContent">
-                    <Row>
-                        <Component {...pageProps} />
-                    </Row>
-                    <Footer/>
-                </div>
-            </main>
+                <main className={`${mainClass} ${dazzed.className}`}>
+                    {
+                        pathname !== '/login' &&
+                        <MainMenu/>
+                    }
+                    <div className="mainContent">
+                        <Row>
+                            <Component {...pageProps} />
+                        </Row>
+                        <Footer/>
+                    </div>
+                </main>
             </UserProvider>
         </>
     );

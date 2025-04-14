@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
-import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner"; // Updated import path
+import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner";
 
 export default function Account() {
     const title = 'My Account';
     const subtitle = "Account page";
-    const { userData, loading } = useUser(); // Use the context
+    const { userData, loading } = useUser();
 
     return (
         <>

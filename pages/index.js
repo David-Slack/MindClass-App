@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
-import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner"; // Updated import path
+import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner";
 
 export default function Home() {
     const title = 'MindClass';
     const subtitle = "See the latest MindClass has to offer you";
-    const { userData, loading } = useUser(); // Use the context
+    const { userData, loading } = useUser();
 
     return (
         <>
