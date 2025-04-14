@@ -48,7 +48,7 @@ export function MagazineCards({ magazineArticles }) {
                                     <Badge className={styles.badge} pill>
                                         {article.type}
                                     </Badge>
-                                    <span className={styles.arrow}>&rarr;</span>
+                                    <span className={`${styles.arrow} cardArrow`}>&rarr;</span>
                                 </Card.Text>
                             </Card.Body>
                             <Image

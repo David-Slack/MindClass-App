@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {getCollection} from "@/helpers/firebase/getCollection";
-import {MagazineCards} from "@/components/magazineCards/MagazineCards";
+import {MagazineCards} from "@/components/cards/magazineCards/MagazineCards";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
 export async function getServerSideProps() {
