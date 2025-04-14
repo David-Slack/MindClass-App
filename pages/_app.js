@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer/Footer";
 import {textToClass} from "@/helpers/textToClass";
 import { usePathname } from 'next/navigation';
 import {Row} from "react-bootstrap";
+import { UserProvider } from '@/helpers/firebase/userContext';
 
 export const dazzed = localFont({
     src: [
@@ -37,6 +38,7 @@ export default function App({ Component, pageProps }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
+            <UserProvider>
             <main className={`${mainClass} ${dazzed.className}`}>
                 {
                     pathname !== '/login' &&
@@ -49,6 +51,7 @@ export default function App({ Component, pageProps }) {
                     <Footer/>
                 </div>
             </main>
+            </UserProvider>
         </>
     );
 }
