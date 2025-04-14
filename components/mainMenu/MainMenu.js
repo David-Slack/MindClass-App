@@ -41,6 +41,11 @@ const nav = [
         title: "Tools",
         hover: "this is a hover"
     },
+    {
+        url: "/account",
+        title: "My Account",
+        hover: "this is a hover"
+    },
 ];
 
 export function MainMenu(){

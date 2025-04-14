@@ -48,5 +48,6 @@ export const config = {
         '/relax/:path*',
         '/shorts/:path*',
         '/tools/:path*',
+        '/account/:path*',
     ],
 };
