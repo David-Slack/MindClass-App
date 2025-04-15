@@ -1,3 +1,5 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #000;
