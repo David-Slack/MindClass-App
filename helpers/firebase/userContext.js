@@ -4,7 +4,7 @@ import { createContext, useState, useEffect, useContext } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { firebaseApp } from '@/helpers/firebase/firebase';
 import { db } from '@/helpers/firebase/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 const UserContext = createContext(null);
 
@@ -38,13 +38,27 @@ export function UserProvider({ children }) {
 
                     const customerDocRef = doc(db, 'customers', user.uid);
                     const customerDocSnap = await getDoc(customerDocRef);
-                    const customerData = customerDocSnap.exists() ? customerDocSnap.data() : {};
+                    const customerDataFromFirestore = customerDocSnap.exists() ? customerDocSnap.data() : {};
 
-                    const fullUserData = { ...basicUserInfo, customerData };
+                    const currentLastLoginDate = userData?.customerData?.lastLoginDate;
+                    const today = new Date().toLocaleDateString();
+                    const storedDay = currentLastLoginDate ? new Date(currentLastLoginDate).toLocaleDateString() : null;
+
+                    let updatedCustomerData = { ...customerDataFromFirestore };
+                    const now = new Date().toISOString();
+
+                    if (!storedDay || storedDay !== today) {
+                        await updateDoc(customerDocRef, { lastLoginDate: now });
+                        updatedCustomerData = { ...updatedCustomerData, lastLoginDate: now };
+                    } else if (customerDataFromFirestore?.lastLoginDate && !userData?.customerData?.lastLoginDate) {
+                        updatedCustomerData = { ...updatedCustomerData, lastLoginDate: customerDataFromFirestore.lastLoginDate };
+                    }
+
+                    const fullUserData = { ...basicUserInfo, customerData: updatedCustomerData };
                     setUserData(fullUserData);
                     localStorage.setItem('userData', JSON.stringify(fullUserData));
                 } catch (error) {
-                    console.error("Error fetching user data:", error);
+                    console.error("Error fetching/updating user data:", error);
                     setUserData(null);
                     localStorage.removeItem('userData');
                 } finally {
@@ -58,7 +72,7 @@ export function UserProvider({ children }) {
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [userData?.customerData?.lastLoginDate]);
 
     return (
         <UserContext.Provider value={{ userData, loading }}>
