@@ -96,6 +96,7 @@ export function MainMenu(){
                                     );
                                 })
                             }
+                            <Nav.Link className={styles.account} href={'/account'}>My Account</Nav.Link>
                         </Nav>
                         <Nav>
                             <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
@@ -132,6 +133,7 @@ export function MainMenu(){
                     }
                 </ul>
                 <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
+                <Link className={styles.account} href={'/account'}>My Account</Link>
             </div>
         </>
     );

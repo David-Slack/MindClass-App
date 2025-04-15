@@ -1,3 +1,5 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #000;
@@ -34,6 +36,7 @@ input:-webkit-autofill:focus {
     --blueLight: #e4f9fb;
     --yellow: #e6c64f;
     --orangeLight: #fae9e5;
+    --purple: #9441d8;
 }
 
 .bg-yellowAlt{background: var(--yellowAlt) !important;}
@@ -146,6 +149,12 @@ h2{
 }
 strong{
     font-weight: 600;
+}
+.row>ul,
+ul{
+    margin-bottom: 1em;
+    margin-top: 0;
+    padding-left: 40px;
 }
 li{
     line-height: 1.8em;
