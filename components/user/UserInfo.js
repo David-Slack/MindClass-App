@@ -28,7 +28,7 @@ export function UserInfo({userData}){
                 <Card.Body>
                     <i className={`${styles.icon} bi bi-calendar`}></i>
                     <Card.Title className={styles.cardTitle}>{lastLogin}</Card.Title>
-                    <Card.Subtitle className={`text-muted ${styles.cardSubtitle}`}>Account created</Card.Subtitle>
+                    <Card.Subtitle className={`text-muted ${styles.cardSubtitle}`}>Account created on</Card.Subtitle>
                     <Card.Subtitle className={`${styles.cardSubtitle}`}>{createdDate}</Card.Subtitle>
                 </Card.Body>
             </Card>
