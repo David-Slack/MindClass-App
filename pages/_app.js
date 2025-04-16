@@ -6,7 +6,7 @@ import { MainMenu } from "@/components/mainMenu/MainMenu";
 import { Footer } from "@/components/footer/Footer";
 import {textToClass} from "@/helpers/textToClass";
 import { usePathname } from 'next/navigation';
-import {Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import { UserProvider } from '@/helpers/firebase/userContext';
 
 export const dazzed = localFont({
@@ -43,12 +43,10 @@ export default function App({ Component, pageProps }) {
                         pathname !== '/login' &&
                         <MainMenu/>
                     }
-                    <div className="mainContent">
-                        <Row>
-                            <Component {...pageProps} />
-                        </Row>
+                    <Container fluid={true} className="mainContent">
+                        <Component {...pageProps} />
                         <Footer/>
-                    </div>
+                    </Container>
                 </main>
             </UserProvider>
         </>
