@@ -1,11 +1,11 @@
-import {Card, Col, Container, Row} from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./CounsellorBio.module.css";
 
 export function CounsellorBio({bio}){
     return(
-        <Container fluid={true}>
+        <>
             <Row className={styles.bioRow}>
                 <Col xs={{ span: 12, order: 2 }} xl={{ span: 6, order: 1 }}>
                     <Card className={styles.bioCard}  bg={bio.colour}>
@@ -68,6 +68,6 @@ export function CounsellorBio({bio}){
                     </ul>
                 </Col>
             </Row>
-        </Container>
+        </>
     )
 }

@@ -78,8 +78,9 @@ html, body{
 }
 
 .mainContent{
-    padding: 20px;
-    overflow-x: clip;
+    padding: 0 20px;
+    overflow-x: hidden;
+    width: calc(100% - 270px);
     margin: 0 0 35px 270px;
 }
 .login .mainContent{
@@ -97,8 +98,8 @@ html, body{
         opacity: 0;
     }
     .mainContent{
-        padding: 20px;
         margin: 0 0 40px 0;
+        width: 100%;
     }
     .topMenu{
         display: block;

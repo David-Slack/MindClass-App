@@ -1,7 +1,7 @@
 .cardGroup{
-    margin: 0 -10px;
-    max-width: calc(100% + 20px);
-    width: calc(100% + 20px);
+    margin-left: -20px;
+    max-width: calc(100% + 44px);
+    width: calc(100% + 44px);
     padding: 0;
     background: transparent;
 
