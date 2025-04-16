@@ -4,9 +4,9 @@ import localFont from 'next/font/local';
 import Head from "next/head";
 import { MainMenu } from "@/components/mainMenu/MainMenu";
 import { Footer } from "@/components/footer/Footer";
-import {textToClass} from "@/helpers/textToClass";
+import { textToClass } from "@/helpers/textToClass";
 import { usePathname } from 'next/navigation';
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { UserProvider } from '@/helpers/firebase/userContext';
 
 export const dazzed = localFont({
