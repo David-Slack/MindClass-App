@@ -43,6 +43,17 @@ const nav = [
     },
 ];
 
+function findActiveLink(link, pathname){
+
+    if(link === '/'){
+        if(pathname === '/') return true;
+    }else if(pathname.includes(link)){
+        return true;
+    }
+
+    return false;
+}
+
 export function MainMenu(){
     const pathname = usePathname();
     const router = useRouter();
@@ -123,7 +134,7 @@ export function MainMenu(){
                                 <li key={link.url}>
                                     <Link
                                         href={link.url}
-                                        className={`${pathname.includes(link.url) ? styles.active : ''}`}
+                                        className={`${findActiveLink( link.url, pathname ) ? styles.active : ''}`}
                                     >
                                         <span className={styles.titleSpan}>{link.title}</span>
                                     </Link>
