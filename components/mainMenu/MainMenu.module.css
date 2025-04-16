@@ -25,11 +25,11 @@
         border: 2px solid #000;
         border-radius: 22px;
         position: absolute;
-        bottom: 59px;
+        bottom: 55px;
         left: 90px;
         transition-duration: .3s;
-        line-height: 28px;
-        padding: 0 16px;
+        line-height: 30px;
+        padding: 1px 16px;
         z-index: 1;
 
         &:hover{
