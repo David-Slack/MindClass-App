@@ -5,13 +5,14 @@
     width: 120%;
     max-width: calc(100% + 38px);
     position: relative;
+    padding-top: 24px;
     padding-left: 10px;
 
     .smiley{
         width: 92px;
         height: 92px;
         position: absolute;
-        top:0;
+        top:24px;
         right:24px;
         z-index: 5;
 

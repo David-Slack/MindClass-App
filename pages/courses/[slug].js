@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import {getItem} from "@/helpers/firebase/getItem";
-import {Container} from "react-bootstrap";
-import {CourseIFrame} from "@/components/courseIFrame/CourseIFrame";
+import { Row } from "react-bootstrap";
+import { CourseIFrame } from "@/components/courseIFrame/CourseIFrame";
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
@@ -18,9 +18,9 @@ export default function Course({ article }) {
                 <title>{title}</title>
                 <meta name="description" content={description} />
             </Head>
-            <Container className={'course'} fluid>
+            <Row className={'course'}>
                 <CourseIFrame course={article} />
-            </Container>
+            </Row>
         </>
     );
 }
