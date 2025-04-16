@@ -1,4 +1,4 @@
-import {Badge, Card, Col, Container, Row} from "react-bootstrap";
+import {Badge, Card, Col, Row} from "react-bootstrap";
 import styles from "./MagazineCards.module.css";
 import Link from "next/link";
 import { useState } from "react";
@@ -14,19 +14,19 @@ export function MagazineCards({ magazineArticles }) {
             : magazineArticles.filter((article) => article.type.includes(activeFilter));
 
     return (
-        <Container fluid>
+        <>
             <Row className={styles.filter}>
                 <div>
-                {allCategories.map((category) => (
-                    <Badge
-                        key={category}
-                        onClick={() => setActiveFilter(category)}
-                        className={`${styles.badge} ${activeFilter === category ? styles.active : ""}`}
-                        pill
-                    >
-                        {category}
-                    </Badge>
-                ))}
+                    {allCategories.map((category) => (
+                        <Badge
+                            key={category}
+                            onClick={() => setActiveFilter(category)}
+                            className={`${styles.badge} ${activeFilter === category ? styles.active : ""}`}
+                            pill
+                        >
+                            {category}
+                        </Badge>
+                    ))}
                 </div>
             </Row>
 
@@ -39,7 +39,12 @@ export function MagazineCards({ magazineArticles }) {
                             ${ filteredMagazineArticles.includes(article) ? styles.filteredIn : styles.filteredOut }
                         `}
                         key={article.id}
-                        lg={count > 1 ? "3" : "6"}
+                        lg={
+                            count > 1 ?
+                                 "3" // No XL card
+                                //count === 6 ? 12 : "3" // An XL card
+                                : "6"
+                        }
                     >
                         <Card className={`mx-auto ${styles.card}`} bg={article.colour}>
                             <Card.Body className={styles.body}>
@@ -64,6 +69,6 @@ export function MagazineCards({ magazineArticles }) {
                     </Col>
                 ))}
             </Row>
-        </Container>
+        </>
     );
 }

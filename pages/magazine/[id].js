@@ -1,6 +1,5 @@
 import {getItem} from "@/helpers/firebase/getItem";
 import Head from "next/head";
-import {Container} from "react-bootstrap";
 import {MagazineArticle} from "@/components/magazineArticle/MagazineArticle";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
@@ -24,10 +23,7 @@ export default function ArticlePage({ article }) {
                 <meta name="description" content={description} />
             </Head>
             <TitleHeader title={article.title} subtitle={description} />
-            <Container fluid>
-
-                <MagazineArticle article={article} />
-            </Container>
+            <MagazineArticle article={article} />
         </>
     );
 }
