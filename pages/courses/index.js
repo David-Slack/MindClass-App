@@ -2,6 +2,7 @@ import Head from "next/head";
 import {getCollection} from "@/helpers/firebase/getCollection";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 import {CourseCards} from "@/components/cards/courseCards/CourseCards";
+import {Row} from "react-bootstrap";
 
 export async function getServerSideProps() {
     return getCollection("courses", "publish_date");
@@ -20,7 +21,9 @@ export default function Courses({ collection }) {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
-            <CourseCards collection={collection} />
+            <Row>
+                <CourseCards collection={collection} />
+            </Row>
         </>
     );
 }
