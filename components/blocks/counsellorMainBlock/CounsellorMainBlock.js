@@ -1,4 +1,4 @@
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import Image from "next/image";
 import styles from "./CounsellorMainBlock.module.css";
 
@@ -16,22 +16,20 @@ perspectives and coping strategies.</p>`,
 
 export function CounsellorMainBlock(){
     return(
-        <Container fluid={true}>
-            <Row>
-                <Col xs={12} xl={6}>
-                    <h2>{block.title}</h2>
-                    <div dangerouslySetInnerHTML={{__html: block.body}} />
-                </Col>
-                <Col xs={12} xl={6}>
-                    <Image
-                        className={styles.mainImage}
-                        src={block.img}
-                        alt={block.imgAlt}
-                        width="1199"
-                        height="800"
-                    />
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col xs={12} xl={6}>
+                <h2>{block.title}</h2>
+                <div dangerouslySetInnerHTML={{__html: block.body}} />
+            </Col>
+            <Col xs={12} xl={6}>
+                <Image
+                    className={styles.mainImage}
+                    src={block.img}
+                    alt={block.imgAlt}
+                    width="1199"
+                    height="800"
+                />
+            </Col>
+        </Row>
     );
 }

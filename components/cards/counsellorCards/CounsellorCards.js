@@ -22,7 +22,7 @@ export function CounsellorCards({ collection }) {
                         className={styles.img}
                         width={655}
                         height={374}
-                        priority={collection.indexOf(counsellor) < 2} // Prioritize the first few
+                        priority={collection.indexOf(counsellor) < 2}
                     />
                     <span className={`${styles.arrow} cardArrow`}>&rarr;</span>
                     <Link href={`/counsellors/${counsellor.id}`} className="stretched-link"></Link>
