@@ -1,10 +1,11 @@
 .titleHeader{
-    margin-left: -8px;
+    margin-left: -20px;
     border-bottom: 1px solid #000;
     margin-bottom: 24px;
     width: 120%;
-    max-width: calc(100% + 16px);
+    max-width: calc(100% + 38px);
     position: relative;
+    padding-left: 10px;
 
     .smiley{
         width: 92px;
@@ -28,8 +29,6 @@
         }
     }
 }
-
-
 
 .titleHeader h1{
     width: 80%;

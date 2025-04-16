@@ -78,7 +78,7 @@ html, body{
 }
 
 .mainContent{
-    padding: 0;
+    padding: 0 20px;
     overflow-x: hidden;
     width: calc(100% - 270px);
     margin: 20px 0 35px 270px;
