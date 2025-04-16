@@ -3,6 +3,7 @@ import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
 import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner";
 import {UserInfo} from "@/components/user/UserInfo";
+import {Row} from "react-bootstrap";
 
 export default function Account() {
     const title = 'My Account';
@@ -18,16 +19,17 @@ export default function Account() {
 
             <TitleHeader title={title} subtitle={subtitle} />
 
+            <Row>
+                {loading ? (
+                    <LoadingSpinner />
+                ) : userData ? (
 
-            {loading ? (
-                <LoadingSpinner />
-            ) : userData ? (
+                    <UserInfo userData={userData} />
 
-                <UserInfo userData={userData} />
-
-            ) : (
-                <p>Not logged in.</p>
-            )}
+                ) : (
+                    <p>Not logged in.</p>
+                )}
+            </Row>
         </>
     );
 }

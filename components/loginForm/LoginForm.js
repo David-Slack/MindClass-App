@@ -1,10 +1,9 @@
-import {Container, Row, Col, Button, Form, Alert} from 'react-bootstrap';
+import { Row, Col, Button, Form, Alert } from 'react-bootstrap';
 import Image from "next/image";
 import styles from "./LoginForm.module.css";
 import people from "../../public/img/people.webp";
-import {useState} from "react";
-import {useRouter} from "next/router";
-
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseApp } from "@/helpers/firebase/firebase";
 
@@ -77,7 +76,6 @@ export function LoginForm( ){
     };
 
     return(
-        <Container>
             <Row className="justify-content-md-center">
                 <Col xs lg="3" className={`${styles.loginImageRow} ${styles.loginRow}`}>
                     <Image
@@ -101,6 +99,7 @@ export function LoginForm( ){
                         </Form.Group>
                         <Form.Group className="form-floating mb-3" controlId="loginForm.email">
                             <Form.Control
+                                id="email"
                                 type="email"
                                 name="email"
                                 value={email}
@@ -140,6 +139,5 @@ export function LoginForm( ){
                 </Col>
             </Row>
 
-        </Container>
     );
 }
