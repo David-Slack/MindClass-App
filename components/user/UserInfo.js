@@ -1,6 +1,6 @@
-import {Card, CardGroup} from "react-bootstrap";
+import { Card, CardGroup } from "react-bootstrap";
 import styles from "./UserInfo.module.css";
-import {formatDate} from "@/helpers/formatDate";
+import { formatDate } from "@/helpers/formatDate";
 
 export function UserInfo({userData}){
     const lastLogin = formatDate(userData.customerData.lastLoginDate);
@@ -8,7 +8,7 @@ export function UserInfo({userData}){
 
     return(
         <CardGroup className="mb-3 text-center">
-            <Card className="mb-4">
+            <Card>
                 <Card.Header>
                     <h5>Account owner</h5>
                 </Card.Header>
@@ -21,7 +21,7 @@ export function UserInfo({userData}){
                     <Card.Subtitle className={`text-muted ${styles.cardSubtitle}`}>Your account type is: {userData.customerData.accountType}</Card.Subtitle>
                 </Card.Body>
             </Card>
-            <Card className="mb-4">
+            <Card>
                 <Card.Header>
                     <h5>Last login</h5>
                 </Card.Header>
@@ -32,7 +32,7 @@ export function UserInfo({userData}){
                     <Card.Subtitle className={`${styles.cardSubtitle}`}>{createdDate}</Card.Subtitle>
                 </Card.Body>
             </Card>
-            <Card className="mb-4">
+            <Card>
                 <Card.Header>
                     <h5>Company Code</h5>
                 </Card.Header>

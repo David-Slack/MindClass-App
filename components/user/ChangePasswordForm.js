@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Form, Button, Alert, Col} from 'react-bootstrap';
+import { Form, Button, Alert, Card } from 'react-bootstrap';
 import { getAuth, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 
 const ChangePasswordForm = () => {
@@ -62,52 +62,58 @@ const ChangePasswordForm = () => {
     };
 
     return (
-        <Col md={6}>
-            <h3>Change Password</h3>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {success && <Alert variant="success">{success}</Alert>}
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="form-floating mb-3" controlId="formOldPassword">
-                    <Form.Control
-                        type="password"
-                        name="oldPassword"
-                        placeholder="Old Password"
-                        value={oldPassword}
-                        onChange={(e) => setOldPassword(e.target.value)}
-                        required
-                    />
-                    <Form.Label>Old Password</Form.Label>
-                </Form.Group>
+        <Card>
+            <Card.Header>
+                <h5 className={'text-center'}>Change Password</h5>
+            </Card.Header>
+            <Card.Body>
+                {error && <Alert variant="danger">{error}</Alert>}
+                {success && <Alert variant="success">{success}</Alert>}
+                <p className={'text-muted'}>Enter your old password, then your new password twice.<br/>
+                    Your new password must be over 6 characters long.</p>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="form-floating mb-3" controlId="formOldPassword">
+                        <Form.Control
+                            type="password"
+                            name="oldPassword"
+                            placeholder="Old Password"
+                            value={oldPassword}
+                            onChange={(e) => setOldPassword(e.target.value)}
+                            required
+                        />
+                        <Form.Label>Old Password</Form.Label>
+                    </Form.Group>
 
-                <Form.Group className="form-floating mb-3" controlId="formNewPassword">
-                    <Form.Control
-                        type="password"
-                        name="newPassword"
-                        placeholder="New Password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        required
-                    />
-                    <Form.Label>New Password</Form.Label>
-                </Form.Group>
+                    <Form.Group className="form-floating mb-3" controlId="formNewPassword">
+                        <Form.Control
+                            type="password"
+                            name="newPassword"
+                            placeholder="New Password"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            required
+                        />
+                        <Form.Label>New Password</Form.Label>
+                    </Form.Group>
 
-                <Form.Group className="form-floating mb-3" controlId="formConfirmNewPassword">
-                    <Form.Control
-                        type="password"
-                        name="confirmNewPassword"
-                        placeholder="Confirm New Password"
-                        value={confirmNewPassword}
-                        onChange={(e) => setConfirmNewPassword(e.target.value)}
-                        required
-                    />
-                    <Form.Label>Confirm New Password</Form.Label>
-                </Form.Group>
+                    <Form.Group className="form-floating mb-3" controlId="formConfirmNewPassword">
+                        <Form.Control
+                            type="password"
+                            name="confirmNewPassword"
+                            placeholder="Confirm New Password"
+                            value={confirmNewPassword}
+                            onChange={(e) => setConfirmNewPassword(e.target.value)}
+                            required
+                        />
+                        <Form.Label>Confirm New Password</Form.Label>
+                    </Form.Group>
 
-                <Button variant="primary" type="submit" disabled={isUpdating}>
-                    {isUpdating ? 'Updating...' : 'Change Password'}
-                </Button>
-            </Form>
-        </Col>
+                    <Button variant="primary" type="submit" disabled={isUpdating}>
+                        {isUpdating ? 'Updating...' : 'Change Password'}
+                    </Button>
+                </Form>
+            </Card.Body>
+        </Card>
     );
 };
 
