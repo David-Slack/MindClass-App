@@ -165,6 +165,12 @@ export function LoginForm( ){
                         <Form.Label>Password</Form.Label>
                     </Form.Group>
 
+                    <div className="text-end">
+                        <Button variant="link" onClick={handleForgotPassword}>
+                            Forgotten password?
+                        </Button>
+                    </div>
+
                     <Form.Group className="mb-3" controlId="loginForm.rememberMe">
                         <Form.Check
                             type="checkbox"
@@ -179,12 +185,6 @@ export function LoginForm( ){
                             Login
                         </Button>
                     </Form.Group>
-
-                    <div className="text-center">
-                        <Button variant="link" onClick={handleForgotPassword}>
-                            Forgotten password?
-                        </Button>
-                    </div>
 
                 </Form>
             </Col>
