@@ -42,20 +42,37 @@ export function UserProvider({ children }) {
 
                     const currentLastLoginDate = userData?.customerData?.lastLoginDate;
                     const currentLoginStreak = userData?.customerData?.loginStreak || 0;
-                    const today = new Date();
-                    const todayDateString = today.toLocaleDateString();
-                    const storedDay = currentLastLoginDate ? new Date(currentLastLoginDate) : null;
-                    const storedDayDateString = storedDay?.toLocaleDateString();
+                    const todayUTC = new Date();
+                    const storedDayUTC = currentLastLoginDate ? new Date(currentLastLoginDate) : null;
 
                     let lastLoginDateToUpdate = currentLastLoginDate;
                     let loginStreakToUpdate = currentLoginStreak;
 
-                    if (!storedDayDateString || storedDayDateString !== todayDateString) {
-                        lastLoginDateToUpdate = today.toISOString();
-                        if (storedDay) {
-                            const yesterday = new Date(today);
-                            yesterday.setDate(today.getDate() - 1);
-                            if (storedDayDateString === yesterday.toLocaleDateString()) {
+                    const todayUTCDayString = todayUTC.toLocaleDateString('en-GB', {
+                        timeZone: 'UTC',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    });
+                    const storedDayUTCDayString = storedDayUTC?.toLocaleDateString('en-GB', {
+                        timeZone: 'UTC',
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    });
+
+                    if (!storedDayUTCDayString || storedDayUTCDayString !== todayUTCDayString) {
+                        lastLoginDateToUpdate = todayUTC.toISOString();
+                        if (storedDayUTC) {
+                            const yesterdayUTC = new Date(todayUTC);
+                            yesterdayUTC.setUTCDate(todayUTC.getUTCDate() - 1);
+                            const yesterdayUTCDayString = yesterdayUTC.toLocaleDateString('en-GB', {
+                                timeZone: 'UTC',
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit'
+                            });
+                            if (storedDayUTCDayString === yesterdayUTCDayString) {
                                 loginStreakToUpdate = currentLoginStreak + 1;
                             } else {
                                 loginStreakToUpdate = 1;
