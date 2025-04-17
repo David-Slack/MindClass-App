@@ -179,9 +179,9 @@ export function LoginForm() {
                             </Button>
                         </Form.Group>
 
-                        <div className="text-center">
-                            <Button variant="link" onClick={handleBackToLogin}>
-                                Back to Login
+                        <div className="text-end">
+                            <Button className={styles.link} variant="link" onClick={handleBackToLogin}>
+                                Back to Login <i className="bi bi-arrow-right-circle-fill"></i>
                             </Button>
                         </div>
                     </Form>
@@ -236,8 +236,8 @@ export function LoginForm() {
                         </Form.Group>
 
                         <div className="text-end">
-                            <Button variant="link" onClick={handleForgotPassword}>
-                                Forgotten password?
+                            <Button className={styles.link} variant="link" onClick={handleForgotPassword}>
+                                Forgotten password? <i className="bi bi-arrow-right-circle-fill"></i>
                             </Button>
                         </div>
                     </Form>
