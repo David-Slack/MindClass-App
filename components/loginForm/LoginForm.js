@@ -2,6 +2,7 @@ import { Row, Col, Button, Form, Alert } from 'react-bootstrap';
 import Image from "next/image";
 import styles from "./LoginForm.module.css";
 import people from "../../public/img/people.webp";
+import logo from "../../public/img/logo.png";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -9,7 +10,7 @@ import { firebaseApp } from "@/helpers/firebase/firebase";
 import { httpsCallable } from 'firebase/functions';
 import { getFunctions } from 'firebase/functions';
 
-export function LoginForm( ){
+export function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
@@ -21,12 +22,14 @@ export function LoginForm( ){
     const [resetError, setResetError] = useState(null);
     const [resetErrorBox, setResetErrorBox] = useState(false);
     const functions = getFunctions(firebaseApp);
+    const [showResetForm, setShowResetForm] = useState(false); // New state to control which form to show
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoginError('');
         setLoginErrorBox(false);
 
+        // Validation logic (same as before)
         if (!email) {
             setLoginError('Please enter your email address.');
             setLoginErrorBox(true);
@@ -81,7 +84,14 @@ export function LoginForm( ){
         }
     };
 
-    const handleForgotPassword = async () => {
+    const handleForgotPassword = () => {
+        setShowResetForm(true); // Show the reset password form
+        setResetError('');
+        setResetErrorBox(false);
+        setResetSent(false);
+    };
+
+    const handleSendPasswordReset = async () => {
         setResetError('');
         setResetErrorBox(false);
         setResetSent(false);
@@ -108,9 +118,23 @@ export function LoginForm( ){
         }
     };
 
-    return(
+    const handleBackToLogin = () => {
+        setShowResetForm(false); // Show the login form again
+        setEmail(''); // Clear email
+        setResetError('');
+        setResetErrorBox(false);
+        setResetSent(false);
+    };
+
+    return (
         <Row className="justify-content-md-center">
             <Col xs lg="3" className={`${styles.loginImageRow} ${styles.loginRow}`}>
+                <Image
+                    src={logo}
+                    alt={'MindClass Logo'}
+                    priority={true}
+                    style={{ width: '100%', height: 'auto' }}
+                />
                 <Image
                     src={people}
                     alt={`People`}
@@ -119,76 +143,106 @@ export function LoginForm( ){
                 />
             </Col>
             <Col lg={3} className={`${styles.loginFormRow} ${styles.loginRow}`}>
-                <Form onSubmit={handleSubmit}>
+                {showResetForm ? (
+                    <Form>
+                        <Form.Group className="mb-3" controlId="resetForm.title">
+                            <h2>Reset Password</h2>
+                        </Form.Group>
 
-                    { loginErrorBox &&
-                        <Alert variant="danger" onClose={() => setLoginErrorBox(false)} dismissible>
-                            {loginError}
-                        </Alert>
-                    }
+                        {resetErrorBox && (
+                            <Alert variant="danger" onClose={() => setResetErrorBox(false)} dismissible>
+                                {resetError}
+                            </Alert>
+                        )}
 
-                    { resetErrorBox &&
-                        <Alert variant="danger" onClose={() => setResetErrorBox(false)} dismissible>
-                            {resetError}
-                        </Alert>
-                    }
+                        {resetSent && (
+                            <Alert variant="success">
+                                Password reset email sent to {email}. Please check your inbox and spam/junk folder.
+                            </Alert>
+                        )}
 
-                    { resetSent &&
-                        <Alert variant="success">
-                            Password reset email sent to {email}. Please check your inbox and spam/junk folder.
-                        </Alert>
-                    }
+                        <Form.Group className="form-floating mb-3" controlId="resetForm.email">
+                            <Form.Control
+                                id="resetEmail"
+                                type="email"
+                                name="resetEmail"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="name@example.com"
+                            />
+                            <Form.Label>Email address</Form.Label>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="loginForm.title">
-                        <h1>Login</h1>
-                    </Form.Group>
-                    <Form.Group className="form-floating mb-3" controlId="loginForm.email">
-                        <Form.Control
-                            id="email"
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="name@example.com"
-                        />
-                        <Form.Label>Email address</Form.Label>
-                    </Form.Group>
+                        <Form.Group className="form-floating mb-3" controlId="resetForm.sendReset">
+                            <Button variant="primary" onClick={handleSendPasswordReset}>
+                                Send Password Reset Email
+                            </Button>
+                        </Form.Group>
 
-                    <Form.Group className="form-floating mb-3" controlId="loginForm.password">
-                        <Form.Control
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="password"
-                        />
-                        <Form.Label>Password</Form.Label>
-                    </Form.Group>
+                        <div className="text-center">
+                            <Button variant="link" onClick={handleBackToLogin}>
+                                Back to Login
+                            </Button>
+                        </div>
+                    </Form>
+                ) : (
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="loginForm.title">
+                            <h2>Login</h2>
+                        </Form.Group>
 
-                    <div className="text-end">
-                        <Button variant="link" onClick={handleForgotPassword}>
-                            Forgotten password?
-                        </Button>
-                    </div>
+                        {loginErrorBox && (
+                            <Alert variant="danger" onClose={() => setLoginErrorBox(false)} dismissible>
+                                {loginError}
+                            </Alert>
+                        )}
 
-                    <Form.Group className="mb-3" controlId="loginForm.rememberMe">
-                        <Form.Check
-                            type="checkbox"
-                            label="Remember Me"
-                            checked={rememberMe}
-                            onChange={(e) => setRememberMe(e.target.checked)}
-                        />
-                    </Form.Group>
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.email">
+                            <Form.Control
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="name@example.com"
+                            />
+                            <Form.Label>Email address</Form.Label>
+                        </Form.Group>
 
-                    <Form.Group className="form-floating mb-3" controlId="loginForm.submit">
-                        <Button variant="primary" type="submit">
-                            Login
-                        </Button>
-                    </Form.Group>
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.password">
+                            <Form.Control
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="password"
+                            />
+                            <Form.Label>Password</Form.Label>
+                        </Form.Group>
 
-                </Form>
+                        <Form.Group className="mb-3" controlId="loginForm.rememberMe">
+                            <Form.Check
+                                type="checkbox"
+                                label="Remember Me"
+                                checked={rememberMe}
+                                onChange={(e) => setRememberMe(e.target.checked)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="form-floating mb-3" controlId="loginForm.submit">
+                            <Button variant="primary" type="submit">
+                                Login
+                            </Button>
+                        </Form.Group>
+
+                        <div className="text-end">
+                            <Button variant="link" onClick={handleForgotPassword}>
+                                Forgotten password?
+                            </Button>
+                        </div>
+                    </Form>
+                )}
             </Col>
         </Row>
-
     );
 }
