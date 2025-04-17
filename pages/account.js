@@ -4,6 +4,7 @@ import { useUser } from '@/helpers/firebase/userContext';
 import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner";
 import {UserInfo} from "@/components/user/UserInfo";
 import {Row} from "react-bootstrap";
+import ChangePasswordForm from "@/components/user/ChangePasswordForm";
 
 export default function Account() {
     const title = 'My Account';
@@ -23,9 +24,10 @@ export default function Account() {
                 {loading ? (
                     <LoadingSpinner />
                 ) : userData ? (
-
-                    <UserInfo userData={userData} />
-
+                    <>
+                        <UserInfo userData={userData} />
+                        <ChangePasswordForm />
+                    </>
                 ) : (
                     <p>Not logged in.</p>
                 )}
