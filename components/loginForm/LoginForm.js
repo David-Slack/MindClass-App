@@ -1,4 +1,4 @@
-import { Row, Col, Button, Form, Alert } from 'react-bootstrap';
+import { Row, Col, Button, Form, Alert, Spinner } from 'react-bootstrap'; // Import Spinner
 import Image from "next/image";
 import styles from "./LoginForm.module.css";
 import people from "../../public/img/people.webp";
@@ -22,27 +22,32 @@ export function LoginForm() {
     const [resetError, setResetError] = useState(null);
     const [resetErrorBox, setResetErrorBox] = useState(false);
     const functions = getFunctions(firebaseApp);
-    const [showResetForm, setShowResetForm] = useState(false); // New state to control which form to show
+    const [showResetForm, setShowResetForm] = useState(false);
+    const [loading, setLoading] = useState(false); // New state for loading indicator
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoginError('');
         setLoginErrorBox(false);
+        setLoading(true); // Start loading
 
         // Validation logic (same as before)
         if (!email) {
             setLoginError('Please enter your email address.');
             setLoginErrorBox(true);
+            setLoading(false); // Stop loading
             return;
         }
         if (!password) {
             setLoginError('Please enter your password.');
             setLoginErrorBox(true);
+            setLoading(false); // Stop loading
             return;
         }
         if (!/\S+@\S+\.\S+/.test(email)) {
             setLoginError('Please enter a valid email address.');
             setLoginErrorBox(true);
+            setLoading(false); // Stop loading
             return;
         }
 
@@ -81,11 +86,13 @@ export function LoginForm() {
                 setLoginError(err.message || 'Login failed');
             }
             setLoginErrorBox(true);
+        } finally {
+            setLoading(false); // Stop loading (always)
         }
     };
 
     const handleForgotPassword = () => {
-        setShowResetForm(true); // Show the reset password form
+        setShowResetForm(true);
         setResetError('');
         setResetErrorBox(false);
         setResetSent(false);
@@ -119,8 +126,8 @@ export function LoginForm() {
     };
 
     const handleBackToLogin = () => {
-        setShowResetForm(false); // Show the login form again
-        setEmail(''); // Clear email
+        setShowResetForm(false);
+        setEmail('');
         setResetError('');
         setResetErrorBox(false);
         setResetSent(false);
@@ -230,8 +237,12 @@ export function LoginForm() {
                         </Form.Group>
 
                         <Form.Group className="form-floating mb-3" controlId="loginForm.submit">
-                            <Button variant="primary" type="submit">
-                                Login
+                            <Button variant="primary" type="submit" disabled={loading}>
+                                {loading ? (
+                                    <Spinner animation="border" size="sm" />
+                                ) : (
+                                    'Login'
+                                )}
                             </Button>
                         </Form.Group>
 
