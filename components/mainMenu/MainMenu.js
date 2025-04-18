@@ -26,7 +26,7 @@ const nav = [
         title: "Magazine",
         hover: "this is a hover"
     },
-    {
+/*    {
         url: "/relax",
         title: "Relax",
         hover: "this is a hover"
@@ -40,7 +40,7 @@ const nav = [
         url: "/tools",
         title: "Tools",
         hover: "this is a hover"
-    },
+    },*/
 ];
 
 function findActiveLink(link, pathname){

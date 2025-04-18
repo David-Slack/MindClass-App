@@ -3,8 +3,9 @@ import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
 import {LoadingSpinner} from "@/components/loadingSpinner/LoadingSpinner";
 import {UserInfo} from "@/components/user/UserInfo";
-import { Col } from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import ChangePasswordForm from "@/components/user/ChangePasswordForm";
+import {LoginStreak} from "@/components/user/loginStreak";
 
 export default function Account() {
     const title = 'My Account';
@@ -25,12 +26,20 @@ export default function Account() {
                 <LoadingSpinner />
             ) : userData ? (
                 <>
+                    <Row>
                     <Col md={12}>
                         <UserInfo userData={userData} />
                     </Col>
-                    <Col md={6}>
+                    </Row>
+
+                    <Row>
+                    <Col md={8}>
                         <ChangePasswordForm />
                     </Col>
+                    <Col md={4}>
+                        <LoginStreak streak={userData.customerData.loginStreak} />
+                    </Col>
+                    </Row>
                 </>
             ) : (
                 <p>Not logged in.</p>
