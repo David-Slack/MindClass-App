@@ -1,3 +1,4 @@
+import styles from "@/components/user/profileImage.module.css";
 import md5 from 'js-md5';
 import { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
@@ -38,7 +39,7 @@ export function ProfileImage({ size = 40 }) {
     }, [size]);
 
     return (
-        <>
+        <div className={styles.profileImageContainer}>
             {hasGravatar && gravatarUrl ? (
                 <>
                     <a
@@ -50,20 +51,19 @@ export function ProfileImage({ size = 40 }) {
                         <img
                             src={gravatarUrl}
                             alt="Profile"
+                            className={styles.profileImage}
                             width={size}
                             height={size}
                             style={{ borderRadius: '50%', border: '6px solid #000' }}
                         />
                     </a>
-                    <div>
-                        <small className={'text-muted'}>Profile image
-                            from <a href="https://gravatar.com/" target="_blank" rel="noopener noreferrer">Gravatar</a>
-                        </small>
+                    <div className={styles.gravatarInfo}>
+                        <small>From <a href="https://gravatar.com/" target="_blank" rel="noopener noreferrer">Gravatar</a></small>
                     </div>
                 </>
             ) : (
                 <i className={`bi bi-person-circle`} style={{ fontSize: `${size}px` }}></i>
             )}
-        </>
+        </div>
     );
 }
