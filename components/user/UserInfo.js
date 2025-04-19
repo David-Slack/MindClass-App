@@ -1,6 +1,7 @@
 import { Card, CardGroup } from "react-bootstrap";
 import styles from "./UserInfo.module.css";
 import { formatDate } from "@/helpers/formatDate";
+import {ProfileImage} from "@/components/user/profileImage";
 
 export function UserInfo({userData}){
     const lastLogin = formatDate(userData.customerData.lastLoginDate);
@@ -13,7 +14,7 @@ export function UserInfo({userData}){
                     <h5>Account owner</h5>
                 </Card.Header>
                 <Card.Body>
-                    <i className={`${styles.icon} bi bi-person-circle`}></i>
+                    <ProfileImage size={140} />
                     <Card.Title className={styles.cardTitle}>
 
                         <p className={styles.smallText}>{userData.email}</p><br/>
