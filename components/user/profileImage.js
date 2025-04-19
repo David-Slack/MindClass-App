@@ -55,6 +55,11 @@ export function ProfileImage({ size = 40 }) {
                             style={{ borderRadius: '50%', border: '6px solid #000' }}
                         />
                     </a>
+                    <div>
+                        <small className={'text-muted'}>Profile image
+                            from <a href="https://gravatar.com/" target="_blank" rel="noopener noreferrer">Gravatar</a>
+                        </small>
+                    </div>
                 </>
             ) : (
                 <i className={`bi bi-person-circle`} style={{ fontSize: `${size}px` }}></i>
