@@ -14,9 +14,8 @@ export function UserInfo({userData}){
                     <h5>Account owner</h5>
                 </Card.Header>
                 <Card.Body>
-                    <ProfileImage size={140} />
+                    <ProfileImage size={160} />
                     <Card.Title className={styles.cardTitle}>
-
                         <p className={styles.smallText}>{userData.email}</p><br/>
                         {userData.customerData.firstName} {userData.customerData.lastName}</Card.Title>
                     <Card.Subtitle className={`text-muted ${styles.cardSubtitle}`}>Your account type is: {userData.customerData.accountType}</Card.Subtitle>

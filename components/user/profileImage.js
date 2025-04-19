@@ -40,7 +40,22 @@ export function ProfileImage({ size = 40 }) {
     return (
         <>
             {hasGravatar && gravatarUrl ? (
-                <img src={gravatarUrl} alt="Profile" width={size} height={size} style={{ borderRadius: '50%', border: '4px solid #000' }} />
+                <>
+                    <a
+                        href="https://gravatar.com/"
+                        title={'Click to go to the Gravatar website where you can update your image'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            src={gravatarUrl}
+                            alt="Profile"
+                            width={size}
+                            height={size}
+                            style={{ borderRadius: '50%', border: '6px solid #000' }}
+                        />
+                    </a>
+                </>
             ) : (
                 <i className={`bi bi-person-circle`} style={{ fontSize: `${size}px` }}></i>
             )}
