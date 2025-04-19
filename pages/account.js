@@ -21,7 +21,6 @@ export default function Account() {
 
             <TitleHeader title={title} subtitle={subtitle} />
 
-
             {loading ? (
                 <LoadingSpinner />
             ) : userData ? (

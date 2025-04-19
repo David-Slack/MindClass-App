@@ -4,12 +4,21 @@ import styles from "./LoginStreak.module.css";
 
 export function LoginStreak({streak}) {
     return(
-        <Card className={'text-center'}>
+        <Card className={`text-center ${styles.card}`}>
             <Card.Header>
                 <h5 className={'text-center'}>Login Streak</h5>
             </Card.Header>
             <Card.Body>
-                <Card.Title className={`${styles.cardTitle}`}>{streak}<i className={`${styles.icon} bi bi-arrow-up-circle-fill`}></i></Card.Title>
+                <Card.Title className={`${styles.cardTitle}`}>{
+                    streak === 1 ?
+                        <>
+                            {streak}
+                        </>
+                        :
+                        <>
+                            {streak}<i className={`${styles.icon} bi bi-arrow-up-circle-fill`}></i>
+                        </>
+                }</Card.Title>
                 <Card.Text>
                     {
                         streak === 1 &&

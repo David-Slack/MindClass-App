@@ -1,6 +1,9 @@
-.icon{
-    font-size: 40px;
-}
-.cardTitle{
-    font-size: 140px;
+.card{
+    height: 100%;
+    .icon{
+        font-size: 40px;
+    }
+    .cardTitle{
+        font-size: 140px;
+    }
 }
