@@ -45,7 +45,6 @@ export function VideoCards({ collection }) {
                     videoPlayer = <div>Invalid Vimeo Link</div>;
                 }
             } else if (video.videoLink && (video.videoLink.includes('youtube.com') || video.videoLink.includes('youtu.be') || video.videoLink.includes('https://www.youtube.com/watch?v=$'))) {
-                // Pass the original YouTube link directly to reactPlayerComponent
                 videoPlayer = reactPlayerComponent(video.videoLink);
             } else if (video.videoLink) {
                 videoPlayer = <div>Unsupported Video Link</div>;
