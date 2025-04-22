@@ -15,7 +15,7 @@ const ReactPlayer = dynamic(() => import('react-player'), {
 export function MeditationsCards({ collection }) {
     return (
         collection.map((card) => {
-            let videoPlayer = null;
+            let videoPlayer;
 
             if (card.videoLink && card.videoLink.includes('vimeo.com')) {
                 const vimeoRegex = /(?:www\.|player\.)?vimeo\.com\/(?:manage\/videos\/)?(\d+)/;
