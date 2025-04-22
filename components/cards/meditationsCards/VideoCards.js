@@ -45,15 +45,8 @@ export function VideoCards({ collection }) {
                     videoPlayer = <div>Invalid Vimeo Link</div>;
                 }
             } else if (video.videoLink && (video.videoLink.includes('youtube.com') || video.videoLink.includes('youtu.be') || video.videoLink.includes('https://www.youtube.com/watch?v=$'))) {
-                const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([a-zA-Z0-9_-]+)/;
-                const youtubeMatch = video.videoLink.match(youtubeRegex);
-                const youtubeId = youtubeMatch ? youtubeMatch[1] : null;
-
-                if (youtubeId) {
-                    videoPlayer = reactPlayerComponent(`https://www.youtube.com/watch?v=$${youtubeId}`);
-                } else {
-                    videoPlayer = <div>Invalid YouTube Link</div>;
-                }
+                // Pass the original YouTube link directly to reactPlayerComponent
+                videoPlayer = reactPlayerComponent(video.videoLink);
             } else if (video.videoLink) {
                 videoPlayer = <div>Unsupported Video Link</div>;
             } else {
