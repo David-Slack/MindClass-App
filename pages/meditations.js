@@ -8,7 +8,6 @@ export async function getServerSideProps() {
     return getVideoCollection("relax"); // relax is the name of the meditation type
 }
 export default function Meditations({ collection }) {
-    console.log(collection);
     const title = 'Meditations';
     const description = "Take some time out to watch our latest videos";
 
