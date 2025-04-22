@@ -5,10 +5,10 @@ import {Row} from "react-bootstrap";
 import {getVideoCollection} from "@/helpers/firebase/getVideoCollection";
 
 export async function getServerSideProps() {
-    return getVideoCollection("relax"); // relax is the name of the meditation type
+    return getVideoCollection("short"); // relax is the name of the meditation type
 }
-export default function Meditations({ collection }) {
-    const title = 'Meditations';
+export default function Video({ collection }) {
+    const title = 'Video';
     const description = "Take some time out to watch our latest videos";
 
     return (
