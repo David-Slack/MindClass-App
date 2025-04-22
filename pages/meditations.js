@@ -1,6 +1,6 @@
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
-import {MeditationsCards} from "@/components/cards/meditationsCards/MeditationsCards";
+import {VideoCards} from "@/components/cards/meditationsCards/VideoCards";
 import {Row} from "react-bootstrap";
 import {getVideoCollection} from "@/helpers/firebase/getVideoCollection";
 
@@ -20,7 +20,7 @@ export default function Meditations({ collection }) {
 
             <TitleHeader title={title} subtitle={description} />
             <Row>
-                <MeditationsCards collection={collection} />
+                <VideoCards collection={collection} />
             </Row>
         </>
     );
