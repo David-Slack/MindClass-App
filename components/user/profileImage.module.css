@@ -1,0 +1,46 @@
+.profileImageContainer {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+.profileImage {
+    border-radius: 50%;
+}
+
+.gravatarInfo {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #000;
+    font-size: 0;
+    overflow: hidden;
+    background-image: url('/img/gravatar-logo-png-transparent.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 2px solid #fff;
+}
+
+.gravatarInfo a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.gravatarInfo span {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
