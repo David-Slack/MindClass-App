@@ -1,6 +1,16 @@
 import styles from "./MeditationsCards.module.css";
 import { Col } from "react-bootstrap";
-import ReactPlayer from 'react-player';
+import dynamic from 'next/dynamic';
+import { LoadingSpinner } from '@/components/loadingSpinner/LoadingSpinner'; // Adjust the import path if necessary
+
+const ReactPlayer = dynamic(() => import('react-player'), {
+    ssr: false,
+    loading: () => (
+        <div className={styles.loadingContainer}>
+            <LoadingSpinner />
+        </div>
+    ),
+});
 
 export function MeditationsCards({ collection }) {
     return (
@@ -16,8 +26,8 @@ export function MeditationsCards({ collection }) {
                     videoPlayer = (
                         <ReactPlayer
                             url={`https://vimeo.com/${vimeoId}`}
-                            width="100%"
-                            height="auto" // Or a specific height if you prefer
+                            width="auto"
+                            height="100%"
                             controls={true}
                         />
                     );
