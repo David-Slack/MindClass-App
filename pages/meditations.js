@@ -1,9 +1,9 @@
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
-export default function Home() {
+export default function Meditations() {
 
-    const title = 'Relax';
+    const title = 'Meditations';
     const description = "Take some time out to watch our latest videos";
 
     return (

@@ -26,12 +26,12 @@ const nav = [
         title: "Magazine",
         hover: "this is a hover"
     },
-/*    {
-        url: "/relax",
-        title: "Relax",
+    {
+        url: "/meditations",
+        title: "Meditations",
         hover: "this is a hover"
     },
-    {
+/*    {
         url: "/shorts",
         title: "Shorts",
         hover: "this is a hover"
