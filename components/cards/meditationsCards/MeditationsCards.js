@@ -1,19 +1,38 @@
 import styles from "./MeditationsCards.module.css";
 import { Col } from "react-bootstrap";
 import dynamic from 'next/dynamic';
-import { LoadingSpinner } from '@/components/loadingSpinner/LoadingSpinner'; // Adjust the import path if necessary
+import { LoadingSpinner } from '@/components/loadingSpinner/LoadingSpinner';
+import { useRef } from 'react';
 
 const ReactPlayer = dynamic(() => import('react-player'), {
     ssr: false,
-    loading: () => (
-        <LoadingSpinner />
-    ),
+    loading: () => <LoadingSpinner />,
 });
 
 export function MeditationsCards({ collection }) {
     return (
         collection.map((card) => {
+            const wrapperRef = useRef(null);
+
+            const handleReady = () => {
+                if (wrapperRef.current) {
+                    wrapperRef.current.classList.add(styles.videoLoaded);
+                }
+            };
+
             let videoPlayer;
+
+            const reactPlayerComponent = (url) => (
+                <div ref={wrapperRef} className={styles.reactPlayerWrapper}>
+                    <ReactPlayer
+                        url={url}
+                        width="auto"
+                        height="100%"
+                        controls={true}
+                        onReady={handleReady}
+                    />
+                </div>
+            );
 
             if (card.videoLink && card.videoLink.includes('vimeo.com')) {
                 const vimeoRegex = /(?:www\.|player\.)?vimeo\.com\/(?:manage\/videos\/)?(\d+)/;
@@ -21,14 +40,7 @@ export function MeditationsCards({ collection }) {
                 const vimeoId = vimeoMatch ? vimeoMatch[1] : null;
 
                 if (vimeoId) {
-                    videoPlayer = (
-                        <ReactPlayer
-                            url={`https://vimeo.com/${vimeoId}`}
-                            width="auto"
-                            height="100%"
-                            controls={true}
-                        />
-                    );
+                    videoPlayer = reactPlayerComponent(`https://vimeo.com/${vimeoId}`);
                 } else {
                     videoPlayer = <div>Invalid Vimeo Link</div>;
                 }
@@ -38,14 +50,7 @@ export function MeditationsCards({ collection }) {
                 const youtubeId = youtubeMatch ? youtubeMatch[1] : null;
 
                 if (youtubeId) {
-                    videoPlayer = (
-                        <ReactPlayer
-                            url={`https://www.youtube.com/watch?v=${youtubeId}`} // Use standard YouTube watch URL
-                            width="100%"
-                            height="auto"
-                            controls={true}
-                        />
-                    );
+                    videoPlayer = reactPlayerComponent(`https://www.youtube.com/watch?v=$${youtubeId}`);
                 } else {
                     videoPlayer = <div>Invalid YouTube Link</div>;
                 }
@@ -57,7 +62,7 @@ export function MeditationsCards({ collection }) {
 
             return (
                 <Col
-                    className={`${styles.col}`}
+                    className={styles.col}
                     key={card.id}
                     lg={4}
                 >
