@@ -170,7 +170,6 @@ export function LoginForm() {
 
                         <Form.Group className="form-floating mb-3" controlId="resetForm.email">
                             <Form.Control
-                                id="resetEmail"
                                 type="email"
                                 name="resetEmail"
                                 value={email}
@@ -206,7 +205,6 @@ export function LoginForm() {
 
                         <Form.Group className="form-floating mb-3" controlId="loginForm.email">
                             <Form.Control
-                                id="email"
                                 type="email"
                                 name="email"
                                 value={email}
