@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert, Card } from 'react-bootstrap';
 import { getAuth, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
+import styles from './ChangePasswordForm.module.css';
 
 const ChangePasswordForm = () => {
     const [oldPassword, setOldPassword] = useState('');
@@ -108,7 +109,7 @@ const ChangePasswordForm = () => {
                         <Form.Label>Confirm New Password</Form.Label>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" disabled={isUpdating}>
+                    <Button className={styles.changePasswordBtn} variant="primary" type="submit" disabled={isUpdating}>
                         {isUpdating ? 'Updating...' : 'Change Password'}
                     </Button>
                 </Form>
