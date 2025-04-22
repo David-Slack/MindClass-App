@@ -6,9 +6,7 @@ import { LoadingSpinner } from '@/components/loadingSpinner/LoadingSpinner'; // 
 const ReactPlayer = dynamic(() => import('react-player'), {
     ssr: false,
     loading: () => (
-        <div className={styles.loadingContainer}>
-            <LoadingSpinner />
-        </div>
+        <LoadingSpinner />
     ),
 });
 
