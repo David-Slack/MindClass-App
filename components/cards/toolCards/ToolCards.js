@@ -29,6 +29,14 @@ const tools = [
 
     },
     {
+        url: "/tools/professor",
+        title: "Professor",
+        subTitle: "Give me the crash course",
+        colour: "blue",
+        img: "/img/tools/professor.png",
+
+    },
+    {
         url: "/tools/chef",
         title: "Chef",
         subTitle: "What's for dinner?",
