@@ -1,37 +1,26 @@
 import {Row} from "react-bootstrap";
+import Head from "next/head";
+import {TitleHeader} from "@/components/titleHeader/TitleHeader";
+import {CompilerTool} from "@/components/tools/CompilerTool";
 
-export default function Compiler(){
+
+export default function Chef() {
+
+    const title = 'Compiler';
+    const description = "Compile my braindump into a list of tasks";
 
     return (
         <>
+            <Head>
+                <title>{`${title} | MindClass`}</title>
+                <meta name="description" content={description} />
+            </Head>
 
-            <Row
-                style={{
-                    padding: 20,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    overflow: "hidden",
-                    height: "300vh",
-                    width: "calc(100% + 100px)",
-                    marginLeft: -50,
-                    marginTop: -0,
-                    background: "white",
-                    paddingTop: 30,
-                }}
-            >
-                <iframe
-                    src={`https://goblin.tools/Compiler`}
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        border: "none",
-                        marginTop: -200,
-                    }}
-                    title="Course Content"
-                    allowFullScreen
-                />
+            <TitleHeader title={title} subtitle={description} />
+
+            <Row>
+                <CompilerTool />
             </Row>
         </>
     );
-};
+}
