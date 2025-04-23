@@ -36,11 +36,11 @@ const nav = [
         title: "Videos",
         hover: "this is a hover"
     },
-/*    {
+    {
         url: "/tools",
         title: "Tools",
         hover: "this is a hover"
-    },*/
+    },
 ];
 
 function findActiveLink(link, pathname){
