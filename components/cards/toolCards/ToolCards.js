@@ -5,6 +5,14 @@ import styles from "@/components/cards/toolCards/ToolCards.module.css";
 // TODO: Move to the DB
 const tools = [
     {
+        url: "/tools/magic-to-do",
+        title: "Magic to do",
+        subTitle: "Breaking things down so you don't",
+        colour: "orangeLight",
+        img: "/img/tools/magictodo.png",
+
+    },
+    {
         url: "/tools/chef",
         title: "Chef",
         subTitle: "What's for dinner?",
