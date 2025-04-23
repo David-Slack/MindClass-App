@@ -13,6 +13,14 @@ const tools = [
 
     },
     {
+        url: "/tools/formaliser",
+        title: "Formaliser",
+        subTitle: "Breaking things down so you don't",
+        colour: "yellowLight",
+        img: "/img/tools/formaliser.png",
+
+    },
+    {
         url: "/tools/chef",
         title: "Chef",
         subTitle: "What's for dinner?",
@@ -28,6 +36,7 @@ const tools = [
         img: "/img/tools/compiler.png",
     },
 ];
+
 export function ToolCards() {
     return (
         tools.map((tool) => (

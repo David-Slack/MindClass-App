@@ -1,7 +1,8 @@
 .card{
     border: #000 2px solid;
     border-radius: 16px;
-    margin-bottom: 20px;
+    height: 100%;
+    padding: 20px 20px 0 20px;
 
     .cardImg{
         width:50%;
@@ -10,7 +11,16 @@
     }
 
     .cardText{
-        margin-right: 40px;
-        font-size: 15px;
+        margin-right: 42px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .card {
+        border: #000 2px solid;
+        border-radius: 16px;
+        height: revert;
+        margin-bottom: 20px;
     }
 }
