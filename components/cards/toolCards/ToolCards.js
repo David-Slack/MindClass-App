@@ -21,6 +21,14 @@ const tools = [
 
     },
     {
+        url: "/tools/judge",
+        title: "Judge",
+        subTitle: "Am I misreading the tone of this?",
+        colour: "redLight",
+        img: "/img/tools/judge.png",
+
+    },
+    {
         url: "/tools/chef",
         title: "Chef",
         subTitle: "What's for dinner?",
