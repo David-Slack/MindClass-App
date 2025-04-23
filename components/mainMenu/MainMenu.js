@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from 'next/navigation';
 
+// TODO: Move to the DB
 const nav = [
     {
         url: "/",
