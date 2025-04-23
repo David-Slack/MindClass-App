@@ -5,7 +5,7 @@ import {ToolCards} from "@/components/cards/toolCards/toolCards";
 export default function Home() {
 
     const title = 'Tools';
-    const description = "Useful tool to help you on your journey";
+    const description = "Helpful tools and tricks to help you on your journey";
 
     return (
         <>
