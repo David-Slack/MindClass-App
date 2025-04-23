@@ -1,0 +1,16 @@
+.card{
+    border: #000 2px solid;
+    border-radius: 16px;
+    margin-bottom: 20px;
+
+    .cardImg{
+        width:50%;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+
+    .cardText{
+        margin-right: 40px;
+        font-size: 15px;
+    }
+}
