@@ -1,34 +1,25 @@
 import {Row} from "react-bootstrap";
+import Head from "next/head";
+import {TitleHeader} from "@/components/titleHeader/TitleHeader";
+import {ChefTool} from "@/components/tools/ChefTool";
+
 
 export default function Chef() {
+
+    const title = 'Chef';
+    const description = "What's for dinner?";
+
     return (
         <>
-            <Row
-                style={{
-                    padding: 20,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    overflow: "hidden",
-                    height: "300vh",
-                    width: "calc(100% + 100px)",
-                    marginLeft: -50,
-                    marginTop: -0,
-                    background: "white",
-                    paddingTop: 30,
-                }}
-            >
-                <iframe
-                    src={`https://goblin.tools/Chef`}
-                    style={{
-                        width: "100%",
-                        height: "100%",
-                        border: "none",
-                        marginTop: -200,
-                    }}
-                    title="Course Content"
-                    allowFullScreen
-                />
+            <Head>
+                <title>{`${title} | MindClass`}</title>
+                <meta name="description" content={description} />
+            </Head>
+
+            <TitleHeader title={title} subtitle={description} />
+
+            <Row>
+                <ChefTool />
             </Row>
         </>
     );
