@@ -17,9 +17,9 @@ export const dazzed = localFont({
             style: 'normal',
         },
         {
-            path: './dazzed/Dazzed-Bold.ttf',
+            path: './dazzed/Dazzed-Medium.ttf',
             weight: '700',
-            style: 'normal',
+            style: 'bold',
         }
     ],
 })
