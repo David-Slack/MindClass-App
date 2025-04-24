@@ -37,6 +37,14 @@ const tools = [
 
     },
     {
+        url: "/tools/consultant",
+        title: "Consultant",
+        subTitle: "But what are the pros and cons?",
+        colour: "greenLight",
+        img: "/img/tools/consultant.png",
+
+    },
+    {
         url: "/tools/chef",
         title: "Chef",
         subTitle: "What's for dinner?",
