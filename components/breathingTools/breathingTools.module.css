@@ -43,6 +43,12 @@
     --mainColour: #000;
     text-align: center;
 
+    .squareBtn{
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+
     .breath_circle {
         width: 180px;
         height: 180px;
