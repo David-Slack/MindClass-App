@@ -5,11 +5,34 @@ import styles from "@/components/cards/toolCards/ToolCards.module.css";
 // TODO: Move to the DB
 const tools = [
     {
-        url: "/tools/magic-to-do",
-        title: "Magic to do",
-        subTitle: "Breaking things down so you don't",
+        url: "/tools/chef",
+        title: "Chef",
+        subTitle: "What's for dinner?",
+        colour: "yellowLight",
+        img: "/img/tools/chef.png",
+
+    },
+    {
+        url: "/tools/compiler",
+        title: "Compiler",
+        subTitle: "Compile my braindump into tasks",
         colour: "orangeLight",
-        img: "/img/tools/magictodo.png",
+        img: "/img/tools/compiler.png",
+    },
+    {
+        url: "/tools/consultant",
+        title: "Consultant",
+        subTitle: "But what are the pros and cons?",
+        colour: "greenLight",
+        img: "/img/tools/consultant.png",
+
+    },
+    {
+        url: "/tools/estimator",
+        title: "Estimator",
+        subTitle: "How long might this take?",
+        colour: "blueLight",
+        img: "/img/tools/estimator.png",
 
     },
     {
@@ -29,42 +52,19 @@ const tools = [
 
     },
     {
+        url: "/tools/magic-to-do",
+        title: "Magic to do",
+        subTitle: "Breaking things down so you don't",
+        colour: "orangeLight",
+        img: "/img/tools/magictodo.png",
+
+    },
+    {
         url: "/tools/professor",
         title: "Professor",
         subTitle: "Give me the crash course",
         colour: "blue",
         img: "/img/tools/professor.png",
-
-    },
-    {
-        url: "/tools/consultant",
-        title: "Consultant",
-        subTitle: "But what are the pros and cons?",
-        colour: "greenLight",
-        img: "/img/tools/consultant.png",
-
-    },
-    {
-        url: "/tools/estimator",
-        title: "Estimator",
-        subTitle: "How long might this take?",
-        colour: "blueLight",
-        img: "/img/tools/estimator.png",
-
-    },
-    {
-        url: "/tools/compiler",
-        title: "Compiler",
-        subTitle: "Compile my braindump into tasks",
-        colour: "orangeLight",
-        img: "/img/tools/compiler.png",
-    },
-    {
-        url: "/tools/chef",
-        title: "Chef",
-        subTitle: "What's for dinner?",
-        colour: "yellowLight",
-        img: "/img/tools/chef.png",
 
     },
 ];
