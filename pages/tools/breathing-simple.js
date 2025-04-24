@@ -1,7 +1,7 @@
 import {Row} from "react-bootstrap";
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
-import SimpleBreathing from "@/components/breathingTools/simpleBreathing";
+import SimpleBreathing from "@/components/tools/breathing/simpleBreathing";
 
 export default function Chef() {
 
