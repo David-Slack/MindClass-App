@@ -4,6 +4,7 @@
     padding: 0;
     margin-bottom: 20px;
     transition-duration: .3s;
+    height: calc( 100% - 20px );
 
     .cardImg{
         width:50%;
