@@ -1,33 +1,24 @@
-/*
-import React from "react";
-import HeaderBar from "../../../../Layouts/Header";
-import { Row, Tabs, Typography } from "antd";
-import BoxBreathing from "./breathingTool/boxBreathing/boxBreathing.tsx";
-import { IonContent, IonRow } from "@ionic/react";
-import styles from "./breathingTool/app.module.scss";
-import { mindclassMainColours } from "../../../../Common/data/mindclassMainColours.js";
+import {Row} from "react-bootstrap";
+import Head from "next/head";
+import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
-const { Text } = Typography;
+export default function Chef() {
 
-const BreathingBox = () => {
-  document.title = "Breathing Box" + process.env.REACT_APP_PAGE_TITLE;
+    const title = 'Box Breathing';
+    const description = "Exercise that adds in a holding your breath";
 
-  return (
-    <>
-      <HeaderBar Title="Box Breathing" showSmiley  />
+    return (
+        <>
+            <Head>
+                <title>{`${title} | MindClass`}</title>
+                <meta name="description" content={description} />
+            </Head>
 
-      <Row style={{ width:"calc(100% + 100px)", marginLeft:"-50px", height:"100%", minHeight: "100vh", background: mindclassMainColours.blue }}>
-        <IonRow style={{width:'100%', height:'98%', overflow:'hidden', minHeight:600  }}>
-          <div className={styles.outer}>
-            <div className={styles.inner}>
-              <BoxBreathing />
-            </div>
-          </div>
-        </IonRow>
-      </Row>
-    </>
-  );
-};
+            <TitleHeader title={title} subtitle={description} />
 
-export default BreathingBox;
-*/
+            <Row>
+                Box Breathing
+            </Row>
+        </>
+    );
+}
