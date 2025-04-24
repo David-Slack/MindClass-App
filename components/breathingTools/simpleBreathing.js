@@ -1,3 +1,4 @@
+// components/breathingTools/simpleBreathing.js
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './breathingTools.module.css';
 import Timer from './timer/timer';

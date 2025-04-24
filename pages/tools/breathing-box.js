@@ -1,6 +1,7 @@
 import {Row} from "react-bootstrap";
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
+import BoxBreathing from "@/components/breathingTools/boxBreathing";
 
 export default function Chef() {
 
@@ -17,7 +18,7 @@ export default function Chef() {
             <TitleHeader title={title} subtitle={description} />
 
             <Row>
-                Box Breathing
+                <BoxBreathing />
             </Row>
         </>
     );

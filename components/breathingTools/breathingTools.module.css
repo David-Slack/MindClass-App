@@ -1,8 +1,52 @@
+@keyframes BREATH_IN {
+    0% {
+        top: -3%;
+        left: -3%;
+    }
+    100% {
+        top: -3%;
+        left: 97%;
+    }
+}
+@keyframes BREATH_IN_HOLD {
+    0% {
+        top: -3%;
+        left: 97%;
+    }
+    100% {
+        top: 97%;
+        left: 97%;
+    }
+}
+@keyframes BREATH_OUT {
+    0% {
+        top: 97%;
+        left: 97%;
+    }
+    100% {
+        top: 97%;
+        left: -3%;
+    }
+}
+@keyframes BREATH_OUT_HOLD {
+    0% {
+        top: 97%;
+        left: -3%;
+    }
+    100% {
+        top: -3%;
+        left: -3%;
+    }
+}
+
 .breathingContainer{
+    --mainColour: #000;
+    text-align: center;
+
     .breath_circle {
         width: 180px;
         height: 180px;
-        border: 1px solid #000;
+        border: 1px solid var(--mainColour);
         border-radius: 100%;
         display: flex;
         align-items: center;
@@ -13,7 +57,7 @@
         .breath_circle_inner {
             width: 15px;
             height: 15px;
-            background-color: #000;
+            background-color: var(--mainColour);
             border-radius: 100%;
 
             &.circle_large {
@@ -29,8 +73,51 @@
             }
         }
     }
+
+    .breath_box {
+        width: 180px;
+        height: 180px;
+        border: 1px solid var(--mainColour);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 0;
+        margin: 0 auto;
+
+        .box_looper {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--mainColour);
+            border-radius: 100%;
+            &.box_in {
+                animation-name: BREATH_IN;
+                animation-duration: 5.5s;
+            }
+            &.box_out {
+                animation-name: BREATH_OUT;
+                animation-duration: 5.5s;
+            }
+            &.box_in_hold {
+                animation-name: BREATH_IN_HOLD;
+                animation-duration: 5.5s;
+            }
+            &.box_out_hold {
+                animation-name: BREATH_OUT_HOLD;
+                animation-duration: 5.5s;
+            }
+        }
+
+        .box_message {
+            color: var(--mainColour);
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
     .message {
-        color: #000;
+        color: var(--mainColour);
         margin-top: 15px;
         font-size: 23px;
         font-weight: 500;
@@ -45,5 +132,4 @@
         opacity: 0;
         transition: all 2s ease-in-out;
     }
-    text-align: center
 }
