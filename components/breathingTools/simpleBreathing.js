@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './simpleBreathing.module.css';
-import Timer from '../timer/timer';
+import styles from './breathingTools.module.css';
+import Timer from './timer/timer';
 import {Col} from "react-bootstrap";
 
 const SIMPLE_INITIAL_MESSAGE = 'Simple Breathing';
