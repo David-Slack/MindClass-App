@@ -45,11 +45,11 @@ const tools = [
 
     },
     {
-        url: "/tools/chef",
-        title: "Chef",
-        subTitle: "What's for dinner?",
-        colour: "yellowLight",
-        img: "/img/tools/chef.png",
+        url: "/tools/estimator",
+        title: "Estimator",
+        subTitle: "How long might this take?",
+        colour: "blueLight",
+        img: "/img/tools/estimator.png",
 
     },
     {
@@ -58,6 +58,14 @@ const tools = [
         subTitle: "Compile my braindump into tasks",
         colour: "orangeLight",
         img: "/img/tools/compiler.png",
+    },
+    {
+        url: "/tools/chef",
+        title: "Chef",
+        subTitle: "What's for dinner?",
+        colour: "yellowLight",
+        img: "/img/tools/chef.png",
+
     },
 ];
 
