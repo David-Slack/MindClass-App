@@ -81,7 +81,6 @@ export function ToolCards() {
         tools.map((tool) => (
 
             <Col
-                className={`${styles.col}`}
                 key={tool.url}
                 lg={3}
             >
