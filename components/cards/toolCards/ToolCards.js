@@ -10,6 +10,7 @@ const tools = [
         subTitle: "What's for dinner?",
         colour: "yellowLight",
         img: "/img/tools/chef.png",
+        type: "smart",
 
     },
     {
@@ -18,6 +19,7 @@ const tools = [
         subTitle: "Compile my braindump into tasks",
         colour: "orangeLight",
         img: "/img/tools/compiler.png",
+        type: "smart",
     },
     {
         url: "/tools/consultant",
@@ -25,6 +27,7 @@ const tools = [
         subTitle: "But what are the pros and cons?",
         colour: "greenLight",
         img: "/img/tools/consultant.png",
+        type: "smart",
 
     },
     {
@@ -33,6 +36,7 @@ const tools = [
         subTitle: "How long might this take?",
         colour: "blueLight",
         img: "/img/tools/estimator.png",
+        type: "smart",
 
     },
     {
@@ -41,6 +45,7 @@ const tools = [
         subTitle: "Breaking things down so you don't",
         colour: "yellowLight",
         img: "/img/tools/formaliser.png",
+        type: "smart",
 
     },
     {
@@ -49,6 +54,7 @@ const tools = [
         subTitle: "Am I misreading the tone of this?",
         colour: "redLight",
         img: "/img/tools/judge.png",
+        type: "smart",
 
     },
     {
@@ -57,6 +63,7 @@ const tools = [
         subTitle: "Breaking things down so you don't",
         colour: "orangeLight",
         img: "/img/tools/magictodo.png",
+        type: "smart",
 
     },
     {
@@ -65,7 +72,7 @@ const tools = [
         subTitle: "Give me the crash course",
         colour: "blue",
         img: "/img/tools/professor.png",
-
+        type: "smart",
     },
 ];
 
