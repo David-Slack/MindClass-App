@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './simpleBreathing.module.css';
 import Timer from '../timer/timer';
-// import { useRouter } from 'next/navigation';
+import {Col} from "react-bootstrap";
 
 const SIMPLE_INITIAL_MESSAGE = 'Simple Breathing';
 const SIMPLE_TIMING = 4500;
@@ -20,7 +20,6 @@ export default function SimpleBreathing() {
     const [breathMessage, setBreathMessage] = useState(null);
     const [textEffect, setTextEffect] = useState(null);
     const [circleEffect, setCircleEffect] = useState(null);
-    // const router = useRouter();
 
     const breathInAudioRef = useRef(null);
     const breathOutAudioRef = useRef(null);
@@ -32,11 +31,10 @@ export default function SimpleBreathing() {
         if (typeof window !== 'undefined') {
             breathInAudioRef.current = new Audio('/sound/breath-in.mp3');
             breathOutAudioRef.current = new Audio('/sound/breath-out.mp3');
-            // Initialize the muted property based on the initial state
             breathInAudioRef.current.muted = muted;
             breathOutAudioRef.current.muted = muted;
         }
-    }, [muted]); // Re-run this effect whenever the muted state changes
+    }, [muted]);
 
     const startBreathing = () => {
         setBreathMessage(true);
@@ -51,7 +49,6 @@ export default function SimpleBreathing() {
         }, SIMPLE_TIMING);
     };
 
-    // Text transition effects
     useEffect(() => {
         if (breathMessage !== null) {
             setTextEffect(true);
@@ -114,7 +111,7 @@ export default function SimpleBreathing() {
     };
 
     return (
-        <>
+        <Col className={`${styles.breathingContainer}`}>
             <div className={styles.breath_circle}>
                 <div
                     className={`${styles.breath_circle_inner} ${
@@ -155,17 +152,19 @@ export default function SimpleBreathing() {
                 <button onClick={handleStart}>Start</button>
             ) : (
                 <>
-                    {!startMessage && <Timer />}
-                    {!startMessage && (
-                        <button onClick={handleStop}>Stop</button>
-                    )}
-                    {!startMessage && (
-                        <button onClick={() => setMuted(!muted)}>
-                            {muted ? 'Muted' : 'Unmuted'}
-                        </button>
-                    )}
+                    {!startMessage &&
+                        <>
+                            <Timer />
+                            <button onClick={handleStop}>Stop</button>
+
+                            <button onClick={() => setMuted(!muted)}>
+                                {muted ? 'Muted' : 'Unmuted'}
+                            </button>
+                        </>
+                    }
+
                 </>
             )}
-        </>
+        </Col>
     );
 }

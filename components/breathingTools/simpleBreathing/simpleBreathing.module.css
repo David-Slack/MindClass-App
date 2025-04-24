@@ -1,45 +1,49 @@
-.breath_circle {
-  width: 180px;
-  height: 180px;
-  border: 1px solid #000;
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+.breathingContainer{
+    .breath_circle {
+        width: 180px;
+        height: 180px;
+        border: 1px solid #000;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0 auto;
 
-  .breath_circle_inner {
-    width: 15px;
-    height: 15px;
-    background-color: #000;
-    border-radius: 100%;
+        .breath_circle_inner {
+            width: 15px;
+            height: 15px;
+            background-color: #000;
+            border-radius: 100%;
 
-    &.circle_large {
-      width: 180px;
-      height: 180px;
-      transition: all 4.5s ease-in-out;
+            &.circle_large {
+                width: 180px;
+                height: 180px;
+                transition: all 4.5s ease-in-out;
+            }
+
+            &.circle_small {
+                width: 15px;
+                height: 15px;
+                transition: all 4.5s ease-in-out;
+            }
+        }
+    }
+    .message {
+        color: #000;
+        margin-top: 15px;
+        font-size: 23px;
+        font-weight: 500;
     }
 
-    &.circle_small {
-      width: 15px;
-      height: 15px;
-      transition: all 4.5s ease-in-out;
+    .transition_in {
+        opacity: 1;
+        transition: all 0.75s ease-in-out;
     }
-  }
-}
-.message {
-  color: #000;
-  margin-top: 15px;
-  font-size: 23px;
-  font-weight: 500;
-}
 
-.transition_in {
-  opacity: 1;
-  transition: all 0.75s ease-in-out;
-}
-
-.transition_out {
-  opacity: 0;
-  transition: all 2s ease-in-out;
+    .transition_out {
+        opacity: 0;
+        transition: all 2s ease-in-out;
+    }
+    text-align: center
 }
