@@ -5,7 +5,7 @@ import Link from "next/link";
 // TODO: Move to the DB
 const BreathingTools = [
     {
-        url: "/tools/simple-breathing",
+        url: "/tools/breathing-simple",
         title: "Simple Breathing",
         subTitle: "Controlled breathing exercise",
         colour: "blueLight",
@@ -14,7 +14,7 @@ const BreathingTools = [
 
     },
     {
-        url: "/tools/box-breathing",
+        url: "/tools/breathing-box",
         title: "Box Breathing",
         subTitle: "Breathing with additional holds",
         colour: "yellowLight",
