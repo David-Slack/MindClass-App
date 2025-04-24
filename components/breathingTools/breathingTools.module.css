@@ -47,6 +47,8 @@
         width: 50px;
         height: 50px;
         font-size: 25px;
+        align-items: center;
+        justify-content: center;
     }
 
     .breath_circle {

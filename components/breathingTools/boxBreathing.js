@@ -1,4 +1,3 @@
-// components/breathingTools/boxBreathing.js
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './breathingTools.module.css';
 import Timer from './timer/timer';

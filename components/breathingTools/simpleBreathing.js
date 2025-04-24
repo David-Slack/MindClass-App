@@ -149,21 +149,23 @@ export default function SimpleBreathing() {
             )}
 
             {!started ? (
-                <button onClick={handleStart}>Start</button>
+                <button onClick={handleStart} className={`btn btn-primary ${styles.squareBtn}`}>
+                    <i className="bi bi-play-fill"></i>
+                    <span className="visually-hidden">Start</span>
+                </button>
             ) : (
-                <>
-                    {!startMessage &&
-                        <>
-                            <Timer />
-                            <button onClick={handleStop}>Stop</button>
-
-                            <button onClick={() => setMuted(!muted)}>
-                                {muted ? 'Muted' : 'Unmuted'}
-                            </button>
-                        </>
-                    }
-
-                </>
+                !startMessage &&
+                <div className="d-flex gap-2 justify-content-center mt-3">
+                    <Timer />
+                    <button onClick={handleStop} className={`btn btn-danger ${styles.squareBtn}`}>
+                        <i className="bi bi-stop-fill"></i>
+                        <span className="visually-hidden">Stop</span>
+                    </button>
+                    <button onClick={() => setMuted(!muted)} className={`btn btn-info ${styles.squareBtn}`}>
+                        <i className={`bi ${muted ? 'bi-volume-mute-fill' : 'bi-volume-up-fill'}`}></i>
+                        <span className="visually-hidden">{muted ? 'Mute' : 'Unmute'}</span>
+                    </button>
+                </div>
             )}
         </Col>
     );
