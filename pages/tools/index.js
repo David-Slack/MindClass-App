@@ -2,6 +2,7 @@ import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 import {ToolCards} from "@/components/cards/toolCards/ToolCards";
 import {Row} from "react-bootstrap";
+import {BreathingCards} from "@/components/cards/breathingCards/BreathingCards";
 
 export default function Tools() {
 
@@ -16,9 +17,21 @@ export default function Tools() {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
+
+            <Row>
+                <h2>Breathing</h2>
+            </Row>
+
+            <Row>
+                <BreathingCards />
+            </Row>
+            <Row>
+                <h2>Smart tools</h2>
+            </Row>
             <Row>
                 <ToolCards />
             </Row>
+
         </>
     );
 }
