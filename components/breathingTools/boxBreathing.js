@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './breathingTools.module.css';
-import Timer from './timer/timer';
+import Timer from './timer';
 import { Col } from "react-bootstrap";
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import Bootstrap Icons CSS
 

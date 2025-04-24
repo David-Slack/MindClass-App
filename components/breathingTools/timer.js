@@ -1,7 +1,7 @@
 // components/breathingTools/timer/timer.js
 import { useEffect, useState, useRef } from 'react';
 import React from 'react';
-import styles from "./timer.module.css";
+import styles from "./breathingTools.module.css";
 
 export default function Timer({ timeFeedback }) {
   const [timer, setTimer] = useState('00:00');

@@ -39,6 +39,15 @@
     }
 }
 
+.timer {
+    margin-top: -12px;
+    color: #000;
+    font-size: 50px;
+    font-weight: normal;
+    width: 140px;
+    text-align: left;
+}
+
 .breathingContainer{
     --mainColour: #000;
     text-align: center;
