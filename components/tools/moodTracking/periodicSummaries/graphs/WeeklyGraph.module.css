@@ -1,0 +1,66 @@
+/* components/tools/moodTracking/periodicSummaries/graphs/WeeklyGraph.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.weekLabel {
+    font-size: 1.1rem;
+    text-align: center;
+    flex-grow: 1; /* Center the label */
+}
+
+.navButton {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0; /* Remove default button padding */
+}
+
+.navButton:focus {
+    outline: none;
+    /* Add focus styling if needed */
+}
+
+.navIcon {
+    font-size: 0.8rem;
+    color: #000;
+}
+
+.nowButton {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.chartContainer {
+    width: 100%;
+    height: 15rem; /* Adjust as needed */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+}

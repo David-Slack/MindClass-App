@@ -3,6 +3,7 @@ import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 import {ToolCards} from "@/components/cards/toolCards/ToolCards";
 import {Row} from "react-bootstrap";
 import {BreathingCards} from "@/components/cards/breathingCards/BreathingCards";
+import MoodTracking from "@/components/tools/MoodTracking/MoodTracking";
 
 export default function Tools() {
 
@@ -17,6 +18,9 @@ export default function Tools() {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
+            <Row>
+                <MoodTracking />
+            </Row>
 
             <Row>
                 <h2>Breathing</h2>
