@@ -9,7 +9,7 @@ import MonthlyGraph from "./periodicSummaries/graphs/monthlyGraph";
 import YearlyGraph from "./periodicSummaries/graphs/yearlyGraph";
 import styles from "./MoodTracking.module.css";
 import { db } from '@/helpers/firebase/firebase'; // Import the Firestore database instance
-import { doc, getDoc, setDoc } from 'firebase/firestore'; // Import Firestore functions
+import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'; // Import Firestore functions
 import { useUser } from '@/helpers/firebase/userContext'; // Import the userContext hook
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Ensure this import is present
 
@@ -62,10 +62,8 @@ export default function MoodTracking() {
             try {
                 const customerDocRef = doc(db, 'customers', customerId);
                 const customerDocSnap = await getDoc(customerDocRef);
-                if (customerDocSnap.exists() && customerDocSnap.data()?.moods) {
-                    const moodsData = customerDocSnap.data().moods;
-                    const entriesArray = Object.entries(moodsData).map(([date, data]) => ({ date, ...data }));
-                    setMoodEntries(entriesArray);
+                if (customerDocSnap.exists() && customerDocSnap.data()?.moodTracker) {
+                    setMoodEntries(customerDocSnap.data().moodTracker);
                 } else {
                     setMoodEntries([]);
                 }
@@ -107,25 +105,29 @@ export default function MoodTracking() {
         try {
             const customerDocRef = doc(db, 'customers', customerId);
             const today = new Date().toLocaleDateString("en-GB");
-            await setDoc(
-                customerDocRef,
-                {
-                    moods: {
-                        [today]: {
-                            mood: currentMood,
-                            note: currentNote,
-                        },
-                    },
-                },
-                { merge: true }
-            );
-            // Re-fetch data to update state
+            const newMoodEntry = { date: today, mood: currentMood, note: currentNote };
+
             const customerDocSnap = await getDoc(customerDocRef);
-            if (customerDocSnap.exists() && customerDocSnap.data()?.moods) {
-                const moodsData = customerDocSnap.data().moods;
-                const entriesArray = Object.entries(moodsData).map(([date, data]) => ({ date, ...data }));
-                setMoodEntries(entriesArray);
+            const existingMoodTracker = customerDocSnap.data()?.moodTracker || [];
+            const existingIndex = existingMoodTracker.findIndex(entry => entry.date === today);
+
+            if (existingIndex > -1) {
+                // Update existing entry
+                const updatedMoodTracker = existingMoodTracker.map((entry, index) =>
+                    index === existingIndex ? newMoodEntry : entry
+                );
+                await updateDoc(customerDocRef, { moodTracker: updatedMoodTracker });
+            } else {
+                // Add new entry
+                await updateDoc(customerDocRef, { moodTracker: arrayUnion(newMoodEntry) });
             }
+
+            // Re-fetch data to update state
+            const updatedDocSnap = await getDoc(customerDocRef);
+            if (updatedDocSnap.exists() && updatedDocSnap.data()?.moodTracker) {
+                setMoodEntries(updatedDocSnap.data().moodTracker);
+            }
+
         } catch (error) {
             console.error("Error saving mood:", error);
             toast.error("Failed to save mood.");
