@@ -8,10 +8,10 @@ import WeeklyGraph from "./periodicSummaries/graphs/weeklyGraph";
 import MonthlyGraph from "./periodicSummaries/graphs/monthlyGraph";
 import YearlyGraph from "./periodicSummaries/graphs/yearlyGraph";
 import styles from "./MoodTracking.module.css";
-import { db } from '@/helpers/firebase/firebase'; // Import the Firestore database instance
-import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore'; // Import Firestore functions
-import { useUser } from '@/helpers/firebase/userContext'; // Import the userContext hook
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Ensure this import is present
+import { db } from '@/helpers/firebase/firebase';
+import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { useUser } from '@/helpers/firebase/userContext';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const defaultMood = () => 4;
 const defaultNote = () => '';
@@ -37,7 +37,7 @@ function getSaying(mood) {
 }
 
 export default function MoodTracking() {
-    const { userData } = useUser(); // Use the userContext hook to get userData
+    const { userData } = useUser();
     const [filter, setFilter] = useState("Today");
     const [currentMood, setCurrentMood] = useState(defaultMood());
     const [currentNote, setCurrentNote] = useState(defaultNote());
@@ -47,7 +47,7 @@ export default function MoodTracking() {
     const [explode, setExplode] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [saveMessage, setSaveMessage] = useState('');
-    const customerId = userData?.customerData?.uid; // Assuming UID is nested here
+    const customerId = userData?.customerData?.uid;
 
     const presentNotificationToast = (message) => {
         toast(message, {
@@ -96,12 +96,12 @@ export default function MoodTracking() {
     }, [moodEntries, filter]);
 
     const saveMood = async () => {
-        if (!customerId || isSaving) { // Disable if saving or no customerId
+        if (!customerId || isSaving) {
             return;
         }
 
         setIsSaving(true);
-        setExplode(true); // Trigger confetti
+        setExplode(true);
         presentNotificationToast('Mood saved');
 
         try {
@@ -122,7 +122,6 @@ export default function MoodTracking() {
                 await updateDoc(customerDocRef, { moodTracker: arrayUnion(newMoodEntry) });
             }
 
-            // Re-fetch data
             const updatedDocSnap = await getDoc(customerDocRef);
             if (updatedDocSnap.exists() && updatedDocSnap.data()?.moodTracker) {
                 setMoodEntries(updatedDocSnap.data().moodTracker);
@@ -132,12 +131,14 @@ export default function MoodTracking() {
             setTimeout(() => {
                 setSaveMessage('');
                 setIsSaving(false);
-            }, 3000); // Clear message and enable button after 3 seconds
+                setExplode(false);
+            }, 3000);
 
         } catch (error) {
             console.error("Error saving mood:", error);
             toast.error("Failed to save mood.");
-            setIsSaving(false); // Re-enable button on error
+            setIsSaving(false);
+            setExplode(false);
         }
     };
 
@@ -219,7 +220,6 @@ export default function MoodTracking() {
                                 </div>
                             )}
                             <div className={styles.confettiWrapper}>
-
                                 {explode && (
                                     <ConfettiExplosion
                                         active={explode}
@@ -234,12 +234,12 @@ export default function MoodTracking() {
                                         }}
                                     />
                                 )}
-
                             </div>
                             <Button
                                 variant="primary"
                                 onClick={saveMood}
                                 className="w-100 rounded-pill"
+                                disabled={isSaving}
                             >
                                 {isSaving ? 'Saving...' : 'Save mood'}
                             </Button>

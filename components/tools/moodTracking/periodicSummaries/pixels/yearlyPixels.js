@@ -9,10 +9,9 @@ import { db } from '@/helpers/firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useUser } from '@/helpers/firebase/userContext';
 
-export default function YearlyPixels ({ input }){
+export default function YearlyPixels ({}){
     const { userData } = useUser();
     const [calendar, setCalendar] = useState([]);
-    const [daysOfYear] = useState(moment().year() % 400 ? (moment().year() % 100 ? 365 : 366) : 365);
     const [showModal, setShowModal] = useState(false);
     const [modalMood, setModalMood] = useState(-1);
     const [modalDate, setModalDate] = useState("");
@@ -75,7 +74,6 @@ export default function YearlyPixels ({ input }){
 
     const saveEdit = async () => {
         if (!customerId) {
-            console.error("Customer ID not available.");
             return;
         }
 
@@ -90,12 +88,10 @@ export default function YearlyPixels ({ input }){
             const newMoodEntry = { date: modalDate, mood: modalMood === -1 ? 1 : modalMood, note: modalNotes };
 
             if (existingIndex > -1) {
-                // Update existing entry
                 updatedMoodTracker = currentMoodTracker.map((entry, index) =>
                     index === existingIndex ? newMoodEntry : entry
                 );
             } else {
-                // Add new entry
                 updatedMoodTracker = [...currentMoodTracker, newMoodEntry];
             }
 
@@ -114,12 +110,10 @@ export default function YearlyPixels ({ input }){
         const offsetYear = thisYear + offset;
         setYear(offsetYear?.toString());
         fetchMoodData();
-    }, [offset, showModal === false, customerId]); // Added customerId as a dependency
+    }, [offset, showModal === false, customerId]);
 
     const fetchMoodData = async () => {
-        console.log("Fetching mood data");
         if (!customerId) {
-            console.log("Customer ID is not available, skipping fetch.");
             return;
         }
 
@@ -127,21 +121,10 @@ export default function YearlyPixels ({ input }){
             const customerDocRef = doc(db, 'customers', customerId);
             const customerDocSnap = await getDoc(customerDocRef);
 
-            console.log("Document snapshot exists:", customerDocSnap.exists());
-
-            if (customerDocSnap.exists()) {
-                const data = customerDocSnap.data();
-                console.log("Document data:", data);
-                if (data?.moodTracker) {
-                    const moodTrackerData = data.moodTracker;
-                    console.log('moodTracker data found:', moodTrackerData);
-                    generateCalendarFromMoodTracker(moodTrackerData); // Call the new function
-                } else {
-                    console.log("moodTracker data is missing or undefined in the document.");
-                    generateEmptyCalendar();
-                }
+            if (customerDocSnap.exists() && customerDocSnap.data()?.moodTracker) {
+                const moodTrackerData = customerDocSnap.data().moodTracker;
+                generateCalendarFromMoodTracker(moodTrackerData);
             } else {
-                console.log("Document for customer ID does not exist.");
                 generateEmptyCalendar();
             }
         } catch (error) {
@@ -284,7 +267,7 @@ export default function YearlyPixels ({ input }){
                                 onClick={() => setModalNotes('')}
                                 className={styles.modalClearNoteButton}
                             >
-                                <i className={`bi bi-x-circle-fill`} size={20} />
+                                <i className={`bi bi-x-circle-fill`} />
                             </Button>
                         </div>
                     )}
