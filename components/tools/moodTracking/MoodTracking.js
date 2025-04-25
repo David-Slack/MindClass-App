@@ -220,20 +220,20 @@ export default function MoodTracking() {
                             )}
                             <div className={styles.confettiWrapper}>
 
-                                    {explode && (
-                                        <ConfettiExplosion
-                                            active={explode}
-                                            setActive={setExplode}
-                                            config={{
-                                                duration: 2000,
-                                                width: 200,
-                                                height: 200,
-                                                particleCount: 150,
-                                                x: 0.5,
-                                                y: 0.5,
-                                            }}
-                                        />
-                                    )}
+                                {explode && (
+                                    <ConfettiExplosion
+                                        active={explode}
+                                        setActive={setExplode}
+                                        config={{
+                                            duration: 2000,
+                                            width: 200,
+                                            height: 200,
+                                            particleCount: 150,
+                                            x: 0.5,
+                                            y: 0.5,
+                                        }}
+                                    />
+                                )}
 
                             </div>
                             <Button
