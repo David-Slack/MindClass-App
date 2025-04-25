@@ -45,6 +45,8 @@ export default function MoodTracking() {
     const [hoverTag, setHoverTag] = useState(null);
     const [moodEntries, setMoodEntries] = useState([]);
     const [explode, setExplode] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
+    const [saveMessage, setSaveMessage] = useState('');
     const customerId = userData?.customerData?.uid; // Assuming UID is nested here
 
     const presentNotificationToast = (message) => {
@@ -94,12 +96,12 @@ export default function MoodTracking() {
     }, [moodEntries, filter]);
 
     const saveMood = async () => {
-        if (!customerId) {
-            console.error("Customer ID not available.");
+        if (!customerId || isSaving) { // Disable if saving or no customerId
             return;
         }
 
-        setExplode(true); // Trigger confetti explosion
+        setIsSaving(true);
+        setExplode(true); // Trigger confetti
         presentNotificationToast('Mood saved');
 
         try {
@@ -112,25 +114,30 @@ export default function MoodTracking() {
             const existingIndex = existingMoodTracker.findIndex(entry => entry.date === today);
 
             if (existingIndex > -1) {
-                // Update existing entry
                 const updatedMoodTracker = existingMoodTracker.map((entry, index) =>
                     index === existingIndex ? newMoodEntry : entry
                 );
                 await updateDoc(customerDocRef, { moodTracker: updatedMoodTracker });
             } else {
-                // Add new entry
                 await updateDoc(customerDocRef, { moodTracker: arrayUnion(newMoodEntry) });
             }
 
-            // Re-fetch data to update state
+            // Re-fetch data
             const updatedDocSnap = await getDoc(customerDocRef);
             if (updatedDocSnap.exists() && updatedDocSnap.data()?.moodTracker) {
                 setMoodEntries(updatedDocSnap.data().moodTracker);
             }
 
+            setSaveMessage('Mood saved! Come back tomorrow to save again.');
+            setTimeout(() => {
+                setSaveMessage('');
+                setIsSaving(false);
+            }, 3000); // Clear message and enable button after 3 seconds
+
         } catch (error) {
             console.error("Error saving mood:", error);
             toast.error("Failed to save mood.");
+            setIsSaving(false); // Re-enable button on error
         }
     };
 
@@ -164,7 +171,7 @@ export default function MoodTracking() {
 
             {filter === "Today" && (
                 <Row className="justify-content-center">
-                    <Col md={8} lg={6} xl={5} className="mt-3 position-relative"> {/* Added position-relative */}
+                    <Col md={8} lg={6} xl={5} className="mt-3 position-relative">
                         <div className={styles.moodCard}>
                             <h2 className="mb-3">Update your current mood</h2>
                             <Row className="align-items-center justify-content-center mb-3">
@@ -211,16 +218,32 @@ export default function MoodTracking() {
                                     )}
                                 </div>
                             )}
-                            {explode && (
-                                <ConfettiExplosion active={explode} setActive={setExplode} config={{ duration: 2000, width: 200, height: 200, particleCount: 150 }} />
-                            )}
+                            <div className={styles.confettiWrapper}>
+
+                                    {explode && (
+                                        <ConfettiExplosion
+                                            active={explode}
+                                            setActive={setExplode}
+                                            config={{
+                                                duration: 2000,
+                                                width: 200,
+                                                height: 200,
+                                                particleCount: 150,
+                                                x: 0.5,
+                                                y: 0.5,
+                                            }}
+                                        />
+                                    )}
+
+                            </div>
                             <Button
                                 variant="primary"
                                 onClick={saveMood}
                                 className="w-100 rounded-pill"
                             >
-                                Save mood
+                                {isSaving ? 'Saving...' : 'Save mood'}
                             </Button>
+                            {saveMessage && <p className="mt-3 text-center text-success">{saveMessage}</p>}
                         </div>
                     </Col>
                 </Row>
