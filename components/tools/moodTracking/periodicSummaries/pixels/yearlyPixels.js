@@ -81,13 +81,25 @@ export default function YearlyPixels ({ input }){
 
         try {
             const customerDocRef = doc(db, 'customers', customerId);
-            const moodDataToUpdate = {
-                [`moods.${modalDate}`]: {
-                    mood: modalMood === -1 ? 1 : modalMood,
-                    note: modalNotes,
-                },
-            };
-            await updateDoc(customerDocRef, moodDataToUpdate);
+            const customerDocSnap = await getDoc(customerDocRef);
+            const currentMoodTracker = customerDocSnap.data()?.moodTracker || [];
+
+            const existingIndex = currentMoodTracker.findIndex(entry => entry.date === modalDate);
+
+            let updatedMoodTracker;
+            const newMoodEntry = { date: modalDate, mood: modalMood === -1 ? 1 : modalMood, note: modalNotes };
+
+            if (existingIndex > -1) {
+                // Update existing entry
+                updatedMoodTracker = currentMoodTracker.map((entry, index) =>
+                    index === existingIndex ? newMoodEntry : entry
+                );
+            } else {
+                // Add new entry
+                updatedMoodTracker = [...currentMoodTracker, newMoodEntry];
+            }
+
+            await updateDoc(customerDocRef, { moodTracker: updatedMoodTracker });
             presentNotificationToast("Mood updated");
             closeModal();
             fetchMoodData();
@@ -105,7 +117,9 @@ export default function YearlyPixels ({ input }){
     }, [offset, showModal === false, customerId]); // Added customerId as a dependency
 
     const fetchMoodData = async () => {
+        console.log("Fetching mood data");
         if (!customerId) {
+            console.log("Customer ID is not available, skipping fetch.");
             return;
         }
 
@@ -113,10 +127,21 @@ export default function YearlyPixels ({ input }){
             const customerDocRef = doc(db, 'customers', customerId);
             const customerDocSnap = await getDoc(customerDocRef);
 
-            if (customerDocSnap.exists() && customerDocSnap.data()?.moods) {
-                const moodsData = customerDocSnap.data().moods;
-                generateCalendarFromData(moodsData);
+            console.log("Document snapshot exists:", customerDocSnap.exists());
+
+            if (customerDocSnap.exists()) {
+                const data = customerDocSnap.data();
+                console.log("Document data:", data);
+                if (data?.moodTracker) {
+                    const moodTrackerData = data.moodTracker;
+                    console.log('moodTracker data found:', moodTrackerData);
+                    generateCalendarFromMoodTracker(moodTrackerData); // Call the new function
+                } else {
+                    console.log("moodTracker data is missing or undefined in the document.");
+                    generateEmptyCalendar();
+                }
             } else {
+                console.log("Document for customer ID does not exist.");
                 generateEmptyCalendar();
             }
         } catch (error) {
@@ -145,14 +170,18 @@ export default function YearlyPixels ({ input }){
         setCalendar(yearCalendar);
     };
 
-    const generateCalendarFromData = (moodsData) => {
+    const generateCalendarFromMoodTracker = (moodTrackerData) => {
         const yearCalendar = [];
         const currentYear = moment().year() + offset;
         const daysInCurrentYear = moment([currentYear]).isLeapYear() ? 366 : 365;
+        const moodsByDate = moodTrackerData.reduce((acc, entry) => {
+            acc[entry.date] = entry;
+            return acc;
+        }, {});
 
         for (let i = 1; i <= daysInCurrentYear; i++) {
             const formattedDate = moment().year(currentYear).dayOfYear(i).format('DD/MM/YYYY');
-            const moodEntry = moodsData[formattedDate];
+            const moodEntry = moodsByDate[formattedDate];
             if (moodEntry) {
                 yearCalendar.push({
                     date: formattedDate,
