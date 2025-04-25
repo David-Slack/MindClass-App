@@ -1,6 +1,6 @@
 // components/tools/MoodTracking/MoodTracking.js
 import React, { useEffect, useRef, useState } from "react";
-import { Col, Row, Button, Form, FloatingLabel } from "react-bootstrap";
+import {Col, Row, Button, Form, FloatingLabel, Card} from "react-bootstrap";
 import toast from "react-hot-toast";
 import ConfettiExplosion from 'react-confetti-explosion';
 import YearlyPixels from "./periodicSummaries/pixels/yearlyPixels";
@@ -19,11 +19,9 @@ const defaultMood = () => DEFAULT_MOOD_VALUE;
 
 export default function MoodTracking() {
     const { userData } = useUser();
-    const [filter, setFilter] = useState("Today");
     const [currentMood, setCurrentMood] = useState(defaultMood());
     const [currentNote, setCurrentNote] = useState('');
     const textAreaRef = useRef(null);
-    const [hoverTag, setHoverTag] = useState(null);
     const [moodEntries, setMoodEntries] = useState([]);
     const [explode, setExplode] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
@@ -74,7 +72,7 @@ export default function MoodTracking() {
             setCurrentMood(defaultMood());
             setCurrentNote('');
         }
-    }, [moodEntries, filter]);
+    }, [moodEntries]);
 
     const saveMood = async () => {
         if (!customerId || isSaving) {
@@ -136,29 +134,14 @@ export default function MoodTracking() {
 
     return (
         <>
-            <Row className="mb-4 mt-3 mt-md-5 justify-content-center">
-                {["Today", "My Year", "Insights"].map((localFilter) => (
-                    <Col xs="auto" key={localFilter} className="px-0">
-                        <Button
-                            onClick={() => setFilter(localFilter)}
-                            onMouseEnter={() => setHoverTag(localFilter)}
-                            onMouseLeave={() => setHoverTag(null)}
-                            className={`${styles.filterTag} ${filter === localFilter ? styles.active : ''} ${hoverTag === localFilter ? styles.hover : ''}`}
-                        >
-                            {localFilter.toUpperCase()}
-                        </Button>
-                    </Col>
-                ))}
-            </Row>
+            <Col md={6}>
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Update your current mood</Card.Title>
 
-            {filter === "Today" && (
-                <Row className="justify-content-center">
-                    <Col md={8} lg={6} xl={5} className="mt-3 position-relative">
-                        <div className={styles.moodCard}>
-                            <h2 className="mb-3">Update your current mood</h2>
                             <Row className="align-items-center justify-content-center mb-3">
                                 <Col xs="auto">
-                                    <Button variant="light" className={styles.moodButton} onClick={() => scrollMood(-1)}>
+                                    <Button onClick={() => scrollMood(-1)}>
                                         <i className="bi bi-chevron-left" style={{ fontSize: '24px', color: '#000' }}></i>
                                     </Button>
                                 </Col>
@@ -166,16 +149,22 @@ export default function MoodTracking() {
                                     <div style={{ fontSize: '90px' }}>{getEmoji(currentMood)}</div>
                                 </Col>
                                 <Col xs="auto">
-                                    <Button variant="light" className={styles.moodButton} onClick={() => scrollMood(1)}>
+                                    <Button onClick={() => scrollMood(1)}>
                                         <i className="bi bi-chevron-right" style={{ fontSize: '24px', color: '#000' }}></i>
                                     </Button>
                                 </Col>
                             </Row>
+
                             <p className="text-center mb-2">
                                 {getSaying(currentMood)} today{currentNote ? ', because' : ''}
                             </p>
+
                             {!currentNote ? (
-                                <Button variant="outline-secondary" className="w-50 rounded-pill mx-auto mt-3 mb-3" onClick={() => setCurrentNote(' ')}>
+                                <Button
+                                    variant="outline-secondary"
+                                    className="w-50 rounded-pill mx-auto mt-3 mb-3"
+                                    onClick={() => setCurrentNote(' ')}
+                                >
                                     Add a note <i className="bi bi-plus-square-fill ms-2" style={{ fontSize: '1.2em' }}></i>
                                 </Button>
                             ) : (
@@ -224,39 +213,36 @@ export default function MoodTracking() {
                                 {isSaving ? 'Saving...' : 'Save mood'}
                             </Button>
                             {saveMessage && <p className="mt-3 text-center text-success">{saveMessage}</p>}
-                        </div>
-                    </Col>
-                </Row>
-            )}
 
-            {filter === "My Year" && (
-                <Row className="justify-content-center mt-3">
-                    <Col md={8} lg={6} xl={5}>
-                        <div className={styles.periodicCard}>
-                            <h2>Your year in pixels</h2>
-                            <YearlyPixels />
-                        </div>
-                    </Col>
-                </Row>
-            )}
+                    </Card.Body>
+                </Card>
 
-            {filter === "Insights" && (
-                <Row className="justify-content-center mt-3">
-                    <Col md={8} lg={6} xl={5}>
-                        <div className={styles.periodicCard}>
-                            <h2>Weekly</h2>
-                            <WeeklyGraph input={moodEntries} />
-                            <div className="my-4"></div>
-                            <h2>Monthly</h2>
-                            <MonthlyGraph input={moodEntries} />
-                            <div className="my-4"></div>
-                            <h2>Yearly</h2>
-                            <YearlyGraph input={moodEntries} />
-                            <div className="my-4"></div>
-                        </div>
-                    </Col>
-                </Row>
-            )}
+                <Card>
+                    <Card.Body>
+                        <h2>Your year in pixels</h2>
+                        <YearlyPixels />
+                    </Card.Body>
+                </Card>
+            </Col>
+
+            <Col md={6}>
+                <Card>
+                    <Card.Body>
+                        <h2>Weekly</h2>
+                        <WeeklyGraph input={moodEntries} />
+
+                        <div className="my-4"></div>
+                        <h2>Monthly</h2>
+                        <MonthlyGraph input={moodEntries} />
+
+                        <div className="my-4"></div>
+                        <h2>Yearly</h2>
+                        <YearlyGraph input={moodEntries} />
+
+                    </Card.Body>
+                </Card>
+            </Col>
+
         </>
     );
 }

@@ -1,4 +1,5 @@
-/* components/tools/moodTracking/periodicSummaries/graphs/MonthlyGraph.module.css */
+/*
+!* components/tools/moodTracking/periodicSummaries/graphs/MonthlyGraph.module.css *!
 .container {
     display: flex;
     flex-direction: column;
@@ -17,7 +18,7 @@
 .monthLabel {
     font-size: 1.1rem;
     text-align: center;
-    flex-grow: 1; /* Center the label */
+    flex-grow: 1; !* Center the label *!
 }
 
 .navButton {
@@ -31,12 +32,12 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    padding: 0; /* Remove default button padding */
+    padding: 0; !* Remove default button padding *!
 }
 
 .navButton:focus {
     outline: none;
-    /* Add focus styling if needed */
+    !* Add focus styling if needed *!
 }
 
 .navIcon {
@@ -59,8 +60,9 @@
 
 .chartContainer {
     width: 100%;
-    height: 15rem; /* Adjust as needed */
+    height: 15rem; !* Adjust as needed *!
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0.5rem;
 }
+*/
