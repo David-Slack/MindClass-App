@@ -5,7 +5,8 @@ import moment from 'moment';
 import "chart.js/auto";
 import { Row, Button } from 'react-bootstrap';
 import styles from './MonthlyGraph.module.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Ensure this import is present
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { DATE_FORMAT, MOOD_COLORS_BACKGROUND, MOOD_COLORS_BORDER } from '../../utils';
 
 export default function MonthlyGraph({ input }) {
     const [data, setData] = useState({ labels: [], datasets: [] });
@@ -18,7 +19,7 @@ export default function MonthlyGraph({ input }) {
                 display: false,
             },
         },
-        maintainAspectRatio: false, // Prevent auto-resizing issues
+        maintainAspectRatio: false,
         scales: {
             x: {
                 grid: {
@@ -37,7 +38,7 @@ export default function MonthlyGraph({ input }) {
 
     useEffect(() => {
         getMonths(offset);
-    }, [offset]);
+    }, [offset, input]);
 
     const getMonths = (monthOffset = 0) => {
         const today = moment().add(monthOffset, "months");
@@ -53,7 +54,7 @@ export default function MonthlyGraph({ input }) {
         const tempData = [0, 0, 0, 0, 0];
 
         const dates = input?.filter((item) => {
-            const date = moment(item.date, "DD/MM/YYYY");
+            const date = moment(item.date, DATE_FORMAT);
             const dayOfYear = date.dayOfYear();
             const yearHere = date.year();
             return dayOfYear >= startOfMonth && dayOfYear <= endOfMonth && yearHere === year;
@@ -71,20 +72,8 @@ export default function MonthlyGraph({ input }) {
                     borderWidth: 1,
                     label: "Monthly Stat",
                     fill: true,
-                    backgroundColor: [
-                        "rgba(255, 99, 132, 0.4)",
-                        "rgba(255, 159, 64, 0.4)",
-                        "rgba(255, 205, 86, 0.4)",
-                        "rgba(75, 192, 192, 0.4)",
-                        "rgba(115, 171, 132, 0.4)",
-                    ],
-                    borderColor: [
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 159, 64)",
-                        "rgb(255, 205, 86)",
-                        "rgb(75, 192, 192)",
-                        "rgba(115, 171, 132)",
-                    ],
+                    backgroundColor: MOOD_COLORS_BACKGROUND,
+                    borderColor: MOOD_COLORS_BORDER,
                 },
             ],
         });

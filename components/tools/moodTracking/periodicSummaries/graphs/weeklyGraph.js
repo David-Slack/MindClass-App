@@ -5,7 +5,8 @@ import moment from "moment";
 import "chart.js/auto";
 import { Row, Button } from 'react-bootstrap';
 import styles from './WeeklyGraph.module.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Ensure this import is present
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { DATE_FORMAT, WEEKLY_GRAPH_BACKGROUND_COLOR, WEEKLY_GRAPH_BORDER_COLOR } from '../../utils';
 
 export default function WeeklyGraph({ input }) {
     const [data, setData] = useState({ labels: [], datasets: [] });
@@ -16,7 +17,7 @@ export default function WeeklyGraph({ input }) {
 
     const options = {
         clip: false,
-        maintainAspectRatio: false, // Prevent auto-resizing issues
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false,
@@ -25,7 +26,7 @@ export default function WeeklyGraph({ input }) {
         scales: {
             x: {
                 ticks: {
-                    callback: function (value, index, values) {
+                    callback: function (value) {
                         return window.innerWidth < 500
                             ? xLabels[value]?.slice(0, 5)
                             : xLabels[value];
@@ -41,7 +42,7 @@ export default function WeeklyGraph({ input }) {
                 labels: yLabels,
                 ticks: {
                     stepSize: 1,
-                    callback: function (value, index, values) {
+                    callback: function (value) {
                         return yLabels[value];
                     },
                 },
@@ -51,7 +52,7 @@ export default function WeeklyGraph({ input }) {
 
     useEffect(() => {
         getDates(offset);
-    }, [offset, input]); // Added input as a dependency
+    }, [offset, input]);
 
     const getDates = (weekOffsets = 0) => {
         let tempDays = [];
@@ -62,12 +63,12 @@ export default function WeeklyGraph({ input }) {
                 .add(weekOffsets * 7, "days")
                 .subtract(i, "days");
             tempDays.unshift(date.dayOfYear());
-            tempDates.unshift(date.format("DD/MM/YYYY"));
+            tempDates.unshift(date.format(DATE_FORMAT));
         }
         for (let i = today, j = 1; i < 6; i++, j++) {
             const date = moment().add(j + weekOffsets * 7, "days");
             tempDays.push(date.dayOfYear());
-            tempDates.push(date.format("DD/MM/YYYY"));
+            tempDates.push(date.format(DATE_FORMAT));
         }
         setWeek(
             `${tempDates[0]?.slice(0, 5)} - ${tempDates[tempDates.length - 1]?.slice(
@@ -75,7 +76,7 @@ export default function WeeklyGraph({ input }) {
                 5
             )}`
         );
-        const year = moment(tempDates[0], "DD/MM/YYYY").year();
+        const year = moment(tempDates[0], DATE_FORMAT).year();
         setXLabels(tempDates);
         getData(tempDays, tempDates, year);
     }
@@ -84,15 +85,15 @@ export default function WeeklyGraph({ input }) {
         const tempData = [];
         dates.forEach((date) => {
             const temp = input?.filter((item) =>
-                moment(item?.date, "DD/MM/YYYY").dayOfYear() === date &&
-                moment(item?.date, "DD/MM/YYYY").year() === year
+                moment(item?.date, DATE_FORMAT).dayOfYear() === date &&
+                moment(item?.date, DATE_FORMAT).year() === year
             );
 
             tempData.push(temp?.length > 0 ? temp[0]?.mood : 0);
         });
 
         setData({
-            labels: tempDates, // Use tempDates directly to avoid dependency issues
+            labels: tempDates,
             datasets: [
                 {
                     data: tempData,
@@ -100,8 +101,8 @@ export default function WeeklyGraph({ input }) {
                     label: "Weekly Stat",
                     fill: true,
                     tension: 0.4,
-                    backgroundColor: "rgb(102, 222, 147, 0.5)",
-                    borderColor: "rgb(102, 222, 147)",
+                    backgroundColor: WEEKLY_GRAPH_BACKGROUND_COLOR,
+                    borderColor: WEEKLY_GRAPH_BORDER_COLOR,
                 },
             ],
         });

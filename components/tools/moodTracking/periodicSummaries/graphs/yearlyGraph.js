@@ -5,7 +5,8 @@ import moment from 'moment';
 import "chart.js/auto";
 import { Row, Button } from 'react-bootstrap';
 import styles from './YearlyGraph.module.css';
-import 'bootstrap-icons/font/bootstrap-icons.css'; // Ensure this import is present
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { getEmoji, MOOD_SCALE, DATE_FORMAT, MOOD_COLORS_BACKGROUND, MOOD_COLORS_BORDER } from '../../utils';
 
 export default function YearlyGraph({ input }) {
     const [data, setData] = useState({ labels: [], datasets: [] });
@@ -18,7 +19,7 @@ export default function YearlyGraph({ input }) {
                 display: true,
             },
         },
-        maintainAspectRatio: false, // Prevent auto-resizing issues
+        maintainAspectRatio: false,
         scales: {
             x: {
                 grid: {
@@ -40,7 +41,7 @@ export default function YearlyGraph({ input }) {
 
     useEffect(() => {
         getYears(offset);
-    }, [offset]);
+    }, [offset, input]);
 
     const getYears = (yearOffset = 0) => {
         const thisYear = moment().year();
@@ -51,20 +52,6 @@ export default function YearlyGraph({ input }) {
 
     const getData = async (currentYear) => {
         const dataSets = [];
-        const colors = [
-            "rgba(255, 99, 132, 0.4)",
-            "rgba(255, 159, 64, 0.4)",
-            "rgba(255, 205, 86, 0.4)",
-            "rgba(75, 192, 192, 0.4)",
-            "rgba(115, 171, 132, 0.4)",
-        ];
-        const borderColor = [
-            "rgb(255, 99, 132)",
-            "rgb(255, 159, 64)",
-            "rgb(255, 205, 86)",
-            "rgb(75, 192, 192)",
-            "rgba(115, 171, 132)",
-        ];
         const months = [
             "January",
             "February",
@@ -79,26 +66,25 @@ export default function YearlyGraph({ input }) {
             "November",
             "December",
         ];
-        const emojis = ["😢", "🙁", "😐", "🙂", "😄"];
-        const values = [1, 2, 3, 4, 5];
 
-        for (let i = 0; i < emojis.length; i++) {
+        for (let i = 0; i < MOOD_SCALE.length; i++) {
+            const moodValue = MOOD_SCALE[i];
+            const emoji = getEmoji(moodValue);
             const data = [];
             for (let j = 0; j < months.length; j++) {
-                const month = months[j];
                 const monthData = input?.filter(
                     (item) =>
-                        moment(item?.date, "DD/MM/YYYY").year() === currentYear &&
-                        moment(item?.date, "DD/MM/YYYY").month() === j &&
-                        item?.mood === values[i]
+                        moment(item?.date, DATE_FORMAT).year() === currentYear &&
+                        moment(item?.date, DATE_FORMAT).month() === j &&
+                        item?.mood === moodValue
                 );
                 data.push(monthData.length);
             }
             dataSets.push({
-                label: emojis[i],
+                label: emoji,
                 data: data,
-                backgroundColor: colors[i],
-                borderColor: borderColor[i],
+                backgroundColor: MOOD_COLORS_BACKGROUND[i],
+                borderColor: MOOD_COLORS_BORDER[i],
                 borderWidth: 1,
             });
         }
