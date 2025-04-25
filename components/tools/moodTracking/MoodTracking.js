@@ -12,35 +12,16 @@ import { db } from '@/helpers/firebase/firebase';
 import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { useUser } from '@/helpers/firebase/userContext';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { getEmoji, getSaying, DEFAULT_MOOD_VALUE, DATE_FORMAT } from './utils';
+import moment from 'moment';
 
-const defaultMood = () => 4;
-const defaultNote = () => '';
-
-function getEmoji(mood) {
-    if (mood === -1) return "🤔";
-    const emoji = [
-        "😢", "🙁", "😐", "🙂", "😄"
-    ];
-    return emoji[mood - 1];
-}
-
-function getSaying(mood) {
-    if (mood === -1) return "No mood recorded yet";
-    const saying = [
-        "Feeling awful",
-        "Feeling down",
-        "Feeling fine",
-        "Feeling good",
-        "Feeling great"
-    ];
-    return saying[mood - 1];
-}
+const defaultMood = () => DEFAULT_MOOD_VALUE;
 
 export default function MoodTracking() {
     const { userData } = useUser();
     const [filter, setFilter] = useState("Today");
     const [currentMood, setCurrentMood] = useState(defaultMood());
-    const [currentNote, setCurrentNote] = useState(defaultNote());
+    const [currentNote, setCurrentNote] = useState('');
     const textAreaRef = useRef(null);
     const [hoverTag, setHoverTag] = useState(null);
     const [moodEntries, setMoodEntries] = useState([]);
@@ -80,18 +61,18 @@ export default function MoodTracking() {
 
     useEffect(() => {
         if (moodEntries?.length > 0) {
-            const today = new Date().toLocaleDateString("en-GB");
+            const today = moment().format(DATE_FORMAT);
             const todayEntry = moodEntries.find((entry) => entry?.date === today);
             if (todayEntry) {
                 setCurrentMood(todayEntry?.mood);
                 setCurrentNote(todayEntry?.note);
             } else {
                 setCurrentMood(defaultMood());
-                setCurrentNote(defaultNote());
+                setCurrentNote('');
             }
         } else {
             setCurrentMood(defaultMood());
-            setCurrentNote(defaultNote());
+            setCurrentNote('');
         }
     }, [moodEntries, filter]);
 
@@ -106,7 +87,7 @@ export default function MoodTracking() {
 
         try {
             const customerDocRef = doc(db, 'customers', customerId);
-            const today = new Date().toLocaleDateString("en-GB");
+            const today = moment().format(DATE_FORMAT);
             const newMoodEntry = { date: today, mood: currentMood, note: currentNote };
 
             const customerDocSnap = await getDoc(customerDocRef);
@@ -253,7 +234,7 @@ export default function MoodTracking() {
                     <Col md={8} lg={6} xl={5}>
                         <div className={styles.periodicCard}>
                             <h2>Your year in pixels</h2>
-                            <YearlyPixels input={moodEntries} />
+                            <YearlyPixels />
                         </div>
                     </Col>
                 </Row>

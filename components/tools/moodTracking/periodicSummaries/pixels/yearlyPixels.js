@@ -8,8 +8,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { db } from '@/helpers/firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useUser } from '@/helpers/firebase/userContext';
+import { getEmoji, getSaying, DATE_FORMAT } from '../../utils';
 
-export default function YearlyPixels ({}){
+export default function YearlyPixels (){
     const { userData } = useUser();
     const [calendar, setCalendar] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -50,26 +51,6 @@ export default function YearlyPixels ({}){
         setModalDate(date);
         setModalMood(mood);
         setModalNotes(notes);
-    }
-
-    function getEmoji(mood) {
-        if (mood === -1) return "🤔";
-        const emoji = [
-            "😢", "🙁", "😐", "🙂", "😄"
-        ];
-        return emoji[mood - 1];
-    }
-
-    function getSaying(mood) {
-        if (mood === -1) return "No mood recorded yet";
-        const saying = [
-            "You said you felt awful",
-            "You said you felt down",
-            "You said you felt fine",
-            "You said you felt good",
-            "You said you felt great"
-        ];
-        return saying[mood - 1];
     }
 
     const saveEdit = async () => {
@@ -144,7 +125,7 @@ export default function YearlyPixels ({}){
         const yearCalendar = [];
         for (let i = 1; i <= daysInCurrentYear; i++) {
             yearCalendar.push({
-                date: moment().year(currentYear).dayOfYear(i).format('DD/MM/YYYY'),
+                date: moment().year(currentYear).dayOfYear(i).format(DATE_FORMAT),
                 note: "",
                 color: -1,
                 mood: -1
@@ -163,7 +144,7 @@ export default function YearlyPixels ({}){
         }, {});
 
         for (let i = 1; i <= daysInCurrentYear; i++) {
-            const formattedDate = moment().year(currentYear).dayOfYear(i).format('DD/MM/YYYY');
+            const formattedDate = moment().year(currentYear).dayOfYear(i).format(DATE_FORMAT);
             const moodEntry = moodsByDate[formattedDate];
             if (moodEntry) {
                 yearCalendar.push({
