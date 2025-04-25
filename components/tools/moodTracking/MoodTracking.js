@@ -209,15 +209,16 @@ export default function MoodTracking() {
                                     )}
                                 </div>
                             )}
+                            {explode && (
+                                <ConfettiExplosion active={explode} setActive={setExplode} config={{ duration: 2000, width: 200, height: 200, particleCount: 150 }} />
+                            )}
                             <Button
                                 variant="primary"
                                 onClick={saveMood}
                                 className="w-100 rounded-pill"
-                                // style={{ backgroundColor: mindclassMainColours.blueAlt, borderColor: '#000' }} // Removed old style
                             >
                                 Save mood
                             </Button>
-                            <ConfettiExplosion active={explode} setActive={setExplode} config={{ duration: 2000, width: 200, height: 200, particleCount: 150 }} />
                         </div>
                     </Col>
                 </Row>
