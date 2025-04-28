@@ -19,7 +19,7 @@ export default function Tools() {
 
             <TitleHeader title={title} subtitle={description} />
 
-            /* TODO: tabs for each section */
+            {/*TODO: tabs for each section*/}
             <Row>
                 <h2>Mood Tracking</h2>
             </Row>
