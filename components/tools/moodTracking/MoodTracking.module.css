@@ -76,6 +76,31 @@
     text-align: center;
 }*/
 
+.card{
+    border: 1px solid #000;
+    background-color: var(--greenLight);
+
+    .h4{
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .noteBtn{
+        border: none;
+        background-color: transparent;
+    }
+
+    .navBtn{
+        border-radius: 50%;
+        &:hover {
+            color: #fff;
+        }
+    }
+    .navBtn i{
+        font-size: 18px;
+    }
+}
+
 .confettiWrapper {
     position: absolute;
     top: 50%;

@@ -135,40 +135,43 @@ export default function MoodTracking() {
     return (
         <>
             <Col md={6}>
-                <Card>
+                <Card className={`align-items-center justify-content-center ${styles.card}`}>
                     <Card.Body>
-                        <Card.Title>Update your current mood</Card.Title>
+                        <Card.Title><h3>Update your current mood</h3></Card.Title>
 
-                            <Row className="align-items-center justify-content-center mb-3">
+                            <Row className="align-items-center justify-content-center">
                                 <Col xs="auto">
-                                    <Button onClick={() => scrollMood(-1)}>
-                                        <i className="bi bi-chevron-left" style={{ fontSize: '24px', color: '#000' }}></i>
+                                    <Button onClick={() => scrollMood(-1)} className={styles.navBtn}>
+                                        <i className="bi bi-chevron-left"></i>
                                     </Button>
                                 </Col>
                                 <Col xs="auto" className="text-center">
                                     <div style={{ fontSize: '90px' }}>{getEmoji(currentMood)}</div>
                                 </Col>
                                 <Col xs="auto">
-                                    <Button onClick={() => scrollMood(1)}>
-                                        <i className="bi bi-chevron-right" style={{ fontSize: '24px', color: '#000' }}></i>
+                                    <Button onClick={() => scrollMood(1)} className={styles.navBtn}>
+                                        <i className="bi bi-chevron-right"></i>
                                     </Button>
                                 </Col>
                             </Row>
 
-                            <p className="text-center mb-2">
-                                {getSaying(currentMood)} today{currentNote ? ', because' : ''}
-                            </p>
+                            <Row className="align-items-center justify-content-center">
+                                <h4 className={styles.h4}>{getSaying(currentMood)} today{currentNote ? ', because' : ''}</h4>
+                            </Row>
 
+                        <Row className="align-items-center justify-content-center">
+                            <Col xs="auto">
                             {!currentNote ? (
-                                <Button
-                                    variant="outline-secondary"
-                                    className="w-50 rounded-pill mx-auto mt-3 mb-3"
-                                    onClick={() => setCurrentNote(' ')}
-                                >
-                                    Add a note <i className="bi bi-plus-square-fill ms-2" style={{ fontSize: '1.2em' }}></i>
-                                </Button>
+
+                                    <Button
+                                        className={styles.noteBtn}
+                                        onClick={() => setCurrentNote(' ')}
+                                    >
+                                        Add a note <i className="bi bi-plus-square-fill ms-2" style={{ fontSize: '18px' }}></i>
+                                    </Button>
+
                             ) : (
-                                <div className="mb-3">
+                                <>
                                     <FloatingLabel controlId="floatingTextarea" label="What made you feel this way?">
                                         <Form.Control
                                             as="textarea"
@@ -187,8 +190,13 @@ export default function MoodTracking() {
                                             <i className="bi bi-x-circle-fill me-2" style={{ fontSize: '16px' }}></i> Clear note
                                         </Button>
                                     )}
-                                </div>
+                                </>
                             )}
+                            </Col>
+                        </Row>
+
+                        <Row className="align-items-center justify-content-center">
+
                             <div className={styles.confettiWrapper}>
                                 {explode && (
                                     <ConfettiExplosion
@@ -205,27 +213,28 @@ export default function MoodTracking() {
                                 )}
                             </div>
                             <Button
-                                variant="primary"
                                 onClick={saveMood}
-                                className="w-100 rounded-pill"
                                 disabled={isSaving}
                             >
                                 {isSaving ? 'Saving...' : 'Save mood'}
                             </Button>
-                            {saveMessage && <p className="mt-3 text-center text-success">{saveMessage}</p>}
 
+                            {saveMessage && <p className="mt-3 text-center text-success">{saveMessage}</p>}
+                        </Row>
                     </Card.Body>
                 </Card>
 
-                <Card>
+                {/*Year Pixels */}
+{/*                <Card>
                     <Card.Body>
                         <h2>Your year in pixels</h2>
                         <YearlyPixels />
                     </Card.Body>
-                </Card>
+                </Card>*/}
             </Col>
 
-            <Col md={6}>
+            {/*Graphs*/}
+{/*            <Col md={6}>
                 <Card>
                     <Card.Body>
                         <h2>Weekly</h2>
@@ -241,7 +250,7 @@ export default function MoodTracking() {
 
                     </Card.Body>
                 </Card>
-            </Col>
+            </Col>*/}
 
         </>
     );
