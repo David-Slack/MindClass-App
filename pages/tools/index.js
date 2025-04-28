@@ -18,6 +18,11 @@ export default function Tools() {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
+
+            <Row>
+                <h2>Mood Tracking</h2>
+            </Row>
+
             <Row>
                 <MoodTracking />
             </Row>
