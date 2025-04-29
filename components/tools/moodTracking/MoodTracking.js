@@ -146,7 +146,7 @@ export default function MoodTracking() {
                                 </Button>
                             </Col>
                             <Col xs="auto" className="text-center">
-                                <div style={{ fontSize: '90px' }}>{getEmoji(currentMood)}</div>
+                                <div className={styles.moodEmoji}>{getEmoji(currentMood)}</div>
                             </Col>
                             <Col xs="auto">
                                 <Button onClick={() => scrollMood(1)} className={styles.navBtn}>
@@ -191,7 +191,8 @@ export default function MoodTracking() {
                                             size="sm"
                                             className={styles.noteBtn}
                                             onClick={() =>
-                                                setCurrentNote('')}>
+                                                setCurrentNote('')}
+                                        >
                                             <i className="bi bi-x-circle-fill me-2" style={{ fontSize: '18px' }}></i> Clear note
                                         </Button>
                                     )}

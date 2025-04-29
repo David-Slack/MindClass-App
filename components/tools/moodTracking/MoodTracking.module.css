@@ -1,122 +1,62 @@
-/* components/tools/MoodTracking.module.css */
-/*.filterTag {
-    font-size: 1.1rem;
-    font-weight: 450;
-    border-radius: 50px;
-    margin-top: 0.1rem;
-    margin-left: -0.2rem;
+.modal{
+    background-color: #e2f8e9;
+    border-radius: 16px;
     border: 1px solid #000;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.2rem 1rem;
-    transition: background 0.3s ease, color 0.3s ease;
-    color: #000;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    height: 2.7rem;
+}
+.moodEmoji{
+    font-size: 90px;
 }
 
-.filterTag:first-child {
-    margin-left: 0;
-}
-
-.filterTag.active {
-    background-color: rgba(69, 165, 229, 1);
-    color: #fff;
-    border-color: rgba(69, 165, 229, 1);
-}
-
-.filterTag.hover {
-    background-color: #000;
-    color: #fff;
-}
-
-
-.moodButton {
-    background: none;
-    border: none;
-    box-shadow: none !important;
-}
-
-.noteTextarea {
-    border-radius: 10px;
-    min-height: 100px;
-    font-size: 0.9rem;
-}
-
-.emojiReward {
-    z-index: 40;
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-*/
-/*.periodicCard {
-    border: 1px solid #000;
-    box-shadow: none;
-    background-color: #fff;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 5px;
-    padding: 1rem;
-}
-.moodCard {
-    border: 1px solid #000;
-    box-shadow: none;
-    background-color: #fff;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 5px;
-    padding: 1rem;
+.h4{
+    padding: 20px 0;
     text-align: center;
-}*/
+}
+
+.noteRow{
+    min-height: 100px;
+    .noteBtn{
+        border: none;
+        background-color: transparent;
+        margin-bottom: 40px;
+        color: rgba(0, 0, 0, 0.3);
+        &:hover{
+            color: #000;
+        }
+    }
+    .noteTextarea{
+        min-width: 250px;
+        width: 100%;
+    }
+
+}
+
+.navBtn{
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.3);
+    &:hover{
+        background-color: #000;
+    }
+}
+.navBtn i{
+    font-size: 18px;
+}
+.primaryBtn{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 23px;
+    width: 150px;
+    height: 46px;
+    &:hover{
+        background-color: #000;
+    }
+}
 
 .card{
     border: 1px solid #000;
     background-color: var(--greenLight);
     margin-bottom: 20px;
     min-height: 442px;
-
-    .h4{
-        padding: 20px 0;
-        text-align: center;
-    }
-
-    .noteRow{
-        height: 100px;
-        .noteBtn{
-            border: none;
-            background-color: transparent;
-            margin-bottom: 40px;
-            color: rgba(0, 0, 0, 0.3);
-            &:hover{
-                color: #000;
-            }
-        }
-        .noteTextarea{
-            min-width: 250px;
-            width: 100%;
-        }
-
-    }
-
-    .navBtn{
-        border-radius: 50%;
-        width: 46px;
-        height: 46px;
-        background-color: rgba(255, 255, 255, 0.3);
-        &:hover{
-            background-color: #000;
-        }
-    }
-    .navBtn i{
-        font-size: 18px;
-    }
 
     .calendarRow{
         height: 540px;
@@ -127,15 +67,6 @@
         position: relative;
         display: inline-block;
         width: 175px
-    }
-    .primaryBtn{
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 23px;
-        width: 150px;
-        height: 46px;
-        &:hover{
-            background-color: #000;
-        }
     }
 }
 
@@ -155,10 +86,11 @@
 /* Year Pixels */
 .dayPixel {
     cursor: pointer;
-    margin: 0.15rem;
+    margin: 0.14rem;
     border-radius: 0.25rem;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.6rem;
+    width: 1.6rem;
+    overflow: hidden;
 }
 
 .todayPixel {
@@ -214,11 +146,10 @@
         border-radius: 3px;
         cursor: pointer;
         font-size: 0.9rem;
-    }
-
-    .yearOption:hover {
-        background-color: #000;
-        color: white;
+        &:hover {
+            background-color: #000;
+            color: white;
+        }
     }
 
     .activeYear {
@@ -235,9 +166,9 @@
         cursor: pointer;
         font-size: 1rem;
         color: #555;
-    }
 
-    .pickerCloseButton:hover {
-        color: #fff;
+        &:hover {
+            color: #fff;
+        }
     }
 }

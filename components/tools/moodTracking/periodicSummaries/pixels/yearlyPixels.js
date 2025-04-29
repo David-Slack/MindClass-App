@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
-import {Row, Button, Form, Overlay, Tooltip, Modal, Card} from 'react-bootstrap';
+import {Row, Button, Form, Overlay, Tooltip, Modal, Card, Col} from 'react-bootstrap';
 import styles from '../../MoodTracking.module.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { db } from '@/helpers/firebase/firebase';
@@ -283,52 +283,74 @@ export default function YearlyPixels (){
 
             <Modal show={showModal} onHide={() => { setShowModal(false); clearTemps() }} centered>
                 <Modal.Body className={styles.modal}>
-                    <Row className={styles.modalHeader}>
-                        <Button onClick={() => scrollMood(-1)} className={styles.modalNavButton}>
-                            <i className={`bi bi-chevron-left ${styles.navIcon}`}></i>
-                        </Button>
-                        <div className={styles.modalEmoji}>{getEmoji(modalMood)}</div>
-                        <Button onClick={() => scrollMood(1)} className={styles.modalNavButton}>
-                            <i className={`bi bi-chevron-right ${styles.navIcon}`}></i>
-                        </Button>
-                    </Row>
-                    <div className={styles.modalSaying}>
-                        {getSaying(modalMood)}{modalNotes === '' || modalNotes === undefined ? null : ', because'}
-                    </div>
-                    {modalNotes === "" || modalNotes === undefined ? (
-                        <Button className={styles.modalAddNoteButton} onClick={() => setModalNotes(' ')}>
-                            Add a note <i className={`bi bi-plus-square-fill ms-2`} style={{ fontSize: '1.2em' }}></i>
-                        </Button>
-                    ) : (
-                        <div style={{ position: 'relative' }}>
-                            <Form.Control
-                                as="textarea"
-                                ref={textAreaRef}
-                                placeholder="What made you feel this way?"
-                                autoCorrect="on"
-                                autoCapitalize="sentences"
-                                value={modalNotes}
-                                onChange={(e) => setModalNotes(e.target.value)}
-                                rows={3}
-                                className={styles.modalNoteTextarea}
-                            />
-                            <Button
-                                onClick={() => setModalNotes('')}
-                                className={styles.modalClearNoteButton}
-                            >
-                                <i className={`bi bi-x-circle-fill`} />
-                            </Button>
-                        </div>
-                    )}
 
-                    {isEditing && (
-                        <Button
-                            onClick={() => { saveEdit() }}
-                            className={styles.modalSaveButton}
-                        >
-                            Save mood
-                        </Button>
-                    )}
+                    <Row className="align-items-center justify-content-center">
+                        <Col xs="auto">
+                            <Button onClick={() => scrollMood(-1)} className={styles.navBtn}>
+                                <i className={`bi bi-chevron-left`}></i>
+                            </Button>
+                        </Col>
+                        <Col xs="auto" className="text-center">
+                            <div className={styles.moodEmoji}>{getEmoji(modalMood)}</div>
+                        </Col>
+                        <Col xs="auto">
+                            <Button onClick={() => scrollMood(1)} className={styles.navBtn}>
+                                <i className={`bi bi-chevron-right`}></i>
+                            </Button>
+                        </Col>
+                    </Row>
+
+
+                    <Row className="align-items-center justify-content-center">
+                        <h4 className={styles.h4}>{getSaying(modalMood)}{modalNotes === '' || modalNotes === undefined ? null : ', because'}</h4>
+                    </Row>
+
+                    <Row className={`align-items-center justify-content-center ${styles.noteRow}`}>
+                        <Col xs="auto">
+
+                            {modalNotes === "" || modalNotes === undefined ? (
+                                <Button className={styles.noteBtn} onClick={() => setModalNotes(' ')}>
+                                    Add a note <i className={`bi bi-plus-square-fill ms-2`} style={{ fontSize: '1.2em' }}></i>
+                                </Button>
+                            ) : (
+                                <div style={{ position: 'relative' }}>
+                                    <Form.Control
+                                        as="textarea"
+                                        ref={textAreaRef}
+                                        placeholder="What made you feel this way?"
+                                        autoCorrect="on"
+                                        autoCapitalize="sentences"
+                                        value={modalNotes}
+                                        onChange={(e) => setModalNotes(e.target.value)}
+                                        rows={3}
+                                        className={styles.modalNoteTextarea}
+                                    />
+                                    <Button
+                                        onClick={() => setModalNotes('')}
+                                        variant="outline-secondary"
+                                        size="sm"
+                                        className={styles.noteBtn}
+                                    >
+                                        <i className="bi bi-x-circle-fill me-2" style={{ fontSize: '18px' }}></i> Clear note
+                                    </Button>
+                                </div>
+                            )}
+                        </Col>
+                    </Row>
+
+                    <Row className="align-items-center justify-content-center">
+                        <Col xs="auto">
+                            {isEditing && (
+                                <Button
+                                    onClick={() => { saveEdit() }}
+                                    className={styles.primaryBtn}
+                                >
+                                    Save mood
+                                </Button>
+                            )}
+                        </Col>
+                    </Row>
+
                 </Modal.Body>
             </Modal>
         </Card.Body>
