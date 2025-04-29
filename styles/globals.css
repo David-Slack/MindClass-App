@@ -23,10 +23,12 @@ input:-webkit-autofill:focus {
     background: #fdfdfe !important;
     -webkit-box-shadow: 0 0 0 1000px #fdfdfe inset;
 }
-.modal-content,
+.modal-content{
+    border-radius: 16px;
+    border: 1px solid #000;
+}
 .card {
     border-radius: 16px;
-    border: none;
 }
 
 /* Colours */
