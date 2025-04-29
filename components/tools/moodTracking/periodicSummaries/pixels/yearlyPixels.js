@@ -9,6 +9,7 @@ import { db } from '@/helpers/firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useUser } from '@/helpers/firebase/userContext';
 import { getEmoji, getSaying, DATE_FORMAT } from '../../utils';
+import { formatDate } from '@/helpers/formatDate';
 
 export default function YearlyPixels (){
     const { userData } = useUser();
@@ -23,6 +24,7 @@ export default function YearlyPixels (){
     const [isEditing, setIsEditing] = useState(false);
     const [tooltipTarget, setTooltipTarget] = useState(null);
     const [showTooltip, setShowTooltip] = useState(false);
+    const targetRefs = useRef({});
 
     const customerId = userData?.customerData?.uid;
 
@@ -180,20 +182,23 @@ export default function YearlyPixels (){
         <Card.Body>
 
             <Row className={styles.header}>
-                <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navButton}>
+                <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navBtn}>
                     <i className={`bi bi-chevron-left ${styles.navIcon}`}></i>
                 </Button>
-                <Button className={styles.yearButton} onClick={() => setOffset(0)}>{year}</Button>
-                <Button onClick={() => setOffset((prev) => prev + 1)} className={styles.navButton}>
+                <Button
+                    className={styles.primaryBtn}
+                    onClick={() => setOffset(0)}
+                >{year}</Button>
+                <Button onClick={() => setOffset((prev) => prev + 1)} className={styles.navBtn}>
                     <i className={`bi bi-chevron-right ${styles.navIcon}`}></i>
                 </Button>
             </Row>
 
             <Row className={styles.calendarRow}>
-                {calendar?.map((day, i) => (
+                {calendar?.map((day) => (
                     <div
                         key={day?.date}
-                        ref={tooltipTarget === day?.date ? setTooltipTarget : null}
+                        ref={(el) => (targetRefs.current[day?.date] = el)}
                         className={`${styles.dayPixel} ${getColorClass(day?.color)} ${day?.date === moment().format('DD/MM/YYYY') ? styles.todayPixel : ''}`}
                         onMouseEnter={(event) => {
                             setTooltipTarget(event.target);
@@ -204,11 +209,11 @@ export default function YearlyPixels (){
                     >
                         <Overlay
                             placement="top"
-                            target={tooltipTarget}
-                            show={showTooltip && tooltipTarget === i}
+                            target={targetRefs.current[day?.date]}
+                            show={showTooltip && tooltipTarget === targetRefs.current[day?.date]}
                         >
                             {(props) => (
-                                <Tooltip {...props}>{day?.date}</Tooltip>
+                                <Tooltip {...props}>{formatDate(moment(day?.date, DATE_FORMAT).toISOString(), false, 'medium')}</Tooltip>
                             )}
                         </Overlay>
                     </div>

@@ -139,25 +139,25 @@ export default function MoodTracking() {
                     <Card.Body>
                         {/*<Card.Title><h3>Update your current mood</h3></Card.Title>*/}
 
-                            <Row className="align-items-center justify-content-center">
-                                <Col xs="auto">
-                                    <Button onClick={() => scrollMood(-1)} className={styles.navBtn}>
-                                        <i className="bi bi-chevron-left"></i>
-                                    </Button>
-                                </Col>
-                                <Col xs="auto" className="text-center">
-                                    <div style={{ fontSize: '90px' }}>{getEmoji(currentMood)}</div>
-                                </Col>
-                                <Col xs="auto">
-                                    <Button onClick={() => scrollMood(1)} className={styles.navBtn}>
-                                        <i className="bi bi-chevron-right"></i>
-                                    </Button>
-                                </Col>
-                            </Row>
+                        <Row className="align-items-center justify-content-center">
+                            <Col xs="auto">
+                                <Button onClick={() => scrollMood(-1)} className={styles.navBtn}>
+                                    <i className="bi bi-chevron-left"></i>
+                                </Button>
+                            </Col>
+                            <Col xs="auto" className="text-center">
+                                <div style={{ fontSize: '90px' }}>{getEmoji(currentMood)}</div>
+                            </Col>
+                            <Col xs="auto">
+                                <Button onClick={() => scrollMood(1)} className={styles.navBtn}>
+                                    <i className="bi bi-chevron-right"></i>
+                                </Button>
+                            </Col>
+                        </Row>
 
-                            <Row className="align-items-center justify-content-center">
-                                <h4 className={styles.h4}>{getSaying(currentMood)} today{currentNote ? ', because' : ''}</h4>
-                            </Row>
+                        <Row className="align-items-center justify-content-center">
+                            <h4 className={styles.h4}>{getSaying(currentMood)} today{currentNote ? ', because' : ''}</h4>
+                        </Row>
 
                         <Row className={`align-items-center justify-content-center ${styles.noteRow}`}>
                             <Col xs="auto">
