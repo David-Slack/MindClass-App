@@ -242,7 +242,7 @@ export default function MoodTracking() {
             </Col>
 
             {/*Graphs*/}
-{/*            <Col md={6}>
+            <Col md={6}>
                 <Card>
                     <Card.Body>
                         <h2>Weekly</h2>
@@ -258,7 +258,7 @@ export default function MoodTracking() {
 
                     </Card.Body>
                 </Card>
-            </Col>*/}
+            </Col>
 
         </>
     );
