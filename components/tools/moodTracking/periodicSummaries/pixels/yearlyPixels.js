@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
-import { Row, Button, Form, Overlay, Tooltip, Modal } from 'react-bootstrap';
+import {Row, Button, Form, Overlay, Tooltip, Modal, Card} from 'react-bootstrap';
 import styles from '../../MoodTracking.module.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { db } from '@/helpers/firebase/firebase';
@@ -177,7 +177,8 @@ export default function YearlyPixels (){
     }
 
     return (
-        <div className={styles.container}>
+        <Card.Body>
+
             <Row className={styles.header}>
                 <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navButton}>
                     <i className={`bi bi-chevron-left ${styles.navIcon}`}></i>
@@ -187,6 +188,7 @@ export default function YearlyPixels (){
                     <i className={`bi bi-chevron-right ${styles.navIcon}`}></i>
                 </Button>
             </Row>
+
             <Row className={styles.calendarRow}>
                 {calendar?.map((day, i) => (
                     <div
@@ -263,6 +265,6 @@ export default function YearlyPixels (){
                     )}
                 </Modal.Body>
             </Modal>
-        </div>
+        </Card.Body>
     );
 };

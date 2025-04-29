@@ -233,8 +233,9 @@ export default function MoodTracking() {
                 {/*Year Pixels */}
                 <Card className={`${styles.card} ${styles.cardPixels}`}>
                     <Card.Body>
-                        <h2>Your year in pixels</h2>
+                        {/*<h2>Your year in pixels</h2>*/}
                         <YearlyPixels />
+                        <p>Your year in pixels - each square represents one day. Click a day to change it.</p>
                     </Card.Body>
                 </Card>
             </Col>
