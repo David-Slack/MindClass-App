@@ -80,28 +80,50 @@
     border: 1px solid #000;
     background-color: var(--greenLight);
     margin-bottom: 20px;
+    min-height: 442px;
 
     .h4{
         padding: 20px 0;
         text-align: center;
     }
 
-    .noteBtn{
-        border: none;
-        background-color: transparent;
+    .noteRow{
+        height: 100px;
+        .noteBtn{
+            border: none;
+            background-color: transparent;
+            margin-bottom: 40px;
+            color: rgba(0, 0, 0, 0.3);
+            &:hover{
+                color: #000;
+            }
+        }
+        .noteTextarea{
+            min-width: 250px;
+            width: 100%;
+        }
+
     }
 
     .navBtn{
         border-radius: 50%;
         width: 46px;
         height: 46px;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(255, 255, 255, 0.3);
         &:hover{
             background-color: #000;
         }
     }
     .navBtn i{
         font-size: 18px;
+    }
+
+    .primaryBtn{
+        background-color: rgba(255, 255, 255, 0.3);
+        width: 150px;
+        &:hover{
+            background-color: #000;
+        }
     }
 }
 
@@ -152,7 +174,7 @@
 .moodPixel-4 { background-color: rgba(75, 192, 192, 0.8); }
 .moodPixel-5 { background-color: rgba(115, 171, 132, 0.8); }
 .moodPixel-minus-1 {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     transition-duration: .2s;
     &:hover {
         background-color: rgba(255, 255, 255, 0.9);

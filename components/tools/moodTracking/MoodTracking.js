@@ -137,7 +137,7 @@ export default function MoodTracking() {
             <Col md={6}>
                 <Card className={`align-items-center justify-content-center ${styles.card}`}>
                     <Card.Body>
-                        <Card.Title><h3>Update your current mood</h3></Card.Title>
+                        {/*<Card.Title><h3>Update your current mood</h3></Card.Title>*/}
 
                             <Row className="align-items-center justify-content-center">
                                 <Col xs="auto">
@@ -159,7 +159,7 @@ export default function MoodTracking() {
                                 <h4 className={styles.h4}>{getSaying(currentMood)} today{currentNote ? ', because' : ''}</h4>
                             </Row>
 
-                        <Row className="align-items-center justify-content-center">
+                        <Row className={`align-items-center justify-content-center ${styles.noteRow}`}>
                             <Col xs="auto">
                             {!currentNote ? (
 
@@ -186,8 +186,13 @@ export default function MoodTracking() {
                                         />
                                     </FloatingLabel>
                                     {currentNote && (
-                                        <Button variant="outline-secondary" size="sm" className="mt-2" onClick={() => setCurrentNote('')}>
-                                            <i className="bi bi-x-circle-fill me-2" style={{ fontSize: '16px' }}></i> Clear note
+                                        <Button
+                                            variant="outline-secondary"
+                                            size="sm"
+                                            className={styles.noteBtn}
+                                            onClick={() =>
+                                                setCurrentNote('')}>
+                                            <i className="bi bi-x-circle-fill me-2" style={{ fontSize: '18px' }}></i> Clear note
                                         </Button>
                                     )}
                                 </>
@@ -215,6 +220,7 @@ export default function MoodTracking() {
                             <Button
                                 onClick={saveMood}
                                 disabled={isSaving}
+                                className={styles.primaryBtn}
                             >
                                 {isSaving ? 'Saving...' : 'Save mood'}
                             </Button>
