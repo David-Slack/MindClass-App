@@ -225,12 +225,12 @@ export default function MoodTracking() {
                 </Card>
 
                 {/*Year Pixels */}
-{/*                <Card>
+                <Card className={`${styles.card} ${styles.cardPixels}`}>
                     <Card.Body>
                         <h2>Your year in pixels</h2>
                         <YearlyPixels />
                     </Card.Body>
-                </Card>*/}
+                </Card>
             </Col>
 
             {/*Graphs*/}

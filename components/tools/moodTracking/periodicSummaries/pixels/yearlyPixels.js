@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
 import { Row, Button, Form, Overlay, Tooltip, Modal } from 'react-bootstrap';
-import styles from './YearlyPixels.module.css';
+import styles from '../../MoodTracking.module.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { db } from '@/helpers/firebase/firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
