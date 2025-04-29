@@ -118,15 +118,26 @@
         font-size: 18px;
     }
 
+    .calendarRow{
+        height: 540px;
+        margin-bottom: 20px;
+    }
+
+    .yearContainer{
+        position: relative;
+        display: inline-block;
+        width: 175px
+    }
     .primaryBtn{
         background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 23px;
         width: 150px;
+        height: 46px;
         &:hover{
             background-color: #000;
         }
     }
 }
-
 
 .cardPixels{
     background-color: var(--redLight);
@@ -178,5 +189,55 @@
     transition-duration: .2s;
     &:hover {
         background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.yearPicker {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #faeaeb;
+    border: 2px solid #000;
+    border-radius: 23px;
+    padding: 20px 10px;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    width: 150px;
+
+    .yearOption {
+        border: none;
+        background-color: #f8e2e3;
+        padding: 0.3rem 0.5rem;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .yearOption:hover {
+        background-color: #000;
+        color: white;
+    }
+
+    .activeYear {
+        background-color: #000;
+        color: white;
+    }
+
+    .pickerCloseButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .pickerCloseButton:hover {
+        color: #fff;
     }
 }

@@ -11,6 +11,27 @@ import { useUser } from '@/helpers/firebase/userContext';
 import { getEmoji, getSaying, DATE_FORMAT } from '../../utils';
 import { formatDate } from '@/helpers/formatDate';
 
+const YearPicker = ({ currentYear, onYearSelect, onClose }) => {
+    const yearsToShow = Array.from({ length: 11 }, (_, i) => parseInt(currentYear) - 5 + i);
+
+    return (
+        <div className={styles.yearPicker}>
+            {yearsToShow.map(year => (
+                <button
+                    key={year}
+                    className={`${styles.yearOption} ${year === parseInt(currentYear) ? styles.activeYear : ''}`}
+                    onClick={() => { onYearSelect(year); onClose(); }}
+                >
+                    {year}
+                </button>
+            ))}
+            <div className={styles.pickerCloseButton} onClick={onClose}>
+                <i className="bi bi-x-lg"></i>
+            </div>
+        </div>
+    );
+};
+
 export default function YearlyPixels (){
     const { userData } = useUser();
     const [calendar, setCalendar] = useState([]);
@@ -25,6 +46,8 @@ export default function YearlyPixels (){
     const [tooltipTarget, setTooltipTarget] = useState(null);
     const [showTooltip, setShowTooltip] = useState(false);
     const targetRefs = useRef({});
+    const [showYearPicker, setShowYearPicker] = useState(false);
+    const yearPickerRef = useRef(null);
 
     const customerId = userData?.customerData?.uid;
 
@@ -178,23 +201,39 @@ export default function YearlyPixels (){
         }
     }
 
+    const handleYearClick = () => {
+        setShowYearPicker(!showYearPicker);
+    };
+
+    const handleYearSelect = (selectedYear) => {
+        setYear(selectedYear.toString());
+        const currentMoment = moment();
+        const selectedMoment = moment(selectedYear, 'YYYY');
+        setOffset(selectedMoment.diff(currentMoment, 'years'));
+        setShowYearPicker(false);
+    };
+
+    const closeYearPicker = () => {
+        setShowYearPicker(false);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (yearPickerRef.current && !yearPickerRef.current.contains(event.target) && showYearPicker) {
+                closeYearPicker();
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showYearPicker]);
+
     return (
         <Card.Body>
 
-            <Row className={styles.header}>
-                <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navBtn}>
-                    <i className={`bi bi-chevron-left ${styles.navIcon}`}></i>
-                </Button>
-                <Button
-                    className={styles.primaryBtn}
-                    onClick={() => setOffset(0)}
-                >{year}</Button>
-                <Button onClick={() => setOffset((prev) => prev + 1)} className={styles.navBtn}>
-                    <i className={`bi bi-chevron-right ${styles.navIcon}`}></i>
-                </Button>
-            </Row>
-
-            <Row className={styles.calendarRow}>
+            <Row className={styles.calendarRow} >
                 {calendar?.map((day) => (
                     <div
                         key={day?.date}
@@ -218,6 +257,28 @@ export default function YearlyPixels (){
                         </Overlay>
                     </div>
                 ))}
+            </Row>
+
+            <Row className={`align-items-center justify-content-center ${styles.navRow}`} >
+                <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navBtn}>
+                    <i className={`bi bi-chevron-left`}></i>
+                </Button>
+                <div ref={yearPickerRef} className={styles.yearContainer} >
+                    <Button
+                        className={styles.primaryBtn}
+                        onClick={handleYearClick}
+                    >{year}</Button>
+                    {showYearPicker && (
+                        <YearPicker
+                            currentYear={year}
+                            onYearSelect={handleYearSelect}
+                            onClose={closeYearPicker}
+                        />
+                    )}
+                </div>
+                <Button onClick={() => setOffset((prev) => prev + 1)} className={styles.navBtn}>
+                    <i className={`bi bi-chevron-right`}></i>
+                </Button>
             </Row>
 
             <Modal show={showModal} onHide={() => { setShowModal(false); clearTemps() }} centered>
