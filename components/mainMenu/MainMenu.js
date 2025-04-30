@@ -10,37 +10,37 @@ const nav = [
     {
         url: "/",
         title: "Home",
-        hover: "Welcome to MindClass, counsellors, courses and content are just a click away!"
+        desc: "Welcome to MindClass, counsellors, courses and content are just a click away!"
     },
     {
         url: "/courses",
         title: "Courses",
-        hover: "From Mental Health Awareness, to ADHD, Sleep and the Menopause, we’ve got you covered"
+        desc: "From Mental Health Awareness, to ADHD, Sleep and the Menopause, we’ve got you covered"
     },
     {
         url: "/counsellors",
         title: "Counselling",
-        hover: "Need someone to talk to without judgement? Browse our team of expert therapists"
+        desc: "Need someone to talk to without judgement? Browse our team of expert therapists"
     },
     {
         url: "/magazine",
         title: "Magazine",
-        hover: "From interviews, to articles, tips and insights - grab a brew and read it through"
+        desc: "From interviews, to articles, tips and insights - grab a brew and read it through"
     },
     {
         url: "/meditations",
         title: "Meditations",
-        hover: "Your peace, your pace. Browse our mindfulness meditations"
+        desc: "Your peace, your pace. Browse our mindfulness meditations"
     },
     {
         url: "/video",
         title: "Videos",
-        hover: "Bitesize bliss. Quick content to keep you informed on all things wellbeing"
+        desc: "Bitesize bliss. Quick content to keep you informed on all things wellbeing"
     },
     {
         url: "/tools",
         title: "Tools",
-        hover: "AI powered tools to aid productivity, relaxation and performance"
+        desc: "AI powered tools to aid productivity, relaxation and performance"
     },
 ];
 
@@ -139,7 +139,7 @@ export function MainMenu(){
                                         <OverlayTrigger
                                             key={link.url}
                                             placement="right"
-                                            overlay={<Tooltip id={`tooltip-right-leftmenu-${link.url}`}>{link.hover}</Tooltip>}
+                                            overlay={<Tooltip id={`tooltip-right-leftmenu-${link.url}`}>{link.desc}</Tooltip>}
                                             delay={{ show: 400, hide: 100 }}
                                         >
                                         <span className={styles.titleSpan}>{link.title}</span>
