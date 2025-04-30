@@ -8,10 +8,15 @@ import {MagazineCards} from "@/components/cards/magazineCards/MagazineCards";
 import {getCollection} from "@/helpers/firebase/getCollection";
 
 export async function getServerSideProps() {
-    return getCollection("resources", "publish_date");
+    return getCollection({
+        collectionID: "resources",
+        sortBy: "publish_date",
+        limitNumber: 4,
+        returnKey: 'articles'
+    });
 }
 
-export default function Home({ collection }) {
+export default function Home({ articles }) {
     const title = 'MindClass';
     const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
@@ -36,10 +41,11 @@ export default function Home({ collection }) {
                     )}
 
                 </Col>
-
             </Row>
 
-            <MagazineCards magazineArticles={collection} simple={true} />
+            <Row>
+                <MagazineCards magazineArticles={articles} simple={true} />
+            </Row>
         </>
     );
 }
