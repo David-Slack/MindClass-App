@@ -4,14 +4,15 @@ import { useUser } from '@/helpers/firebase/userContext';
 import { LoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import {Col, Row} from "react-bootstrap";
 import HomeHero from "@/components/blocks/homeHero/HomeHero";
-import {MagazineCards} from "@/components/cards/magazineCards/MagazineCards";
 import {getCollection} from "@/helpers/firebase/getCollection";
+import Link from "next/link";
+import HomeMagazine from "@/components/blocks/homeMagazine/HomeMagazine";
 
 export async function getServerSideProps() {
     return getCollection({
         collectionID: "resources",
         sortBy: "publish_date",
-        limitNumber: 4,
+        limitNumber: 6,
         returnKey: 'articles'
     });
 }
@@ -43,9 +44,21 @@ export default function Home({ articles }) {
                 </Col>
             </Row>
 
-            <Row>
-                <MagazineCards magazineArticles={articles} simple={true} />
+            <HomeMagazine articles={articles} />
+
+{/*            <Row>
+                <h2>Latest Courses</h2>
+                <Link href={'/courses'}>View all</Link>
             </Row>
+
+            <Row>
+                <h2>Counsellors</h2>
+                <Link href={'/counsellors'}>View page</Link>
+            </Row>
+
+            <Row>
+                <h2>Testimonials</h2>
+            </Row>*/}
         </>
     );
 }

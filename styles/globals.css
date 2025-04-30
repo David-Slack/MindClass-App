@@ -233,3 +233,33 @@ li{
     100% {padding-right: 0;}
 }
 
+@media screen and (min-width: 991px) {
+    .card-group-scroll {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+
+    .card-group-scroll > div > * {
+        white-space: normal;
+    }
+
+    .card-group-scroll > div {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .card-group-scroll > div.row {
+        flex-shrink: 0 !important;
+        min-width: fit-content !important;
+    }
+
+    .card-group-scroll > div.row > .cardCol {
+        flex: 0 0 auto !important;
+        max-width: none !important;
+    }
+}
+

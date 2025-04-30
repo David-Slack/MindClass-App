@@ -35,11 +35,7 @@ export function MagazineCards({ magazineArticles, simple=false }) {
             <Row className={styles.articleRow}>
                 {magazineArticles.map((article, count) => (
                     <Col
-                        className={`
-                            NOTmx-auto 
-                            ${styles.col} 
-                            ${ filteredMagazineArticles.includes(article) ? styles.filteredIn : styles.filteredOut }
-                        `}
+                        className={`cardCol ${styles.col} ${ filteredMagazineArticles.includes(article) ? styles.filteredIn : styles.filteredOut }`}
                         key={article.id}
                         lg={
                             !simple && count <= 1 ?
