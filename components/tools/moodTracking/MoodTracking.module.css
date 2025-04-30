@@ -72,9 +72,10 @@
 
 .cardPixels{
     background-color: var(--redLight);
+    height: calc(100% - 482px);
 }
 .cardGraphs{
-    background-color: var(--orangeLight);
+    background-color: var(--purpleLight);
     height: calc(100% - 20px);
 }
 

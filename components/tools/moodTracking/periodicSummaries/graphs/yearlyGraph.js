@@ -1,10 +1,10 @@
 // components/tools/moodTracking/periodicSummaries/graphs/yearlyGraph.js
 import React, { useEffect, useState } from 'react';
-import { Bar } from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 import moment from 'moment';
 import "chart.js/auto";
-import { Row, Button } from 'react-bootstrap';
-import styles from './YearlyGraph.module.css';
+import {Row, Button, Col} from 'react-bootstrap';
+import styles from '../../MoodTracking.module.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { getEmoji, MOOD_SCALE, DATE_FORMAT, MOOD_COLORS_BACKGROUND, MOOD_COLORS_BORDER } from '../../utils';
 
@@ -99,20 +99,27 @@ export default function YearlyGraph({ input }) {
     };
 
     return (
-        <div className={styles.container}>
+        <>
             <Row className={styles.header}>
-                <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navButton}>
-                    <i className={`bi bi-chevron-left ${styles.navIcon}`}></i>
-                </Button>
-                <div className={styles.yearLabel}>{year}</div>
-                <Button onClick={() => setOffset(0)} className={styles.nowButton}>Now</Button>
-                <Button onClick={() => setOffset((prev) => prev + 1)} className={styles.navButton}>
-                    <i className={`bi bi-chevron-right ${styles.navIcon}`}></i>
-                </Button>
+                <Col>{year}</Col>
+                <Col  xs="auto">
+                    <Button onClick={() => setOffset((prev) => prev - 1)} className={styles.navBtn}>
+                        <i className={`bi bi-chevron-left ${styles.navIcon}`}></i>
+                    </Button>
+                </Col>
+                <Col  xs="auto">
+                    <Button onClick={() => setOffset(0)} className={styles.primaryBtn}>Now</Button>
+                </Col>
+                <Col  xs="auto">
+                    <Button onClick={() => setOffset((prev) => prev + 1)} className={styles.navBtn}>
+                        <i className={`bi bi-chevron-right ${styles.navIcon}`}></i>
+                    </Button>
+                </Col>
             </Row>
-            <div className={styles.chartContainer}>
+
+            <Row className={styles.chartContainer}>
                 <Bar options={options} data={data} />
-            </div>
-        </div>
+            </Row>
+        </>
     );
 }
