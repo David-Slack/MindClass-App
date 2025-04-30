@@ -4,8 +4,14 @@ import { useUser } from '@/helpers/firebase/userContext';
 import { LoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import {Col, Row} from "react-bootstrap";
 import HomeHero from "@/components/blocks/homeHero/HomeHero";
+import {MagazineCards} from "@/components/cards/magazineCards/MagazineCards";
+import {getCollection} from "@/helpers/firebase/getCollection";
 
-export default function Home() {
+export async function getServerSideProps() {
+    return getCollection("resources", "publish_date");
+}
+
+export default function Home({ collection }) {
     const title = 'MindClass';
     const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
@@ -32,6 +38,8 @@ export default function Home() {
                 </Col>
 
             </Row>
+
+            <MagazineCards magazineArticles={collection} simple={true} />
         </>
     );
 }

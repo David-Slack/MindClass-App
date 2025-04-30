@@ -5,7 +5,11 @@ import {CounsellorCards} from "@/components/cards/counsellorCards/CounsellorCard
 import {CounsellorMainBlock} from "@/components/blocks/counsellorMainBlock/CounsellorMainBlock";
 
 export async function getServerSideProps() {
-    return getCollection("counsellors", "name");
+    // return getCollection("counsellors", "name");
+    return getCollection({
+        collectionID: "counsellors",
+        sortBy: "name"
+    });
 }
 export default function counsellors({ collection  }) {
 

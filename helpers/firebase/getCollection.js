@@ -1,11 +1,11 @@
 import { collection, getDocs, query, where, Timestamp, orderBy } from "firebase/firestore";
 import {db} from "@/helpers/firebase/firebase";
 
-export async function getCollection(
+export async function getCollection({
     collectionID="resources",
     sortBy = "publish_date",
     live=true
-) {
+} = {}) {
     let querySnapshot = null;
     try {
         if(live===true){

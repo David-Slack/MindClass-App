@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
-export function MagazineCards({ magazineArticles }) {
+export function MagazineCards({ magazineArticles, simple=false }) {
     const allCategories = ["All", ...new Set(magazineArticles.map((article) => article.type))];
     const [activeFilter, setActiveFilter] = useState("All");
 
@@ -15,23 +15,25 @@ export function MagazineCards({ magazineArticles }) {
 
     return (
         <>
-            <Row className={styles.filter}>
-                <div>
-                    {allCategories.map((category) => (
-                        <Badge
-                            key={category}
-                            onClick={() => setActiveFilter(category)}
-                            className={`${styles.badge} ${activeFilter === category ? styles.active : ""}`}
-                            pill
-                        >
-                            {category}
-                        </Badge>
-                    ))}
-                </div>
-            </Row>
+            {!simple &&
+                <Row className={styles.filter}>
+                    <div>
+                        {allCategories.map((category) => (
+                            <Badge
+                                key={category}
+                                onClick={() => setActiveFilter(category)}
+                                className={`${styles.badge} ${activeFilter === category ? styles.active : ""}`}
+                                pill
+                            >
+                                {category}
+                            </Badge>
+                        ))}
+                    </div>
+                </Row>
+            }
 
             <Row className={styles.articleRow}>
-                {magazineArticles.map((article, count) => ( // iterate over magazineArticles
+                {magazineArticles.map((article, count) => (
                     <Col
                         className={`
                             NOTmx-auto 
@@ -40,10 +42,10 @@ export function MagazineCards({ magazineArticles }) {
                         `}
                         key={article.id}
                         lg={
-                            count > 1 ?
-                                 "3" // No XL card
+                            !simple && count <= 1 ?
+                                 "6" // No XL card
                                 //count === 6 ? 12 : "3" // An XL card
-                                : "6"
+                                : "3"
                         }
                     >
                         <Card className={`mx-auto ${styles.card}`} bg={article.colour}>
@@ -62,7 +64,7 @@ export function MagazineCards({ magazineArticles }) {
                                 className={styles.img}
                                 width={655}
                                 height={374}
-                                priority={magazineArticles.indexOf(article) < 2} // Prioritize the first few
+                                priority={magazineArticles.indexOf(article) < 2} // Prioritise the first few
                             />
                             <Link href={`/magazine/${article.id}`} className="stretched-link"></Link>
                         </Card>
