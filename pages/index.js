@@ -6,7 +6,7 @@ import { Row } from "react-bootstrap";
 
 export default function Home() {
     const title = 'MindClass';
-    const subtitle = "See the latest MindClass has to offer you";
+    const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
 
     return (

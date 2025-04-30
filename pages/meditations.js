@@ -9,7 +9,7 @@ export async function getServerSideProps() {
 }
 export default function Meditations({ collection }) {
     const title = 'Meditations';
-    const description = "Take some time out to watch our latest videos";
+    const description = "Your peace, your pace. Browse our mindfulness meditations";
 
     return (
         <>

@@ -9,7 +9,7 @@ export async function getServerSideProps() {
 }
 export default function Video({ collection }) {
     const title = 'Video';
-    const description = "Take some time out to watch our latest videos";
+    const description = "Bitesize bliss. Quick content to keep you informed on all things wellbeing";
 
     return (
         <>

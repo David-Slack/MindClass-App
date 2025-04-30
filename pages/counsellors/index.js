@@ -10,7 +10,7 @@ export async function getServerSideProps() {
 export default function counsellors({ collection  }) {
 
     const title = 'Counsellors';
-    const description = "Choose one of our counsellors";
+    const description = "Need someone to talk to without judgement? Browse our team of expert therapists";
 
     return (
         <>

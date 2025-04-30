@@ -11,7 +11,7 @@ export async function getServerSideProps() {
 export default function Courses({ collection }) {
 
     const title = 'Courses';
-    const description = "All the courses MindClass offers. Click on the different tags to filter";
+    const description = "From Mental Health Awareness, to ADHD, Sleep and the Menopause, we’ve got you covered";
 
     return (
         <>
