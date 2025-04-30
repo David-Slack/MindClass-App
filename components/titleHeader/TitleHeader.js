@@ -3,12 +3,11 @@ import styles from "./TitleHeader.module.css";
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useState, useEffect } from "react";
 
-export function TitleHeader({ title, subtitle }) {
+export function TitleHeader({ title, subtitle, tags }) {
     const [isExploding, setIsExploding] = useState(false);
 
     useEffect(() => {
         return () => {
-            // Cleanup: Remove the portal's DOM node
             const confettiElements = document.querySelectorAll('.confetti-explosion-wrapper');
             confettiElements.forEach(element => {
                 element.remove();
@@ -26,7 +25,7 @@ export function TitleHeader({ title, subtitle }) {
 
     return (
         <Row className={styles.titleHeader}>
-            <h1>
+            <h1 className={styles.h1}>
                 {title}
                 <div className={styles.smiley} onClick={handleSmileyClick}>
                     {isExploding && (
@@ -40,7 +39,7 @@ export function TitleHeader({ title, subtitle }) {
                     )}
                 </div>
             </h1>
-            <p>{subtitle}</p>
+            <p className={styles.subtitle}>{subtitle}</p>
         </Row>
     );
 }

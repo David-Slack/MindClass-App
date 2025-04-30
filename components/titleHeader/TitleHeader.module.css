@@ -8,13 +8,24 @@
     padding-top: 24px;
     padding-left: 10px;
 
+    .h1{
+        font-size: 72px;
+    }
+    .subtitle{
+        font-size: 24px;
+    }
+
     .smiley{
         width: 92px;
         height: 92px;
-        position: absolute;
-        top:24px;
-        right:24px;
-        z-index: 5;
+        /*position: absolute;*/
+        /*top:24px;*/
+        /*right:24px;*/
+        /*z-index: 5;*/
+        display: inline-block;
+        margin-left: 30px;
+        position: relative;
+        top: -14px;
 
         object-fit: cover;
         background: url('/img/bigSmiley.png') no-repeat;
@@ -44,12 +55,20 @@
     }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 900px){
     .titleHeader{
+
+        .h1{
+            font-size: 38px;
+        }
+        .subtitle{
+            font-size: 20px;
+        }
         .smiley{
             transform: scale(0.7) !important;
-            top:-14px;
-            right: 0;
+            top:0;
+            /*right: 0;*/
+            margin-left: 0;
         }
     }
 }

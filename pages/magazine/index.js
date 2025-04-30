@@ -8,8 +8,8 @@ export async function getServerSideProps() {
 }
 
 export default function Magazine({ collection }) {
-    const title = "The Daily Mind - a mental health magazine";
-    const description = "From interviews, to articles, tips and insights - grab a brew and read it through";
+    const title = "The Daily Mind";
+    const description = "A mental health magazine. From interviews, to articles, tips and insights - grab a brew and read it through";
 
     return (
         <>

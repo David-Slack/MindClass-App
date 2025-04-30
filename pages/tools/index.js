@@ -8,7 +8,24 @@ import MoodTracking from "@/components/tools/MoodTracking/MoodTracking";
 export default function Tools() {
 
     const title = 'Tools';
-    const description = "Helpful tools and tricks to help you on your journey";
+    const description = "AI powered tools to aid productivity, relaxation and performance";
+    const tags = [
+        {
+            url: "#MoodTracking",
+            title: "Mood Tracking",
+            desc: "How are you feeling today?"
+        },
+        {
+            url: "#Breathing",
+            title: "Breathing",
+            desc: "Practice breathing in a controlled manner"
+        },
+        {
+            url: "#SmartTools",
+            title: "Smart tools",
+            desc: "AI tools to help you with you with your day"
+        },
+    ];
 
     return (
         <>
@@ -17,9 +34,8 @@ export default function Tools() {
                 <meta name="description" content={description} />
             </Head>
 
-            <TitleHeader title={title} subtitle={description} />
+            <TitleHeader title={title} subtitle={description} tags={tags} />
 
-            {/*TODO: tabs for each section*/}
             <Row>
                 <h2>Mood Tracking</h2>
             </Row>
