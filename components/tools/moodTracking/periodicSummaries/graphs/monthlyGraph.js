@@ -1,6 +1,6 @@
 // components/tools/moodTracking/periodicSummaries/graphs/monthlyGraph.js
 import React, { useEffect, useState } from 'react';
-import {Bar, Line} from "react-chartjs-2";
+import {Bar} from "react-chartjs-2";
 import moment from 'moment';
 import "chart.js/auto";
 import {Row, Button, Col} from 'react-bootstrap';
