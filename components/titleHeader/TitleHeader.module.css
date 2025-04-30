@@ -102,5 +102,14 @@
             /*right: 0;*/
             margin-left: 0;
         }
+
+        .tag {
+            font-size: 11px;
+            border-radius: 8px;
+            margin: 0 6px 6px 0;
+            .tagLink{
+                padding: 4px 8px;
+            }
+        }
     }
 }
