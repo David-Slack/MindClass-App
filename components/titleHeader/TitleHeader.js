@@ -1,4 +1,4 @@
-import {Badge, Col, Row} from "react-bootstrap";
+import {Badge, Col, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import styles from "./TitleHeader.module.css";
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useState, useEffect } from "react";
@@ -42,14 +42,17 @@ export function TitleHeader({ title, subtitle, tags }) {
             </h1>
             <p className={styles.subtitle}>{subtitle}</p>
             <Col>
-                { tags && tags.map((tag) => (
-                    <Badge
-                        key={tag.url}
-                        className={`${styles.tag}`}
-                        pill
+                { tags && tags.map((tag, count) => (
+                    <OverlayTrigger
+                        key={tag.count}
+                        placement="top"
+                        overlay={<Tooltip id={`tooltip-tags-${count}`}>{tag.desc}</Tooltip>}
+                        delay={{ show: 200, hide: 100 }}
                     >
-                        <Link className={styles.tagLink} href={tag.url}>{tag.title}</Link>
-                    </Badge>
+                        <Badge className={`${styles.tag}`} pill>
+                            <Link className={styles.tagLink} href={tag.url}>{tag.title}</Link>
+                        </Badge>
+                    </OverlayTrigger>
                 ))}
             </Col>
         </Row>

@@ -129,9 +129,9 @@ export function MainMenu(){
                     />
                 </Link>
                 <ul>
-                    { nav && nav.map((link)=>{
+                    { nav && nav.map((link, count)=>{
                         return (
-                                <li key={link.url}>
+                                <li key={count}>
                                     <Link
                                         href={link.url}
                                         className={`${findActiveLink( link.url, pathname ) ? styles.active : ''}`}
@@ -139,7 +139,7 @@ export function MainMenu(){
                                         <OverlayTrigger
                                             key={link.url}
                                             placement="right"
-                                            overlay={<Tooltip id={`tooltip-right-leftmenu-${link.url}`}>{link.desc}</Tooltip>}
+                                            overlay={<Tooltip id={`tooltip-right-leftmenu-${count}`}>{link.desc}</Tooltip>}
                                             delay={{ show: 400, hide: 100 }}
                                         >
                                         <span className={styles.titleSpan}>{link.title}</span>
