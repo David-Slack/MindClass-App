@@ -1,11 +1,11 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
 .btn-primary {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: #000;
-    --bs-btn-border-color: #fff;
-    --bs-btn-hover-color: #000;
-    --bs-btn-hover-bg: #fff;
+    --bs-btn-color: #000;
+    --bs-btn-bg: #fff;
+    --bs-btn-border-color: #000;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #000;
     --bs-btn-hover-border-color: #000;
     --bs-btn-focus-shadow-rgb: 49, 132, 253;
     --bs-btn-active-color: #000;
@@ -16,27 +16,36 @@
     --bs-btn-disabled-bg: #333;
     --bs-btn-disabled-border-color: #ccc;
     border-radius: 20px;
+    border-width: 2px;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
     background: #fdfdfe !important;
     -webkit-box-shadow: 0 0 0 1000px #fdfdfe inset;
 }
+.modal-content{
+    border-radius: 16px;
+    border: 1px solid #000;
+}
+.card {
+    border-radius: 16px;
+}
 
 /* Colours */
 :root {
+    --yellow: #e6c64f;
     --yellowAlt: #e6c64f;
     --yellowLight: #fdf1cb;
     --green: #34c559;
+    --greenLight: #e4faeb;
     --blue: #99e1ea;
+    --blueLight: #e4f9fb;
     --orange: #dc7245;
+    --orangeLight: #fae9e5;
     --red: #d84641;
     --redLight: #fae4e5;
-    --greenLight: #e4faeb;
-    --blueLight: #e4f9fb;
-    --yellow: #e6c64f;
-    --orangeLight: #fae9e5;
     --purple: #9441d8;
+    --purpleLight: #f6edfd;
 }
 
 .bg-yellowAlt{background: var(--yellowAlt) !important;}
@@ -132,25 +141,31 @@ p{
     margin-bottom: 1.2em;
     line-height: 1.5em;
 }
+.h1,
 h1{
     font-size: 48px;
     margin: 0;
 }
+.h5,
 h5{
     font-size: 22px;
+    font-weight: bold;
 }
+.h4,
 h4{
     font-size: 26px;
     margin-bottom: .1em;
 }
+.h3,
 h3{
     font-size: 30px;
 }
+.h2,
 h2{
     font-size: 34px;
 }
 strong{
-    font-weight: 600;
+    font-weight: bold;
 }
 .row>ul,
 ul{

@@ -1,0 +1,179 @@
+.modal{
+    background-color: #e2f8e9;
+    border-radius: 16px;
+    border: 1px solid #000;
+}
+.moodEmoji{
+    font-size: 90px;
+}
+
+.h4{
+    padding: 20px 0;
+    text-align: center;
+}
+
+.noteRow{
+    min-height: 100px;
+    .noteBtn{
+        border: none;
+        background-color: transparent;
+        margin-bottom: 40px;
+        color: rgba(0, 0, 0, 0.3);
+        &:hover{
+            color: #000;
+        }
+    }
+    .noteTextarea{
+        min-width: 250px;
+        width: 100%;
+    }
+
+}
+
+.navBtn{
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    background-color: rgba(255, 255, 255, 0.3);
+    &:hover{
+        background-color: #000;
+    }
+}
+.navBtn i{
+    font-size: 18px;
+}
+.primaryBtn{
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 23px;
+    width: 150px;
+    height: 46px;
+    &:hover{
+        background-color: #000;
+    }
+}
+
+.card{
+    border: 1px solid #000;
+    background-color: var(--greenLight);
+    margin-bottom: 20px;
+    min-height: 442px;
+
+    .calendarRow{
+        min-height: 540px;
+        margin-bottom: 20px;
+    }
+
+    .yearContainer{
+        position: relative;
+        display: inline-block;
+        width: 175px
+    }
+}
+
+.cardPixels{
+    background-color: var(--redLight);
+    height: calc(100% - 482px);
+}
+.cardGraphs{
+    background-color: var(--purpleLight);
+    height: calc(100% - 20px);
+}
+
+.confettiWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Year Pixels */
+.dayPixel {
+    cursor: pointer;
+    margin: 0.14rem;
+    border-radius: 0.25rem;
+    height: 1.6rem;
+    width: 1.6rem;
+    overflow: hidden;
+}
+
+.todayPixel {
+    box-shadow: inset 0 0 0 2px #000 !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Dynamically set background color for each day pixel */
+.moodPixel-1 { background-color: rgba(255, 99, 132, 0.8); }
+.moodPixel-2 { background-color: rgba(255, 159, 64, 0.8); }
+.moodPixel-3 { background-color: rgba(255, 205, 86, 0.8); }
+.moodPixel-4 { background-color: rgba(75, 192, 192, 0.8); }
+.moodPixel-5 { background-color: rgba(115, 171, 132, 0.8); }
+.moodPixel-minus-1 {
+    background-color: rgba(255, 255, 255, 0.3);
+    transition-duration: .2s;
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.yearPicker {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #faeaeb;
+    border: 2px solid #000;
+    border-radius: 23px;
+    padding: 20px 10px;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    width: 150px;
+
+    .yearOption {
+        border: none;
+        background-color: #f8e2e3;
+        padding: 0.3rem 0.5rem;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        &:hover {
+            background-color: #000;
+            color: white;
+        }
+    }
+
+    .activeYear {
+        background-color: #000;
+        color: white;
+    }
+
+    .pickerCloseButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #555;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}

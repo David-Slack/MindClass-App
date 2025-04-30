@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRouter } from 'next/navigation';
 
+// TODO: Move to the DB
 const nav = [
     {
         url: "/",
@@ -36,11 +37,11 @@ const nav = [
         title: "Videos",
         hover: "this is a hover"
     },
-/*    {
+    {
         url: "/tools",
         title: "Tools",
         hover: "this is a hover"
-    },*/
+    },
 ];
 
 function findActiveLink(link, pathname){

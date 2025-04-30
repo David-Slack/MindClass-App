@@ -1,10 +1,13 @@
+import {Row} from "react-bootstrap";
 import Head from "next/head";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
+import {ConsultantTool} from "@/components/tools/ConsultantTool";
 
-export default function Home() {
 
-    const title = 'Tools';
-    const description = "Useful tool to help you on your journey";
+export default function Chef() {
+
+    const title = 'The Consultant';
+    const description = "But what are the pros and cons?";
 
     return (
         <>
@@ -14,6 +17,10 @@ export default function Home() {
             </Head>
 
             <TitleHeader title={title} subtitle={description} />
+
+            <Row>
+                <ConsultantTool />
+            </Row>
         </>
     );
 }

@@ -1,0 +1,25 @@
+.card{
+    border: #000 2px solid;
+    border-radius: 16px;
+    padding: 0;
+    margin-bottom: 20px;
+    transition-duration: .3s;
+    height: calc( 100% - 20px );
+
+    .cardImg{
+        width:50%;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+
+    .cardText{
+        margin-right: 42px;
+        font-size: 14px;
+    }
+
+    &:hover{
+        box-shadow: -1px 4px 10px 3px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+    }
+}
+

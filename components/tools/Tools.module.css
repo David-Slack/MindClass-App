@@ -1,0 +1,34 @@
+.toolCard{
+    padding: 20px;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    margin: 0 auto 20px auto;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 16px;
+
+    .toolIcon{
+        font-size: 100px;
+    }
+
+    .toolContainer{
+        overflow: hidden;
+        text-align: center;
+
+        .tool{
+            width: 100%;
+            height: 800px;
+            overflow: hidden;
+            margin: -180px auto -80px auto;
+            border: none;
+        }
+    }
+}
+
+.consultant.toolCard{
+    .tool {
+        height: 880px;
+        margin: -180px auto -80px auto;
+    }
+}
