@@ -6,13 +6,13 @@ import "chart.js/auto";
 import { Row, Button } from 'react-bootstrap';
 import styles from './WeeklyGraph.module.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { DATE_FORMAT, WEEKLY_GRAPH_BACKGROUND_COLOR, WEEKLY_GRAPH_BORDER_COLOR } from '../../utils';
+import {DATE_FORMAT, EMOJI_INITIAL_STATE, WEEKLY_GRAPH_BACKGROUND_COLOR, WEEKLY_GRAPH_BORDER_COLOR} from '../../utils';
 
 export default function WeeklyGraph({ input }) {
     const [data, setData] = useState({ labels: [], datasets: [] });
     const [week, setWeek] = useState("");
     const [xLabels, setXLabels] = useState([]);
-    const [yLabels] = useState(["", "😢", "🙁", "😐", "🙂", "😄"]);
+    const [yLabels] = useState(EMOJI_INITIAL_STATE);
     const [offset, setOffset] = useState(0);
 
     const options = {

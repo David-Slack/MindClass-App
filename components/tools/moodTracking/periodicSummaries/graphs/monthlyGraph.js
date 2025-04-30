@@ -6,7 +6,7 @@ import "chart.js/auto";
 import { Row, Button } from 'react-bootstrap';
 import styles from './MonthlyGraph.module.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { DATE_FORMAT, MOOD_COLORS_BACKGROUND, MOOD_COLORS_BORDER } from '../../utils';
+import { DATE_FORMAT, MOOD_COLORS_BACKGROUND, MOOD_COLORS_BORDER, EMOJI_INITIAL_STATE } from '../../utils';
 
 export default function MonthlyGraph({ input }) {
     const [data, setData] = useState({ labels: [], datasets: [] });
@@ -65,7 +65,7 @@ export default function MonthlyGraph({ input }) {
         });
 
         setData({
-            labels: ["😢", "🙁", "😐", "🙂", "😄"],
+            labels: EMOJI_INITIAL_STATE.slice(1), // Use EMOJI_INITIAL_STATE and remove the first empty element
             datasets: [
                 {
                     data: tempData,

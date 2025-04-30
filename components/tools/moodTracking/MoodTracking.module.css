@@ -73,6 +73,9 @@
 .cardPixels{
     background-color: var(--redLight);
 }
+.cardGraphs{
+    background-color: var(--orangeLight);
+}
 
 .confettiWrapper {
     position: absolute;

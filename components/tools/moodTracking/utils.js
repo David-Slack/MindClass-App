@@ -1,11 +1,9 @@
 // components/tools/MoodTracking/utils.js
+export const EMOJI_INITIAL_STATE = ["🤔", "😢", "🙁", "😐", "🙂", "😄"];
 
 export const getEmoji = (mood) => {
-    if (mood === -1) return "🤔";
-    const emoji = [
-        "😢", "🙁", "😐", "🙂", "😄"
-    ];
-    return emoji[mood - 1];
+    if (mood === -1) return EMOJI_INITIAL_STATE[0];
+    return EMOJI_INITIAL_STATE[mood];
 };
 
 export const getSaying = (mood) => {

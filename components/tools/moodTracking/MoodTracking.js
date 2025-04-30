@@ -243,7 +243,7 @@ export default function MoodTracking() {
 
             {/*Graphs*/}
             <Col md={6}>
-                <Card>
+                <Card className={`${styles.card} ${styles.cardGraphs}`}>
                     <Card.Body>
                         <h2>Weekly</h2>
                         <WeeklyGraph input={moodEntries} />
