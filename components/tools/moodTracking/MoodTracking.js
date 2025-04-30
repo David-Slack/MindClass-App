@@ -250,11 +250,11 @@ export default function MoodTracking() {
 
                         <div className="my-4"></div>
                         <h2>Monthly</h2>
-                        {/*<MonthlyGraph input={moodEntries} />*/}
+                        <MonthlyGraph input={moodEntries} />
 
                         <div className="my-4"></div>
                         <h2>Yearly</h2>
-                        {/*<YearlyGraph input={moodEntries} />*/}
+                        <YearlyGraph input={moodEntries} />
 
                     </Card.Body>
                 </Card>
