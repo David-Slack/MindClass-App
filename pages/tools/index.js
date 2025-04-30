@@ -33,31 +33,28 @@ export default function Tools() {
                 <title>{`${title} | MindClass`}</title>
                 <meta name="description" content={description} />
             </Head>
-
             <TitleHeader title={title} subtitle={description} tags={tags} />
 
-            <Row>
+            <Row id={"MoodTracking"}>
                 <h2>Mood Tracking</h2>
             </Row>
-
             <Row>
                 <MoodTracking />
             </Row>
 
-            <Row>
+            <Row id={"Breathing"}>
                 <h2>Breathing</h2>
             </Row>
-
             <Row>
                 <BreathingCards />
             </Row>
-            <Row>
+
+            <Row id={"SmartTools"}>
                 <h2>Smart tools</h2>
             </Row>
             <Row>
                 <ToolCards />
             </Row>
-
         </>
     );
 }

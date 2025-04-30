@@ -1,7 +1,8 @@
-import { Row } from "react-bootstrap";
+import {Badge, Col, Row} from "react-bootstrap";
 import styles from "./TitleHeader.module.css";
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export function TitleHeader({ title, subtitle, tags }) {
     const [isExploding, setIsExploding] = useState(false);
@@ -40,6 +41,17 @@ export function TitleHeader({ title, subtitle, tags }) {
                 </div>
             </h1>
             <p className={styles.subtitle}>{subtitle}</p>
+            <Col>
+                { tags && tags.map((tag) => (
+                    <Badge
+                        key={tag.url}
+                        className={`${styles.tag}`}
+                        pill
+                    >
+                        <Link className={styles.tagLink} href={tag.url}>{tag.title}</Link>
+                    </Badge>
+                ))}
+            </Col>
         </Row>
     );
 }
