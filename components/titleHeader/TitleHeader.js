@@ -44,7 +44,7 @@ export function TitleHeader({ title, subtitle, tags }) {
             <Col>
                 { tags && tags.map((tag, count) => (
                     <OverlayTrigger
-                        key={tag.count}
+                        key={count}
                         placement="top"
                         overlay={<Tooltip id={`tooltip-tags-${count}`}>{tag.desc}</Tooltip>}
                         delay={{ show: 200, hide: 100 }}

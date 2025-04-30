@@ -7,9 +7,9 @@ export function CounsellorCards({ collection }) {
     return (
         <Row sm={1} md={2} lg={2} xl={3} className={styles.cardGroup}>
 
-            {collection.map((counsellor) => (
+            {collection.map((counsellor, count) => (
 
-                <Card className={styles.card} bg={counsellor.colour}>
+                <Card key={count} className={styles.card} bg={counsellor.colour}>
                     <Card.Body>
                         <Card.Title>{counsellor.name}</Card.Title>
                         <Card.Text className={styles.cardText}>
