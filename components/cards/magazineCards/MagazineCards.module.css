@@ -59,6 +59,7 @@
     color: #000;
     transition-duration: .3s;
     border-radius: 16px;
+    height: 100%;
 
     .title{
         min-height:80px;
