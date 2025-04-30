@@ -140,9 +140,9 @@ export function MainMenu(){
                                             key={link.url}
                                             placement="right"
                                             overlay={<Tooltip id={`tooltip-right-leftmenu-${count}`}>{link.desc}</Tooltip>}
-                                            delay={{ show: 400, hide: 100 }}
+                                            delay={{ show: 300, hide: 100 }}
                                         >
-                                        <span className={styles.titleSpan}>{link.title}</span>
+                                            <span className={styles.titleSpan}>{link.title}</span>
                                         </OverlayTrigger>
                                     </Link>
                                 </li>
