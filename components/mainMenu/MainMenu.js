@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar, Button } from 'react-bootstrap';
+import {Container, Nav, Navbar, Button, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import Link from "next/link";
 import styles from "./MainMenu.module.css";
 import Image from "next/image";
@@ -10,37 +10,37 @@ const nav = [
     {
         url: "/",
         title: "Home",
-        hover: "this is a hover"
+        hover: "Welcome to MindClass, counsellors, courses and content are just a click away!"
     },
     {
         url: "/courses",
         title: "Courses",
-        hover: "this is a hover"
+        hover: "From Mental Health Awareness, to ADHD, Sleep and the Menopause, we’ve got you covered"
     },
     {
         url: "/counsellors",
         title: "Counselling",
-        hover: "this is a hover"
+        hover: "Need someone to talk to without judgement? Browse our team of expert therapists"
     },
     {
         url: "/magazine",
         title: "Magazine",
-        hover: "this is a hover"
+        hover: "From interviews, to articles, tips and insights - grab a brew and read it through"
     },
     {
         url: "/meditations",
         title: "Meditations",
-        hover: "this is a hover"
+        hover: "Your peace, your pace. Browse our mindfulness meditations"
     },
     {
         url: "/video",
         title: "Videos",
-        hover: "this is a hover"
+        hover: "Bitesize bliss. Quick content to keep you informed on all things wellbeing"
     },
     {
         url: "/tools",
         title: "Tools",
-        hover: "this is a hover"
+        hover: "AI powered tools to aid productivity, relaxation and performance"
     },
 ];
 
@@ -129,19 +129,24 @@ export function MainMenu(){
                     />
                 </Link>
                 <ul>
-                    {
-                        nav.map((link)=>{
-                            return (
+                    { nav && nav.map((link)=>{
+                        return (
                                 <li key={link.url}>
                                     <Link
                                         href={link.url}
                                         className={`${findActiveLink( link.url, pathname ) ? styles.active : ''}`}
                                     >
+                                        <OverlayTrigger
+                                            key={link.url}
+                                            placement="right"
+                                            overlay={<Tooltip id={`tooltip-right-leftmenu-${link.url}`}>{link.hover}</Tooltip>}
+                                            delay={{ show: 400, hide: 100 }}
+                                        >
                                         <span className={styles.titleSpan}>{link.title}</span>
+                                        </OverlayTrigger>
                                     </Link>
                                 </li>
-                            )
-                        })
+                        ) })
                     }
                 </ul>
                 <Button className={styles.signOut} onClick={signOut}>Sign out</Button>
