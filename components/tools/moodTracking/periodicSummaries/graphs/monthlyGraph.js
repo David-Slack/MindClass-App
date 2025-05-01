@@ -36,10 +36,6 @@ export default function MonthlyGraph({ input }) {
         },
     };
 
-    useEffect(() => {
-        getMonths(offset);
-    }, [offset, input]);
-
     const getMonths = (monthOffset = 0) => {
         const today = moment().add(monthOffset, "months");
         setMonth(today.format("MMMM"));
@@ -49,6 +45,10 @@ export default function MonthlyGraph({ input }) {
 
         getData(startOfMonth, endOfMonth, year);
     };
+
+    useEffect(() => {
+        getMonths(offset);
+    }, [offset, input, getMonths]);
 
     const getData = async (startOfMonth, endOfMonth, year) => {
         const tempData = [0, 0, 0, 0, 0];
