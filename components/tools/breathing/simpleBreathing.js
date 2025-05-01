@@ -72,7 +72,7 @@ export default function SimpleBreathing() {
             }
             setCircleEffect(false);
         }
-    }, [breathMessage, breathCounter]);
+    }, [breathMessage]);
 
     useEffect(() => {
         return () => {

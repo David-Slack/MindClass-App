@@ -81,7 +81,7 @@ export default function BoxBreathing() {
             if (breathMessage === BREATH_OUT && BREATH_OUT_AUDIO) BREATH_OUT_AUDIO.play().catch(error => console.error('Error playing BREATH_OUT_AUDIO:', error));
             if ((breathMessage === IN_HOLD || breathMessage === OUT_HOLD) && HOLD_AUDIO) HOLD_AUDIO.play().catch(error => console.error('Error playing HOLD_AUDIO:', error));
         }
-    }, [breathMessage, muted, breathCounter]);
+    }, [breathMessage, muted]);
 
     useEffect(() => {
         if (started) {
