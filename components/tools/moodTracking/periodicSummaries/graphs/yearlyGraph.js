@@ -39,6 +39,10 @@ export default function YearlyGraph({ input }) {
         },
     };
 
+    useEffect(() => {
+        getYears(offset);
+    }, [offset, input]);
+
     const getYears = (yearOffset = 0) => {
         const thisYear = moment().year();
         const offsetYear = thisYear + yearOffset;
@@ -93,10 +97,6 @@ export default function YearlyGraph({ input }) {
             datasets: dataSets,
         });
     };
-
-    useEffect(() => {
-        getYears(offset);
-    }, [offset, input, getYears]);
 
     return (
         <>
