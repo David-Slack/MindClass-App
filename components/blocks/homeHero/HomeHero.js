@@ -16,7 +16,7 @@ export default function HomeHero({ userData }) {
                             <h3 className={styles.heroTitle}>Welcome to the MindClass dashboard</h3>
                         )}
                         <p className={styles.heroSubtitle}>
-                            We'll keep you up to date with the latest in Mental Health, so come back daily and see what's changed.
+                            We&apos;ll keep you up to date with the latest in Mental Health, so come back daily and see what&apos;s changed.
                             <Link href="/magazine" passHref>
                                 <span className={styles.pulse}>&nbsp;Stay informed.</span>
                             </Link>
