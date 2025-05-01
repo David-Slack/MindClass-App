@@ -2,7 +2,7 @@ import styles from "./MeditationsCards.module.css";
 import { Col } from "react-bootstrap";
 import dynamic from 'next/dynamic';
 import { LoadingSpinner } from '@/components/loadingSpinner/LoadingSpinner';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 const ReactPlayer = dynamic(() => import('react-player'), {
     ssr: false,
@@ -10,26 +10,35 @@ const ReactPlayer = dynamic(() => import('react-player'), {
 });
 
 export function VideoCards({ collection }) {
+    const wrapperRefs = useRef([]);
+
+    useEffect(() => {
+        // Ensure wrapperRefs.current has enough elements for all videos
+        wrapperRefs.current = wrapperRefs.current.slice(0, collection.length);
+    }, [collection]);
+
+    const handleReady = (index) => () => {
+        if (wrapperRefs.current[index]) {
+            wrapperRefs.current[index].classList.add(styles.videoLoaded);
+        }
+    };
+
     return (
-        collection.map((video) => {
-            const wrapperRef = useRef(null);
-
-            const handleReady = () => {
-                if (wrapperRef.current) {
-                    wrapperRef.current.classList.add(styles.videoLoaded);
-                }
-            };
-
+        collection.map((video, index) => {
             let videoPlayer;
 
             const reactPlayerComponent = (url) => (
-                <div ref={wrapperRef} className={styles.reactPlayerWrapper}>
+                <div
+                    ref={(el) => (wrapperRefs.current[index] = el)}
+                    className={styles.reactPlayerWrapper}
+                    key={index}
+                >
                     <ReactPlayer
                         url={url}
                         width="auto"
                         height="100%"
                         controls={true}
-                        onReady={handleReady}
+                        onReady={handleReady(index)}
                     />
                 </div>
             );

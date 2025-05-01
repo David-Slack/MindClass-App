@@ -1,0 +1,178 @@
+.heroAnimated {
+    background-color: #f4f8f9;
+    padding: 80px 0;
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+}
+
+.heroText {
+    z-index: 1;
+}
+
+.heroTitle {
+    color: #2c3e50;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.wave {
+    display: inline-block;
+    animation: waveAnimation 1.5s infinite alternate;
+    transform-origin: bottom;
+}
+
+@keyframes waveAnimation {
+    0% {
+        transform: rotateZ(-5deg);
+    }
+    100% {
+        transform: rotateZ(5deg);
+    }
+}
+
+.heroSubtitle {
+    color: #555;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.pulse {
+    display: inline-block;
+    animation: pulseOpacity 2s infinite alternate;
+    font-weight: 600;
+    color: #3498db;
+}
+
+@keyframes pulseOpacity {
+    0% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.heroCTA button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.heroCTA button:hover {
+    transform: scale(1.05);
+}
+
+.ctaButtonPrimary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.ctaButtonSecondary {
+    background-color: transparent;
+    color: #3498db;
+    border: 1px solid #3498db;
+    margin-left: 15px;
+}
+
+.animatedBackground {
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    opacity: 0.6;
+    animation: slideIn 5s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        right: -100px;
+        opacity: 0;
+    }
+    100% {
+        right: 50px;
+        opacity: 0.6;
+    }
+}
+
+.floatingCircle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float 6s infinite alternate;
+}
+
+.floatingCircle:nth-child(1) {
+    width: 40px;
+    height: 40px;
+    background-color: #8ac4ff;
+    top: 60px;
+    left: 30px;
+    animation-delay: 0s;
+    animation-duration: 7s;
+}
+
+.floatingCircle:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    background-color: #64b5f6;
+    top: 180px;
+    right: 20px;
+    animation-delay: 1.5s;
+    animation-duration: 8s;
+}
+
+.floatingCircle:nth-child(3) {
+    width: 30px;
+    height: 30px;
+    background-color: #42a5f5;
+    bottom: 40px;
+    left: 150px;
+    animation-delay: 3s;
+    animation-duration: 6s;
+}
+
+.floatingCircle:nth-child(4) {
+    width: 70px;
+    height: 70px;
+    background-color: #bbdefb;
+    top: 100px;
+    right: 100px;
+    animation-delay: 4s;
+    animation-duration: 9s;
+}
+
+.floatingCircle:nth-child(5) {
+    width: 50px;
+    height: 50px;
+    background-color: #1e88e5;
+    bottom: 120px;
+    left: 200px;
+    animation-delay: 1s;
+    animation-duration: 5s;
+}
+
+.floatingCircle:nth-child(6) {
+    width: 35px;
+    height: 35px;
+    background-color: #90caf9;
+    top: 250px;
+    right: 50px;
+    animation-delay: 5s;
+    animation-duration: 7.5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-15px);
+    }
+}

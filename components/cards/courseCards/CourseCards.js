@@ -19,6 +19,7 @@ export function CourseCards({ collection }) {
                         alt={card.title}
                         className={styles.img}
                         fill={true}
+                        sizes="(max-width: 100%)"
                         priority={collection.indexOf(card) < 2} // Prioritize the first few
                     />
                     <Card.Body className={styles.body}>

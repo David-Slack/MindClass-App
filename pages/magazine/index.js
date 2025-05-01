@@ -4,7 +4,10 @@ import {MagazineCards} from "@/components/cards/magazineCards/MagazineCards";
 import {TitleHeader} from "@/components/titleHeader/TitleHeader";
 
 export async function getServerSideProps() {
-    return getCollection("resources", "publish_date");
+    return getCollection({
+        collectionID: "resources",
+        sortBy: "publish_date"
+    });
 }
 
 export default function Magazine({ collection }) {

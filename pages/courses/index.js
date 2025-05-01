@@ -5,7 +5,10 @@ import {CourseCards} from "@/components/cards/courseCards/CourseCards";
 import {Row} from "react-bootstrap";
 
 export async function getServerSideProps() {
-    return getCollection("courses", "publish_date");
+    return getCollection({
+        collectionID:"courses",
+        sortBy :"publish_date"
+    });
 }
 
 export default function Courses({ collection }) {

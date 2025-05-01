@@ -2,9 +2,22 @@ import Head from "next/head";
 import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
 import { LoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
-import { Row } from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
+import HomeHero from "@/components/blocks/homeHero/HomeHero";
+import {getCollection} from "@/helpers/firebase/getCollection";
+import Link from "next/link";
+import HomeMagazine from "@/components/blocks/homeMagazine/HomeMagazine";
 
-export default function Home() {
+export async function getServerSideProps() {
+    return getCollection({
+        collectionID: "resources",
+        sortBy: "publish_date",
+        limitNumber: 6,
+        returnKey: 'articles'
+    });
+}
+
+export default function Home({ articles }) {
     const title = 'MindClass';
     const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
@@ -18,25 +31,34 @@ export default function Home() {
 
             <TitleHeader title={title} subtitle={subtitle} />
             <Row>
+                <Col md={12}>
 
-                {loading ? (
-                    <LoadingSpinner />
-                ) : userData ? (
-                    <>
-                        {
-                            userData.customerData?.firstName ?
-                                <h2>Hi {userData.customerData.firstName}, welcome to the MindClass dashboard
-                                    {userData.customerData?.company && <> with {userData.customerData.company}</>}</h2>
-                                :
-                                <h3>Welcome to the MindClass dashboard</h3>
-                        }
-                        <p>We'll keep you up to date with the latest in Mental Health, so come back daily and see what's changed</p>
-                    </>
-                ) : (
-                    <p>Not logged in.</p>
-                )}
+                    {loading ? (
+                        <LoadingSpinner />
+                    ) : userData ? (
+                        <HomeHero userData={userData} />
+                    ) : (
+                        <p>Not logged in.</p>
+                    )}
 
+                </Col>
             </Row>
+
+            <HomeMagazine articles={articles} />
+
+{/*            <Row>
+                <h2>Latest Courses</h2>
+                <Link href={'/courses'}>View all</Link>
+            </Row>
+
+            <Row>
+                <h2>Counsellors</h2>
+                <Link href={'/counsellors'}>View page</Link>
+            </Row>
+
+            <Row>
+                <h2>Testimonials</h2>
+            </Row>*/}
         </>
     );
 }
