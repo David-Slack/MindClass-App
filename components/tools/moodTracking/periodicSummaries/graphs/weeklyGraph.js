@@ -50,10 +50,6 @@ export default function WeeklyGraph({ input }) {
         },
     };
 
-    useEffect(() => {
-        getDates(offset);
-    }, [offset, input]);
-
     const getDates = (weekOffsets = 0) => {
         let tempDays = [];
         const tempDates = [];
@@ -80,6 +76,10 @@ export default function WeeklyGraph({ input }) {
         setXLabels(tempDates);
         getData(tempDays, tempDates, year);
     }
+
+    useEffect(() => {
+        getDates(offset);
+    }, [offset, input, getDates]);
 
     const getData = async (dates, tempDates, year) => {
         const tempData = [];
