@@ -22,7 +22,7 @@ export function LoginStreak({streak}) {
                 <Card.Text>
                     {
                         streak === 1 &&
-                        <p>This is the first time in your login streak. Login each day to see what we've been doing.</p>
+                        <p>This is the first time in your login streak. Login each day to see what we&apos;ve been doing.</p>
                     }
 
                     {
@@ -32,7 +32,7 @@ export function LoginStreak({streak}) {
 
                     {
                         streak > 3 &&
-                        <p>You have logged in {streak} times in a row, you're doing well!</p>
+                        <p>You have logged in {streak} times in a row, you&apos;re doing well!</p>
                     }
                 </Card.Text>
             </Card.Body>
