@@ -3,21 +3,53 @@ import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
 import { LoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import {Col, Row} from "react-bootstrap";
-import HomeHero from "@/components/blocks/homeHero/HomeHero";
+// import HomeHero from "@/components/blocks/homeHero/HomeHero";
 import {getCollection} from "@/helpers/firebase/getCollection";
-import Link from "next/link";
 import HomeMagazine from "@/components/blocks/homeMagazine/HomeMagazine";
+import HomeCourses from "@/components/blocks/homeCourses/HomeCourses";
+import HomeCounsellors from "@/components/blocks/homeCounsellors/HomeCounsellors";
 
 export async function getServerSideProps() {
-    return getCollection({
+    const articlesPromise = getCollection({
         collectionID: "resources",
         sortBy: "publish_date",
         limitNumber: 6,
         returnKey: 'articles'
     });
+
+    const coursesPromise = getCollection({
+        collectionID: "courses",
+        sortBy: "publish_date",
+        limitNumber: 6,
+        returnKey: 'courses'
+    });
+
+    const counsellorsPromise = getCollection({
+        collectionID: "counsellors",
+        sortBy: "name",
+        returnKey: 'counsellors'
+    });
+
+    const [
+        articlesResult,
+        coursesResult,
+        counsellorsResult
+    ] = await Promise.all([
+        articlesPromise,
+        coursesPromise,
+        counsellorsPromise
+    ]);
+
+    return {
+        props: {
+            articles: articlesResult.props.articles || [],
+            courses: coursesResult.props.courses || [],
+            counsellors: counsellorsResult.props.counsellors || [],
+        },
+    };
 }
 
-export default function Home({ articles }) {
+export default function Home({ articles, courses, counsellors }) {
     const title = 'MindClass';
     const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
@@ -36,29 +68,18 @@ export default function Home({ articles }) {
                     {loading ? (
                         <LoadingSpinner />
                     ) : userData ? (
-                        <HomeHero userData={userData} />
+                        <>
+                            {/*<HomeHero userData={userData} />*/}
+                            <HomeMagazine articles={articles} />
+                            <HomeCourses courses={courses} />
+                            <HomeCounsellors courses={counsellors} />
+                        </>
                     ) : (
                         <p>Not logged in.</p>
                     )}
 
                 </Col>
             </Row>
-
-            <HomeMagazine articles={articles} />
-
-{/*            <Row>
-                <h2>Latest Courses</h2>
-                <Link href={'/courses'}>View all</Link>
-            </Row>
-
-            <Row>
-                <h2>Counsellors</h2>
-                <Link href={'/counsellors'}>View page</Link>
-            </Row>
-
-            <Row>
-                <h2>Testimonials</h2>
-            </Row>*/}
         </>
     );
 }

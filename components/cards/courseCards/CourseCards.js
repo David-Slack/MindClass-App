@@ -9,7 +9,7 @@ export function CourseCards({ collection }) {
 
         collection.map((card) => (
             <Col
-                className={`${styles.col}`}
+                className={`cardCol ${styles.col}`}
                 key={card.id}
                 lg={3}
             >

@@ -176,6 +176,17 @@ ul{
 li{
     line-height: 1.8em;
 }
+.badge.rounded-pill.bg-primary{
+    background-color: transparent !important;
+    color: #000;
+    border: 2px solid #000;
+    text-decoration: none;
+    font-size: 16px;
+    &:hover{
+        background-color: #000 !important;
+        color: #fff;
+    }
+}
 
 /* NOT USED??
 .gradient-custom-2 {
@@ -233,12 +244,17 @@ li{
     100% {padding-right: 0;}
 }
 
-@media screen and (min-width: 991px) {
+@media screen and (max-width: 990px) {
+    .scroll-button{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 990px) {
 
     .scrollable-container {
-        position: relative; /* For positioning the buttons */
-        margin-bottom: 20px; /* Add some space below the scroller */
-
+        position: relative;
+        margin-bottom: 20px;
 
         .card-group-scroll {
             overflow-x: auto;
@@ -295,9 +311,8 @@ li{
             min-width: fit-content !important;
         }
 
-        .card-group-scroll > div.row > .cardCol {
-            flex: 0 0 auto !important;
-            max-width: none !important;
+        .card-group-scroll .cardCol {
+            padding: 0 10px !important;
         }
     }
 }
