@@ -7,6 +7,7 @@ import {Col, Row} from "react-bootstrap";
 import {getCollection} from "@/helpers/firebase/getCollection";
 import HomeMagazine from "@/components/blocks/homeMagazine/HomeMagazine";
 import HomeCourses from "@/components/blocks/homeCourses/HomeCourses";
+import HomeCounsellors from "@/components/blocks/homeCounsellors/HomeCounsellors";
 
 export async function getServerSideProps() {
     const articlesPromise = getCollection({
@@ -23,17 +24,32 @@ export async function getServerSideProps() {
         returnKey: 'courses'
     });
 
-    const [articlesResult, coursesResult] = await Promise.all([articlesPromise, coursesPromise]);
+    const counsellorsPromise = getCollection({
+        collectionID: "counsellors",
+        sortBy: "name",
+        returnKey: 'counsellors'
+    });
+
+    const [
+        articlesResult,
+        coursesResult,
+        counsellorsResult
+    ] = await Promise.all([
+        articlesPromise,
+        coursesPromise,
+        counsellorsPromise
+    ]);
 
     return {
         props: {
             articles: articlesResult.props.articles || [],
             courses: coursesResult.props.courses || [],
+            counsellors: counsellorsResult.props.counsellors || [],
         },
     };
 }
 
-export default function Home({ articles, courses }) {
+export default function Home({ articles, courses, counsellors }) {
     const title = 'MindClass';
     const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
@@ -56,6 +72,7 @@ export default function Home({ articles, courses }) {
                             {/*<HomeHero userData={userData} />*/}
                             <HomeMagazine articles={articles} />
                             <HomeCourses courses={courses} />
+                            <HomeCounsellors courses={counsellors} />
                         </>
                     ) : (
                         <p>Not logged in.</p>
