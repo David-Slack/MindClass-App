@@ -6,17 +6,34 @@ import {Col, Row} from "react-bootstrap";
 // import HomeHero from "@/components/blocks/homeHero/HomeHero";
 import {getCollection} from "@/helpers/firebase/getCollection";
 import HomeMagazine from "@/components/blocks/homeMagazine/HomeMagazine";
+import HomeCourses from "@/components/blocks/homeCourses/HomeCourses";
 
 export async function getServerSideProps() {
-    return getCollection({
+    const articlesPromise = getCollection({
         collectionID: "resources",
         sortBy: "publish_date",
         limitNumber: 6,
         returnKey: 'articles'
     });
+
+    const coursesPromise = getCollection({
+        collectionID: "courses",
+        sortBy: "publish_date",
+        limitNumber: 6,
+        returnKey: 'courses'
+    });
+
+    const [articlesResult, coursesResult] = await Promise.all([articlesPromise, coursesPromise]);
+
+    return {
+        props: {
+            articles: articlesResult.props.articles || [],
+            courses: coursesResult.props.courses || [],
+        },
+    };
 }
 
-export default function Home({ articles }) {
+export default function Home({ articles, courses }) {
     const title = 'MindClass';
     const subtitle = "Welcome to MindClass, counsellors, courses and content are just a click away!";
     const { userData, loading } = useUser();
@@ -38,6 +55,7 @@ export default function Home({ articles }) {
                         <>
                             {/*<HomeHero userData={userData} />*/}
                             <HomeMagazine articles={articles} />
+                            <HomeCourses courses={courses} />
                         </>
                     ) : (
                         <p>Not logged in.</p>
@@ -45,21 +63,6 @@ export default function Home({ articles }) {
 
                 </Col>
             </Row>
-
-
-{/*            <Row>
-                <h2>Latest Courses</h2>
-                <Link href={'/courses'}>View all</Link>
-            </Row>
-
-            <Row>
-                <h2>Counsellors</h2>
-                <Link href={'/counsellors'}>View page</Link>
-            </Row>
-
-            <Row>
-                <h2>Testimonials</h2>
-            </Row>*/}
         </>
     );
 }

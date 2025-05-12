@@ -300,9 +300,8 @@ li{
             min-width: fit-content !important;
         }
 
-        .card-group-scroll > div.row > .cardCol {
-            flex: 0 0 auto !important;
-            max-width: none !important;
+        .card-group-scroll .cardCol {
+            padding: 0 10px !important;
         }
     }
 }

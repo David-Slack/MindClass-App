@@ -1,10 +1,10 @@
 import {Col, Row} from "react-bootstrap";
 import Link from "next/link";
-import {MagazineCards} from "@/components/cards/magazineCards/MagazineCards";
-import styles from "./HomeMagazine.module.css";
+import styles from "./HomeCourses.module.css";
 import { useRef } from "react";
+import {CourseCards} from "@/components/cards/courseCards/CourseCards";
 
-export default function HomeMagazine({articles}) {
+export default function HomeCourses({courses}) {
     const scrollContainerRef = useRef(null);
 
     const scrollLeft = () => {
@@ -26,21 +26,23 @@ export default function HomeMagazine({articles}) {
     };
 
     return (
-        <div className={styles.magazineBlock}>
+        <div className={styles.coursesBlock}>
             <Row>
                 <Col>
-                    <h2>Latest Magazine articles </h2>
-                    <p>From interviews, to articles, tips and insights - grab a brew and read it through</p>
+                    <h2>Latest Courses </h2>
+                    <p>From Mental Health Awareness, to ADHD, Sleep and the Menopause, we’ve got you covered</p>
                 </Col>
                 <Col className="d-flex flex-column align-items-end justify-content-end">
-                    <p><Link href={'/magazine'}>View all</Link></p>
+                    <p><Link href={'/courses'}>View all</Link></p>
                 </Col>
             </Row>
             <Row className="scrollable-container">
                 <button className="scroll-button" onClick={scrollLeft}>&lt;</button>
-                <Col className="card-group-scroll" ref={scrollContainerRef}>
-                    <MagazineCards magazineArticles={articles} simple={true} />
-                </Col>
+                <div className="card-group-scroll" ref={scrollContainerRef}>
+                    <div style={{position: 'relative'}}>
+                        <CourseCards collection={courses} />
+                    </div>
+                </div>
                 <button className="scroll-button" onClick={scrollRight}>&gt;</button>
             </Row>
         </div>
