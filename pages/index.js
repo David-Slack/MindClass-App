@@ -3,9 +3,8 @@ import { TitleHeader } from "@/components/titleHeader/TitleHeader";
 import { useUser } from '@/helpers/firebase/userContext';
 import { LoadingSpinner } from "@/components/loadingSpinner/LoadingSpinner";
 import {Col, Row} from "react-bootstrap";
-import HomeHero from "@/components/blocks/homeHero/HomeHero";
+// import HomeHero from "@/components/blocks/homeHero/HomeHero";
 import {getCollection} from "@/helpers/firebase/getCollection";
-import Link from "next/link";
 import HomeMagazine from "@/components/blocks/homeMagazine/HomeMagazine";
 
 export async function getServerSideProps() {
@@ -36,7 +35,10 @@ export default function Home({ articles }) {
                     {loading ? (
                         <LoadingSpinner />
                     ) : userData ? (
-                        <HomeHero userData={userData} />
+                        <>
+                            {/*<HomeHero userData={userData} />*/}
+                            <HomeMagazine articles={articles} />
+                        </>
                     ) : (
                         <p>Not logged in.</p>
                     )}
@@ -44,7 +46,6 @@ export default function Home({ articles }) {
                 </Col>
             </Row>
 
-            <HomeMagazine articles={articles} />
 
 {/*            <Row>
                 <h2>Latest Courses</h2>
