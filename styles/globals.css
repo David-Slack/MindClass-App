@@ -176,6 +176,17 @@ ul{
 li{
     line-height: 1.8em;
 }
+.badge.rounded-pill.bg-primary{
+    background-color: transparent !important;
+    color: #000;
+    border: 2px solid #000;
+    text-decoration: none;
+    font-size: 16px;
+    &:hover{
+        background-color: #000 !important;
+        color: #fff;
+    }
+}
 
 /* NOT USED??
 .gradient-custom-2 {

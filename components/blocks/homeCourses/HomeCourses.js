@@ -28,21 +28,21 @@ export default function HomeCourses({courses}) {
     return (
         <div className={styles.coursesBlock}>
             <Row>
-                <Col>
+                <Col lg={10}>
                     <h2>Latest Courses </h2>
                     <p>From Mental Health Awareness, to ADHD, Sleep and the Menopause, we’ve got you covered</p>
                 </Col>
                 <Col className="d-flex flex-column align-items-end justify-content-end">
-                    <p><Link href={'/courses'}>View all</Link></p>
+                    <p><Link className="badge rounded-pill bg-primary" href={'/courses'}>View all</Link></p>
                 </Col>
             </Row>
             <Row className="scrollable-container">
                 <button className="scroll-button" onClick={scrollLeft}>&lt;</button>
-                <div className="card-group-scroll" ref={scrollContainerRef}>
-                    <div style={{position: 'relative'}}>
+                <Col className="card-group-scroll" ref={scrollContainerRef}>
+                    <Row style={{position: 'relative'}}>
                         <CourseCards collection={courses} />
-                    </div>
-                </div>
+                    </Row>
+                </Col>
                 <button className="scroll-button" onClick={scrollRight}>&gt;</button>
             </Row>
         </div>

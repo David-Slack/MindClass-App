@@ -28,12 +28,12 @@ export default function HomeMagazine({articles}) {
     return (
         <div className={styles.magazineBlock}>
             <Row>
-                <Col>
+                <Col lg={10}>
                     <h2>Latest Magazine articles </h2>
                     <p>From interviews, to articles, tips and insights - grab a brew and read it through</p>
                 </Col>
                 <Col className="d-flex flex-column align-items-end justify-content-end">
-                    <p><Link href={'/magazine'}>View all</Link></p>
+                    <p><Link className="badge rounded-pill bg-primary" href={'/magazine'}>View all</Link></p>
                 </Col>
             </Row>
             <Row className="scrollable-container">
