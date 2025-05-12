@@ -233,12 +233,17 @@ li{
     100% {padding-right: 0;}
 }
 
-@media screen and (min-width: 991px) {
+@media screen and (max-width: 990px) {
+    .scroll-button{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 990px) {
 
     .scrollable-container {
-        position: relative; /* For positioning the buttons */
-        margin-bottom: 20px; /* Add some space below the scroller */
-
+        position: relative;
+        margin-bottom: 20px;
 
         .card-group-scroll {
             overflow-x: auto;
